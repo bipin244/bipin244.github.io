@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            checkAvailableSlot();
+            var test = 0;
+            var interval = setInterval(() => {
+                checkAvailableSlot();
+            }, 10000);
+            function checkAvailableSlot() {
+                $('.available_list').html('');
+                $('.checking_text').show();
+                test++;
+                $.ajax({
+                    url: "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=775&date=06-05-2021", success: function (result) {
+                        $.each(result.centers, function (index, item) {
+                            $.each(item.sessions, function (sindex, sessionItem) {
+                                if (sessionItem.min_age_limit == 18 && sessionItem.available_capacity > 0) {
+                                    $('.available_list').append('<p>Slot Available At <span style="color:green">' + item.name + '</span></p>');
+                                    alert("slot available");
+                                } else {
+                                    $('.checking_text').hide();
+                                }
+                            });
+                        });
+                    }
+                });
+                if(test){
+                    $('.try_message').append('<p>'+test+ ' try </p>');
+                }
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div id="div1">
+        <h2>Check available slot automatically <span class="checking_text" style="color:green">checking...</span></h2>
+        <div class="try_message" style="color:red"></div>
+        <div class="available_list"></div>
+    </div>
+</body>
+
+</html>
