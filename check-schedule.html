@@ -5,7 +5,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            checkAvailableSlot();
             var d = new Date();
 
             var month = d.getMonth()+1;
@@ -18,6 +17,8 @@
             var interval = setInterval(() => {
                 checkAvailableSlot();
             }, 10000);
+
+            checkAvailableSlot();
             function checkAvailableSlot() {
                 $('.checking_text').show();
                 test++;
