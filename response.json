@@ -1,0 +1,2994 @@
+{
+    "centers": [
+        {
+            "center_id": 692634,
+            "name": "SCHOOL NO - 23",
+            "address": "CHUNARVAD CHOWK",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360003,
+            "lat": 22,
+            "long": 71,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "b3e3b97d-d6e8-4ab1-a907-62390a810c24",
+                    "date": "06-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "34fa21fe-ff3b-4f3d-90f8-1ac3bd39f6ca",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 584499,
+            "name": "MORBI ROAD COMMUNITY HALL",
+            "address": "NEAR JAKATNAKA Morbi Road",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360003,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "fadbd296-f5d6-4ab7-97e7-cadc51752fa2",
+                    "date": "06-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "3379dd15-68a4-4cf4-b7c9-36c49bf3f7f0",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 590720,
+            "name": "CVD Arogya Kendra",
+            "address": "80 Ft Road Near Ambedkar Nagar",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360003,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "d23c4dbd-c84c-4910-8341-939becdd5964",
+                    "date": "06-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "23e1bc25-c3c1-4008-9ca9-6fdd37180ae4",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "95cbc757-3b1f-475b-aa90-b722e250ff8e",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692858,
+            "name": "MORBI ROAD COMMUNITY HALL - 2",
+            "address": "NEAR JAKAT NAKA MORBI ROAD",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360003,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "b916053e-9030-4c96-a2aa-9b7d371d400b",
+                    "date": "06-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "e5aa5bbe-de0b-4acb-b75d-9c2d302000c9",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 693035,
+            "name": "MOHAN BHAI SARVIYA HALL",
+            "address": "Shree Mohanbhai Sarvaiya Community Hall (RMC) Vardhman Industrial Area Ram Nagar Aji Industrial Estate Rajkot Gujarat India",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360003,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "6eef7046-2bb3-489a-9913-51f5e217c4d0",
+                    "date": "06-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "4c44383b-eb05-411c-9671-90852ac1d50e",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "56e1697e-fcf8-4313-9d9f-07ae5c4f95f1",
+                    "date": "08-05-2021",
+                    "available_capacity": 70,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692612,
+            "name": "SCHOOL NO. 52 - SHAKAR ROAD",
+            "address": "AVADH MEDICAL STREET SHAKAR ROAD RAGHUVIR SOCIETY RAJKOT",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360002,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "93aef48f-ec55-4555-8b73-2b218fb925f0",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "594ccc37-718e-4b9a-9b8f-2089d8d438e9",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 440073,
+            "name": "GOKUL SCHOOL",
+            "address": "Anmolpark -4mahika Main RoadNEAR AJIDEAM CHOKDI BHAVNAGAR ROAD",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360003,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "c03b0053-beca-4977-939f-34ff5b452fd4",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 647948,
+            "name": "Railway Hospital 1",
+            "address": "Kothi Compound Jamnagar Road Rajkot",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360001,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "88aa0493-867b-4995-b9e6-89a5063a0739",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 672410,
+            "name": "SCHOOL-90 GANDHIGRAM-5",
+            "address": "SCHOOL NO. 90S.K.CHOKGANDHIGRAMRAJKOT",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360007,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "19787f38-a40a-481e-a320-0080001cf3c5",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "bb4de3f8-75db-493e-97ad-a89ce4d8d9dc",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 553914,
+            "name": "Padma Kuvarba Hospital",
+            "address": "Palace Road, Rajkot Opposite Gundawadi Police Chowki",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360001,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "20:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "45b888a1-b6b7-4432-b3fa-cffb382771a6",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-12:00PM",
+                        "12:00PM-03:00PM",
+                        "03:00PM-06:00PM",
+                        "06:00PM-08:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 675897,
+            "name": "SHALA NO 93 Mokaji Circle",
+            "address": "SHALA NO-93 , MOKAJI CIRCLE, RAJKOT",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360005,
+            "lat": 19,
+            "long": 72,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "42918f9e-e9b2-4998-a1c1-6baa5dab45e6",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "a16c03f7-c7d9-4f82-a4ae-6627873e0142",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 584372,
+            "name": "SHALA NO 28 BHAKTINAGAR ST. PL",
+            "address": "BHAKTINAGAR STATION PLOT 12 GONDAL ROAD",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360002,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "e27821a6-69d7-443e-b9ea-1181da483c67",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "9c5ecd4a-12fe-4dca-98da-98112c281eb7",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 439888,
+            "name": "NAGAR PRATHMIK SIKSHAN SAMITI",
+            "address": "PRAHALADPLOT MAIN ROAD NEAR KARANPARA CHOWK",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360001,
+            "lat": 0,
+            "long": 0,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "d8047e66-e7f3-430a-8c6f-243bb90b92eb",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "3eaf8621-3edf-4582-a472-47d0f04d86f1",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 576516,
+            "name": "New Raghuvir UHC",
+            "address": "Raghuvir Society Babariya Mainroad Rajkot",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360002,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "5fc790fc-2f1b-40b5-b180-9c8d54665d04",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692774,
+            "name": "School No 43 Bhagvatipara",
+            "address": "Bhagwatipara St.no.5",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360003,
+            "lat": 0,
+            "long": 0,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "f825f38c-2612-44b5-8b7e-5c8a9f1a7912",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "c8c8df75-0dad-4865-97b7-bc928ba912bb",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692777,
+            "name": "School No 100 Bhagvatipara",
+            "address": "Near Sukhsagar HallJay Prakash Nagar St.no.3 Corner Bhagvatipara Main Road",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360003,
+            "lat": 0,
+            "long": 0,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "1cd81668-9619-4001-ba0a-8225f2583875",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "ad3a634c-af74-499a-8c91-7cf02ccd69e7",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 557375,
+            "name": "Junction Plot UHC",
+            "address": "Junction Plot Uhc Near Railway Station Junctionplot 15Rajkot",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360001,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "caed5cf5-089f-4ab7-b798-96d7a201d2b9",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 440070,
+            "name": "SCHOOL NO 49 / A SAMRAT ASHOK",
+            "address": "SAGAR SOCIETY MAIN ROAD BEHIND SARDAR PATEL CLINIC NR. BHAVANI CHOWK",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360002,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "e23e2ee3-f456-4a9b-ac38-274c0d54f301",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "7dfcbf1b-a81b-4df2-8d70-30bd67fc537e",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 439915,
+            "name": "KANYA SHALA SOLVANT KOTHARIYA",
+            "address": "KOTHARIYA SOLVENT NEAR HUSAINI CHOWK",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360022,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "c1d8e900-f849-4d7e-aff2-547e47e4903a",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "70b66bb0-dcb0-4c3d-aa77-1f685b685d4c",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 570690,
+            "name": "PDU GOVERNMENT HOSPITAL",
+            "address": "MOCHIBAJAR",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360001,
+            "lat": 20,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "3a95b259-b04f-4d4d-b3b3-2e583a7189c3",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692780,
+            "name": "Sarojini Naidu School No 69",
+            "address": "Ambaji Kadwa 2 Lodheshwar Pase",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360002,
+            "lat": 0,
+            "long": 0,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "f87f7b52-8d43-4913-8c03-3a74cdbbef86",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "303e4e5c-f32f-431a-b77b-b404b327c1fd",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 563376,
+            "name": "PDU Medical College",
+            "address": "Pdu Medical College Rajkot",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360001,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "40386f79-2971-4575-b5ae-f30cbe07a467",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 439895,
+            "name": "Navyug Schl Hathikhana CanalRd",
+            "address": "HATIKHANA MAIN ROAD",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360002,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "13:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "20800210-89b8-4758-b565-9444ce0d7e8b",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-10:00AM",
+                        "10:00AM-11:00AM",
+                        "11:00AM-12:00PM",
+                        "12:00PM-01:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 581330,
+            "name": "PDU FLW",
+            "address": "Mochi Bazar",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360001,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "8a76d293-19f4-4400-b03f-120b9a823d55",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692671,
+            "name": "SCHOOL NO. 49/B SAMRAT N.R",
+            "address": "SCHOOL NO. 49B AYODHYA SOCIETY BABARIYA MAIN ROAD RAJKOT",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360002,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "358b66c5-28b5-4130-b81d-8f8e31557e5a",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "15a062b7-e169-46a5-a22b-367d5926c004",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 577213,
+            "name": "IMA UHC",
+            "address": "Peadk Roadgandhismruti Society 1street No 1",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360003,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "f1a86ed8-afcd-4203-834b-810229de55be",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "ceb93955-a29c-4014-a79d-81eefe642f9d",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 578693,
+            "name": "HUDAKO UHC",
+            "address": "NR SCHOOL NO 61",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360002,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "eac4ef77-4104-4e86-acf4-03310d3c6f0f",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 439886,
+            "name": "SCHOOL NO 1- KOTHARIYA NAKA",
+            "address": "KOTHARIYA NAKAPALACE ROAD",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360001,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "5b3b483b-5136-48c4-8025-118b376a6290",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "ee5ee5de-4ec1-4df6-828f-f5c4e6cfa719",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 439945,
+            "name": "SCHOOL NO 80",
+            "address": "NILKANTH PARK MAIN ROAD SHRAMSHRADDHA CHOWK PATANJALI SHOP STREETKOTHARIYA ROAD",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360002,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "196e00e0-1d21-4aff-8291-28c15bfeee05",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "3f4cb33a-0399-4484-b73d-be4cf7afd876",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692645,
+            "name": "TALUKA SCHOOL NUMBER 11",
+            "address": "VIDHYANAGAR MAIN ROAD OPPOSITE RASHTRIYA SALA RAJKOT",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360001,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "69281ff3-088d-4bd1-a269-14d75b71460f",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "cb8291f8-7650-46e9-8449-ac02ccd7df6e",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 693418,
+            "name": "TAPAN SCHOOL",
+            "address": "SHIV DRASHTI PARK 3NANDANVAN150 FEET RING ROAD MAVDI",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360004,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "20684f3e-d680-46fd-bbb1-9ed8ee180982",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "b0e5df09-6396-4eb5-8b0a-1bcc90400f4b",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692633,
+            "name": "Pramukh Swami Auditorium 2",
+            "address": "Pramukh Swami Maharaj Auditorium Opp Alap Green City Raiya Road Rajkot",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360005,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "39cd045a-d60c-4051-b621-4c66cabe0f9a",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "d373697f-8107-4b29-929c-5c538fdd3a5c",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 693040,
+            "name": "School No 84 1st Floor",
+            "address": "Mavdi Gaam Near Mavdi Primary School",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360004,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "e95dbd4f-fb2b-438a-b6ac-b6b0937fc942",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "51953e2c-0f06-4f7b-b2bc-915c3439d8af",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692658,
+            "name": "MAA SANTOSHI SCHOOL NO 98",
+            "address": "DEVTIRTH PARK OPP SHYAMAL HEGHTS B H SANTOSHINAGAR FIRE STATION RAIL NAGAR",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360001,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "d911ba70-4962-412d-87f1-7c040ac43733",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "be6ae402-f8a4-412a-9664-b6bf16abab79",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 691615,
+            "name": "MultiActivity Centre Nana Mava",
+            "address": "MULTI ACTIVITY CENTER AT NANAMAUVA COIRCLE",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360005,
+            "lat": 0,
+            "long": 0,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "f80ef853-f95c-413a-9342-8b3c116a22f4",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "d5d8521a-775c-4927-8464-a4566c5d48a4",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 440072,
+            "name": "SCHOOL NO78 DRHOMIBHABHASCHOOL",
+            "address": "SAGAR CHOK NEAR BHIDBHNJAN TEMPLA GUJRAT HOUSHING BOARD DUDHA SAGAR ROOAD",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360003,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "680634d9-cc53-4eca-b57a-169ebc3003c8",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692621,
+            "name": "KANTIBHAI VAID COMM.HALL (HU)",
+            "address": "NR KOTHARIYA FIRE STATIONKOTHARIYA ROAD",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360002,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "14cddf5d-9a3b-48d6-9d1b-36a174a77f91",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692723,
+            "name": "Sheth High School-A 80 Ft Road",
+            "address": "80 FEET RING ROADNEAR BHAKTINAGAR CIRCLE",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360002,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "13:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "d81bbfae-57e8-4374-a7f2-180fde281392",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-10:00AM",
+                        "10:00AM-11:00AM",
+                        "11:00AM-12:00PM",
+                        "12:00PM-01:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 693067,
+            "name": "CITY CIVIC CENTRE AMIN MARG VP",
+            "address": "AMIN MARG OPP SAGAR TOWER",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360001,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "88d6b454-c186-49dd-9085-a15b5832700b",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692614,
+            "name": "SOMNATH SCHOOL (HUDKO)",
+            "address": "RAJ LAXMI SOSTREET NO 15 CORNERNR HARIDHAVA ROAD",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360002,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "026147c0-4284-4ea5-b17c-8d19a4ba4973",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692652,
+            "name": "MAHARANI LAXMIBAI KANYA SCHOOL",
+            "address": "BHAKTINAGAR RAILWAY STATION NEAR TAGOR ROAD RAJKOT",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360001,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "b8e955a5-3383-42e4-b538-fd3fff1751c6",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "82c07833-406c-4bac-9567-7db9f2016838",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 553906,
+            "name": "Pranami Chawk AROGYA KENDRA",
+            "address": "Pranami Chowk UHC, Near Pranami Hall, Devpara",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360002,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "5b3d46fa-4755-4103-b37a-43cf6e8bea6f",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 671062,
+            "name": "Narayan Nagar Uhc",
+            "address": "Near Pdm Fatak",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360002,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "2231fa13-4f8b-4435-98aa-bc3b9a4c321b",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 570431,
+            "name": "ESIS GENERAL HOSPITAL RAJKOT",
+            "address": "Dudh Sagar Main Road Near Gopal Dairy Bhavnagar Road Opp. H J Steel Rajkot Gujarat 360003",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360003,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "42a3ece2-8f00-4a31-abec-261fcbdfcf4d",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "7cd6b96e-963b-42c7-b52a-50c863143023",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692861,
+            "name": "ADITYA SCHOOL NO.32 PART-A",
+            "address": "ALKA PARK MAIN ROAD",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360003,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "04ad4b33-37d1-4590-b6f6-fcbe72848cb1",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "90543707-9908-465a-a2ff-428b6a140cc4",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 584387,
+            "name": "BHAGVTIPARA AAROGY KENDR",
+            "address": "BHAGVATIPARA STREET NO 5",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360003,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "19:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "4ebd1d5e-1634-44d2-ac7b-d1ca22320e91",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-07:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 553874,
+            "name": "Shyamnagar UHC",
+            "address": "3 4 Shyamnagar Corner, Behind Bileshwer Mahadev Temple, Gandhigram",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360007,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "5aa5b901-f96e-40cf-88ec-4a1a112af135",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "9b9a9f45-17d0-46a3-8023-8ddc11b81bac",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "2b16e428-7e0e-454a-9743-55f66eb393c7",
+                    "date": "09-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "adf4859a-94fb-47d0-bf32-f03df6bfdd54",
+                    "date": "10-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 607690,
+            "name": "NANAMAUVA UHC",
+            "address": "NANAMAUVA CIRCLE  OPP. PATEL PENDAVALA",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360005,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "fbe51d70-cc32-4a34-ade4-183c30417df8",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692646,
+            "name": "SHIV SHAKTI SCHOOL 2 RAJKOT",
+            "address": "Shiv Shakti School  Akashvani Chowk Sadhuvasvani Road",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360005,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "71fe92e3-c1fa-43e3-8618-52d885640641",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "395300da-649e-45db-9fb2-0e8979e09dd4",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692625,
+            "name": "School No 88 Opp Shymal Sky",
+            "address": "SCHOOL NO 88 OPP. SHYAMAL SKY LIFE AMBIKA TOWNSHIP, RAJKOT",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360005,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "fc9cc14e-0c93-46d2-89d5-ef8b4930c2c8",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "9d29cfaa-f79b-4350-bd73-6b050cfffdfa",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692624,
+            "name": "Pramukh Swami Auditorium 1",
+            "address": "Pramukh Swami Maharaj Auditorium Opp Alap Green City Raiya Road Rajkot",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360005,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "da03dac3-edb6-4655-80bd-6f4c6186166b",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "b551c214-3bc3-4786-85b6-0acdf8a45547",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 578358,
+            "name": "Redcross Sadar UHC",
+            "address": "SUCHAK ROAD MOTI TANKI CHOWK RAJKOT",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360001,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "b9bad85b-169e-40b8-852c-5d78ad3e21f0",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "b07c40fd-51e8-48d6-b019-36d93f5c5af6",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692653,
+            "name": "ZAVERCHAND MEGHANI SCHOOL NO 8",
+            "address": "TALUKA SALA ROAD MOTI TANKI CHOWK RAJKOT",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360001,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "7ebe5d4d-8e24-467f-96a6-28fd614904f4",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "1712cbdc-6993-4964-8dc8-a54ea5a0288d",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 652981,
+            "name": "SHIV SHAKTI SCHOOL RAJKOT",
+            "address": "Shala No 92 , Akashvani Chowk, Sadhuvasvani Road",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360005,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "ce76ce26-858d-44ba-b3cf-c0aba8775e04",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "06f5a451-5aa9-44af-b43d-2f1d8a8ea319",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "b2b23e24-b694-4e75-91d7-0ce0ab106036",
+                    "date": "09-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "b143afc4-d162-40d2-befc-2126c2da0c68",
+                    "date": "10-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "b2c55e54-9903-4b7f-b3ad-4d57ba144f9c",
+                    "date": "11-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "7211c283-fa9e-4408-a6eb-4a36dcdee3a4",
+                    "date": "12-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692788,
+            "name": "Mirambika School",
+            "address": "AMBAJI KADVA MAIN ROAD NEAR TAPU BHAVAN 1",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360004,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "40812e2a-d51c-42f3-ac2f-f1c3e0c2aab8",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "8520ed4e-b1ec-4c11-a09d-0f5865a60059",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692636,
+            "name": "Gyandeep School Kothariya",
+            "address": "Gyan Deep Schoolsu Mangal Gate Near Kothariya",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360022,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "cbdbe442-ec9d-440f-848b-c0350742babc",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 590716,
+            "name": "RAMNATHPARA AROGYA KENDRA",
+            "address": "MALIYA HOUSE 21 RAMNATHPARA NEAR RAMNATHPARA MAHADEV TEMPLE",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360001,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "94a86b4e-4408-41a1-ae5e-a25e345c00a6",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 439909,
+            "name": "SARDAR SCHOOL SANT KABIR ROAD",
+            "address": "4 Sant Kabir Main Rd Brahmaniya Para Mayur Nagar Ranchhod Nagar Rajkot Gujarat 360003",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360003,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "078cec8b-9f67-4184-a3e4-2d85776d6ab1",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "f6e8ea58-0f7d-4af7-a104-8ac338c5982c",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692893,
+            "name": "ADITYA SCHOOL NO.32 PART-B",
+            "address": "ALKA PARK MAIN ROAD RAJKOT",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360003,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "6bd99713-8791-4af8-b32e-41726530bf14",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "536f1ae5-86d8-4af8-9b40-95d9c31f37b7",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 439891,
+            "name": "SCHOOL 47 LAXMINAGAR",
+            "address": "MAHADEVWADI MAIN ROADLAXMI NAGARRAJKOT",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360005,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "60d500f8-1917-4364-90ee-86f9f3eaa2be",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 584304,
+            "name": "Nandanvan UHC",
+            "address": "Street No - 4, Nandanvan Society , Nanavati Chowk, 150 Ft Ring Road, Rajkot",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360007,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "861235fe-8170-4f6d-8889-fbfb95e58a7d",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "d529055e-03e0-46b8-bd18-2dd615e73df9",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "707ebc18-6862-456f-9c9e-51deff903ac5",
+                    "date": "09-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "382c0745-516b-420b-9390-3fc200019d97",
+                    "date": "10-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "cc2181a6-022d-4d94-88cf-2765c51672f9",
+                    "date": "11-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "6f4228aa-4b38-440e-afa9-a4947498f7d3",
+                    "date": "12-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 553904,
+            "name": "AAMBEDKARNAGAR UHC",
+            "address": "Krushnanagar Main RoadSamrat Industrial Areaafter Gokuldham Gate Near Makwana Pan Rajkot",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360004,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:30:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "12f22b74-e968-46b8-8911-c06981154b1d",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:30PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692793,
+            "name": "Jay Vijay School",
+            "address": "Geeta Nagar Main Road Geeta Nagar 8 Pase",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360004,
+            "lat": 0,
+            "long": 0,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "183be3ce-ba5b-4dca-8920-5bc4f7f5385e",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "6802d205-0dbd-443f-aa64-784e9251cc00",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 581230,
+            "name": "KABIRVAN UHC",
+            "address": "Bhavani Krupa Street No. 2 Sant Kabir Main Rd Opp Bhavani Pan Sadguru Society - 1 Shakti Industrial Zone Rajkot Gujarat 360003 India",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360003,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "9ab6a560-c5bf-4305-a54f-4d21e04633ec",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 676769,
+            "name": "MAA SANTOSHI SCHOOL 98 -2",
+            "address": "DEVTIRTH PARK OPP SHYAMAL HEGHTS B H SANTOSHINAGAR FIRE STATION RAIL NAGAR",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360001,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "c14af82f-18a9-43fb-a406-b9e4a928b691",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "3d331616-afba-47a3-b8fa-1841ebd1d086",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 440091,
+            "name": "SCHOOL 81 CHANDRESHNAGAR",
+            "address": "UMAKANT PANDIT UDHYOGNAGAR STREET 2 MAVADI INDUSTRIAL AREACHANDRESHNAGAR",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360004,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "9ceeba00-0f96-4ccc-b04d-23c517d379d5",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 553911,
+            "name": "Kothariya UHC",
+            "address": "Kothariya Uhc Near Sumangal Park Society Opp. Gyandeep School Kothariya Main Road Kothariya Rajkot Gujarat",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360022,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "f3601212-68fc-499b-a3b4-22df4ef4f925",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 553915,
+            "name": "Rampark AAROGY KENDR",
+            "address": "Rampark UHC, Aji Dem Chokdi, Bhavnagar Road, Rajkot",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360003,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "5df41b12-f196-45a1-9026-e5a3d52e281b",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 693028,
+            "name": "SCHOOL NO 84 GROUND FLOOR",
+            "address": "MAVDI GAAM NEAR MAVDI PRIMARY SCHOOL",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360004,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "ee935884-0f25-4d4b-b615-21c994d12846",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "1d2a1028-480b-4cfe-8907-243a22a7d3dd",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 670769,
+            "name": "SCHOOL-56 GitGurjari Main Road",
+            "address": "GIT GURJARI SOCIETYBH.WARD OFFICENR.JAIN DERASAR",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360007,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "f5b52a1c-eece-464f-be90-38663036ae2a",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "81d09f27-129d-4f62-8e84-2f9c08f0166b",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 584417,
+            "name": "VIJAY PLOT AAROGAY KENDRA",
+            "address": "VIJAY PLOT UHC GODAWON ROAD OPPOSITE R P BHALODIYA COLLAGE",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360002,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "7a3dfb85-6441-4424-bf52-cc1ac306d93d",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 601128,
+            "name": "Morbi Road Arogya Kendra",
+            "address": "Old Jakat Naka Morbi Road",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360003,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "f75eaef5-33b1-4927-bf30-c8ccfa5ebd6f",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 695148,
+            "name": "Sheth High School-B 80 Ft.Road",
+            "address": "80 FEET RING ROADNEAR BHAKTINAGAR CIRCLE",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360002,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "13:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "7c57fb91-ed58-4440-970b-8bb7d46ce990",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-10:00AM",
+                        "10:00AM-11:00AM",
+                        "11:00AM-12:00PM",
+                        "12:00PM-01:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692651,
+            "name": "School No.89 Raiya Gam",
+            "address": "RAIYA GAM Opp. Gam Panchayat",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360007,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "c387eb09-43f3-42f7-9260-697431a8b1ac",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                },
+                {
+                    "session_id": "b39a621e-30c2-40e7-ba4e-642264a2b50f",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 591136,
+            "name": "KOTHARIYA AROGYA KENDRA",
+            "address": "KOTHARIYA ROAD RAJKOT",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360022,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "b63ca95a-7752-4148-a43b-ba7569ec5060",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 584413,
+            "name": "MAVDI Aarogya Kendra",
+            "address": "MAVDI GAAM Nr Mavdi Primary School",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "West Zone",
+            "pincode": 360004,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "955f19bf-c896-4812-b8be-8fbed36062c9",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 576352,
+            "name": "Ahmp UHC(Laxmivadi Main Road)",
+            "address": "Gatrad Chowklaxmiwadi Main Road",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "Central Zone",
+            "pincode": 360002,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "43f82f2f-a25c-4f07-bf52-82ab756b1efc",
+                    "date": "07-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 45,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        },
+        {
+            "center_id": 692649,
+            "name": "KOTECHA SHALA BRC BHAVAN KTR",
+            "address": "Su Mangal Gate Near Kothariya",
+            "state_name": "Gujarat",
+            "district_name": "Rajkot Corporation",
+            "block_name": "East Zone",
+            "pincode": 360022,
+            "lat": 22,
+            "long": 70,
+            "from": "09:00:00",
+            "to": "18:00:00",
+            "fee_type": "Free",
+            "sessions": [
+                {
+                    "session_id": "579cba84-8b35-4964-b5ba-02e27b3743b0",
+                    "date": "08-05-2021",
+                    "available_capacity": 0,
+                    "min_age_limit": 18,
+                    "vaccine": "COVISHIELD",
+                    "slots": [
+                        "09:00AM-11:00AM",
+                        "11:00AM-01:00PM",
+                        "01:00PM-03:00PM",
+                        "03:00PM-06:00PM"
+                    ]
+                }
+            ]
+        }
+    ]
+}
