@@ -27,17 +27,18 @@
                         $.each(result.centers, function (index, item) {
                             $.each(item.sessions, function (sindex, sessionItem) {
                                 if (sessionItem.min_age_limit == 18 && sessionItem.available_capacity > 0) {
-                                    $('.available_list').append('<p>Slot Available At <span style="color:green">' + item.name + '</span></p>');
+                                    $('.check_list').prepend('<p>Slot Available At <span style="color:green">' + item.name + ' - ' + item.center_id + '</span></p>');
                                     console.log("slot available :",sessionItem);
                                 } else {
                                     $('.checking_text').hide();
                                 }
                             });
                         });
-                    }
+                    },
+                    cache: false
                 });
                 if(test){
-                    $('.try_message').append('<p>'+test+ ' try </p>');
+                    $('.check_list').prepend('<p style="color:red">' + test + ' try </p>');
                 }
             }
         });
@@ -47,8 +48,7 @@
 <body>
     <div id="div1">
         <h2>Check available slot automatically <span class="checking_text" style="color:green">checking...</span></h2>
-        <div class="try_message" style="color:red"></div>
-        <div class="available_list"></div>
+        <div class="check_list"></div>
     </div>
 </body>
 
