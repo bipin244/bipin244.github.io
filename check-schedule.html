@@ -27,7 +27,7 @@
                         $.each(result.centers, function (index, item) {
                             $.each(item.sessions, function (sindex, sessionItem) {
                                 if (sessionItem.min_age_limit == 18 && sessionItem.available_capacity > 0) {
-                                    $('.check_list').prepend('<p>Slot Available At <span style="color:green">' + item.name + ' - ' + item.center_id + '</span></p>');
+                                    $('.check_list').prepend('<p>Slot Available At <span style="color:green">' + item.name + ' - ' + item.pincode + '</span></p>');
                                     console.log("slot available :",sessionItem);
                                 } else {
                                     $('.checking_text').hide();
