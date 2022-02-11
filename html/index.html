@@ -21,7 +21,7 @@
 			navLinks: false, // can click day/week names to navigate views
 			dayMaxEvents: false, 
 			events: {
-				url: 'php/get-events.php',
+				url: './php/get-events.php',
 				failure: function() {
 					document.getElementById('script-warning').style.display = 'block'
 				}
@@ -52,7 +52,7 @@
 				$(info.dayEl).addClass('clicked-day');
 				$.ajax({
 					type: 'POST',
-					url: "php/display-events.php",
+					url: "./php/display-events.php",
 					data: {
 						'date':info.dateStr
 					},
