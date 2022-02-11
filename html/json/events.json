@@ -1,0 +1,9 @@
+[
+  {
+    "title": "Long Event",
+    "start": "2022-02-01",
+    "end": "2022-02-26T00:00:00",
+    "classNames":["long-day-event"],
+    "backgroundColor":"blue"
+  }
+]
