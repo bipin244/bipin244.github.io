@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="assets/css/responsive.bootstrap.min.css" />
+
+    <script
+      type="text/javascript"
+      src="assets/js/jquery-1.11.3.min.js"
+    ></script>
+    <!-- <script
+      type="text/javascript"
+      src="assets/js/dataTables.buttons.min.js"
+    ></script> -->
+    <script
+      type="text/javascript"
+      src="assets/js/latest-jquery.dataTables.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="assets/js/dataTables.bootstrap.js"
+    ></script>
+  </head>
+  <body class="container">
+    <div style="margin-top: 20px;">
+      <table
+        id="example"
+        class="table table-striped table-bordered"
+        cellspacing="0"
+        width="100%"
+      >
+        <thead>
+          <tr>
+            <th>Flat Number</th>
+            <th>Name</th>
+            <th>Mobile Number</th>
+            <th>1st Bike Number</th>
+            <th>2nd Bike Number</th>
+            <th>Car Number</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </body>
+
+  <script>
+    $(document).ready(function () {
+      $("#example").DataTable({
+        // dom: 'Bfrtip',
+        // buttons: [
+        //     'copy', 'csv', 'excel', 'pdf', 'print'
+        // ],
+        responsive: true,
+        processing: false,
+        serverSide: false,
+        ajax: {
+          url: "sheet.php",
+          type: "GET",
+        },
+        columns: [{ data: "flatno" }, { data: "name" }, { data: "mobileno" },{ data: "twowheel1" }, { data: "twowheel2" }, { data: "fourwheel" }],
+      });
+      //       $('#example').dataTable( {
+      // "bServerSide":false,
+      // "bProcessing":false,
+      // // "sAjaxDataProp": "feed.entry",
+      // "sAjaxSource": "./sheet.php",
+      // "aoColumns": [
+      // { "mDataProp": "1" },
+      // { "mDataProp": "1" },
+      // { "mDataProp": "1" },
+      // ]
+      // } );
+    });
+  </script>
+</html>
