@@ -80,7 +80,9 @@
                       //     'copy', 'csv', 'excel', 'pdf', 'print'
                       // ],
                       data:datatableData,
-                      // columns: [{ data: "flatno" }, { data: "name" }, { data: "mobileno" },{ data: "twowheel1" }, { data: "twowheel2" }, { data: "fourwheel" }],
+                      columns: [{ title: "flatno" }, { title: "name" }, { title: "mobileno" ,  render: function(datum, type, row) {
+            return '<a href="tel:'+row[2]+'">'+row[2]+'</a>';
+        } },{ title: "twowheel1" }, { title: "twowheel2" }, { title: "fourwheel" }],
                     });
                 }
               });
@@ -99,11 +101,11 @@
 
                 var tarr = [];
                 for (var j=0; j<headers.length; j++) {
-                  var addedData = "";
+                  var addedData = data[j];
                     if(j == 0) {
-                      addedData = addedText;
+                      addedData = addedText+data[j];
                     }
-                    tarr.push(addedData+data[j]);
+                    tarr.push(addedData);
                 }
                 lines.push(tarr);
             }
