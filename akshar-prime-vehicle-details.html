@@ -22,7 +22,15 @@
     ></script>
   </head>
   <body class="container">
-    <div style="margin-top: 20px;">
+    <h1 style="text-align: center;border-bottom:1px solid ;">Akshar Prime Vehicle Details</h1>
+    <div class="loading" style="   
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 40px;">
+      Please Wait....
+    </div>
+    <div class="table-display" style="margin-top: 20px;display: none;">
       <table
         id="example"
         class="table table-striped table-bordered"
@@ -45,20 +53,80 @@
 
   <script>
     $(document).ready(function () {
-      $("#example").DataTable({
-        // dom: 'Bfrtip',
-        // buttons: [
-        //     'copy', 'csv', 'excel', 'pdf', 'print'
-        // ],
-        responsive: true,
-        processing: false,
-        serverSide: false,
-        ajax: {
-          url: "sheet.php",
-          type: "GET",
-        },
-        columns: [{ data: "flatno" }, { data: "name" }, { data: "mobileno" },{ data: "twowheel1" }, { data: "twowheel2" }, { data: "fourwheel" }],
+      var datatableData = [];
+      $.ajax({
+        type: "GET",
+        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ7c5VTvHNX2f_rmS3saDINDkB_KrKnON89cWhgI-AlIXHmxtND7HomV9w_1F17J8aPCf9guKhnUJh8/pub?gid=0&single=true&output=csv",
+        success: function(data) {
+          var arrayData = processData(data,'A-');
+          datatableData = $.merge(datatableData,arrayData);
+          $.ajax({
+            type: "GET",
+            url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ7c5VTvHNX2f_rmS3saDINDkB_KrKnON89cWhgI-AlIXHmxtND7HomV9w_1F17J8aPCf9guKhnUJh8/pub?gid=1367376416&single=true&output=csv",
+            success: function(data) {              
+              var arrayData = processData(data,'B-');
+              datatableData = $.merge(datatableData,arrayData);
+              $.ajax({
+                type: "GET",
+                url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ7c5VTvHNX2f_rmS3saDINDkB_KrKnON89cWhgI-AlIXHmxtND7HomV9w_1F17J8aPCf9guKhnUJh8/pub?gid=1553832609&single=true&output=csv",
+                success: function(data) {                  
+                  var arrayData = processData(data,'C-');
+                  datatableData = $.merge(datatableData,arrayData);
+                  $('.loading').hide();
+                  $('.table-display').show();
+                   $("#example").DataTable({
+                      // dom: 'Bfrtip',
+                      // buttons: [
+                      //     'copy', 'csv', 'excel', 'pdf', 'print'
+                      // ],
+                      data:datatableData,
+                      // columns: [{ data: "flatno" }, { data: "name" }, { data: "mobileno" },{ data: "twowheel1" }, { data: "twowheel2" }, { data: "fourwheel" }],
+                    });
+                }
+              });
+            }
+          });
+        }
       });
+      function processData(allText,addedText) {
+        var allTextLines = allText.split(/\r\n|\n/);
+        var headers = allTextLines[0].split(',');
+        var lines = [];
+
+        for (var i=1; i<allTextLines.length; i++) {
+            var data = allTextLines[i].split(',');
+            if (data.length == headers.length) {
+
+                var tarr = [];
+                for (var j=0; j<headers.length; j++) {
+                  var addedData = "";
+                    if(j == 0) {
+                      addedData = addedText;
+                    }
+                    tarr.push(addedData+data[j]);
+                }
+                lines.push(tarr);
+            }
+        }
+        console.log(lines);
+        // alert(lines);
+        return lines;
+    }
+
+      // $("#example").DataTable({
+      //   // dom: 'Bfrtip',
+      //   // buttons: [
+      //   //     'copy', 'csv', 'excel', 'pdf', 'print'
+      //   // ],
+      //   responsive: true,
+      //   processing: false,
+      //   serverSide: false,
+      //   ajax: {
+      //     url: "sheet.php",
+      //     type: "GET",
+      //   },
+      //   columns: [{ data: "flatno" }, { data: "name" }, { data: "mobileno" },{ data: "twowheel1" }, { data: "twowheel2" }, { data: "fourwheel" }],
+      // });
       //       $('#example').dataTable( {
       // "bServerSide":false,
       // "bProcessing":false,
