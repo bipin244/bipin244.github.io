@@ -58,36 +58,23 @@
         type: "GET",
         url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ7c5VTvHNX2f_rmS3saDINDkB_KrKnON89cWhgI-AlIXHmxtND7HomV9w_1F17J8aPCf9guKhnUJh8/pub?gid=0&single=true&output=csv",
         success: function(data) {
-          var arrayData = processData(data,'A-');
-          datatableData = $.merge(datatableData,arrayData);
-          $.ajax({
-            type: "GET",
-            url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ7c5VTvHNX2f_rmS3saDINDkB_KrKnON89cWhgI-AlIXHmxtND7HomV9w_1F17J8aPCf9guKhnUJh8/pub?gid=1367376416&single=true&output=csv",
-            success: function(data) {              
-              var arrayData = processData(data,'B-');
-              datatableData = $.merge(datatableData,arrayData);
-              $.ajax({
-                type: "GET",
-                url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ7c5VTvHNX2f_rmS3saDINDkB_KrKnON89cWhgI-AlIXHmxtND7HomV9w_1F17J8aPCf9guKhnUJh8/pub?gid=1553832609&single=true&output=csv",
-                success: function(data) {                  
-                  var arrayData = processData(data,'C-');
-                  datatableData = $.merge(datatableData,arrayData);
-                  $('.loading').hide();
-                  $('.table-display').show();
-                   $("#example").DataTable({
-                      // dom: 'Bfrtip',
-                      // buttons: [
-                      //     'copy', 'csv', 'excel', 'pdf', 'print'
-                      // ],
-                      data:datatableData,
-                      columns: [{ title: "flatno" }, { title: "name" }, { title: "mobileno" ,  render: function(datum, type, row) {
-            return '<a href="tel:'+row[2]+'">'+row[2]+'</a>';
-        } },{ title: "twowheel1" }, { title: "twowheel2" }, { title: "fourwheel" }],
-                    });
-                }
-              });
-            }
-          });
+          datatableData = processData(data);
+          $('.loading').hide();
+          $('.table-display').show();
+          $("#example").DataTable({
+              data:datatableData,
+              columns: [
+                { title: "Flate Number" }, 
+                { title: "Name" }, 
+                { title: "Mobile Number" ,  render: function(datum, type, row) {
+                    return '<a href="tel:'+row[2]+'">'+row[2]+'</a>';
+                  } 
+                },
+                { title: "1st Two Wheel Number" }, 
+                { title: "2nd Two Wheel Number" }, 
+                { title: "Four Wheel Number" }],
+            });
+          
         }
       });
       function processData(allText,addedText) {
@@ -102,9 +89,7 @@
                 var tarr = [];
                 for (var j=0; j<headers.length; j++) {
                   var addedData = data[j];
-                    if(j == 0) {
-                      addedData = addedText+data[j];
-                    }
+                    
                     tarr.push(addedData);
                 }
                 lines.push(tarr);
