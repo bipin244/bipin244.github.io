@@ -61,8 +61,10 @@
       var datatableData = [];
       $.ajax({
         type: "GET",
-        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQcml-yIam8Hr8Z7EsOH2g7NfSUV1a2bgCiy8ksESqHmZdHKxPi5z-DZRAtiFAq5L1GxfJD6_Cr0t2O/pub?output=csv&random="+Math.random(),
+        cache: false,
+        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQcml-yIam8Hr8Z7EsOH2g7NfSUV1a2bgCiy8ksESqHmZdHKxPi5z-DZRAtiFAq5L1GxfJD6_Cr0t2O/pub?output=tsv",
         success: function(data) {
+          console.log(data);
           datatableData = processData(data);
           console.log(datatableData);
           $('.loading').hide();
@@ -109,11 +111,12 @@
       });
       function processData(allText,addedText) {
         var allTextLines = allText.split(/\r\n|\n/);
-        var headers = allTextLines[0].split(',');
+            console.log(allTextLines);
+        var headers = allTextLines[0].split('\t');
         var lines = [];
 
         for (var i=1; i<allTextLines.length; i++) {
-            var data = allTextLines[i].split(',');
+            var data = allTextLines[i].split('\t');
             if (data.length == headers.length) {
 
                 var tarr = [];
