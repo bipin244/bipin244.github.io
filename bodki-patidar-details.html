@@ -1,0 +1,160 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="assets/css/responsive.bootstrap.min.css" />
+
+    <script
+      type="text/javascript"
+      src="assets/js/jquery-1.11.3.min.js"
+    ></script>
+    <!-- <script
+      type="text/javascript"
+      src="assets/js/dataTables.buttons.min.js"
+    ></script> -->
+    <script
+      type="text/javascript"
+      src="assets/js/latest-jquery.dataTables.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="assets/js/dataTables.bootstrap.js"
+    ></script>
+  </head>
+  <body class="container">
+    <h1 style="text-align: center;border-bottom:1px solid ;">Bodki patidar Details</h1>
+    <div class="loading" style="   
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 40px;">
+      Please Wait....
+    </div>
+    <div class="table-display" style="margin-top: 20px;display: none;">
+      <table
+        id="example"
+        class="table table-striped table-bordered"
+        cellspacing="0"
+        width="100%"
+      >
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Birthday Date</th>
+            <th>Address</th>
+            <th>Business </th>
+            <th>Study </th>
+            <th>Mobile Number </th>
+            <th>Blood Group </th>
+            <th>Extra Details </th>
+          </tr>
+        </thead>
+      </table>
+      <p>
+        Developed By <b>Bipin Harshadbhai Fultariya</b> - Contact Number - <a href="tel:8511880657">8511880657</a>
+      </p>
+    </div>
+  </body>
+
+  <script>
+    $(document).ready(function () {
+      var datatableData = [];
+      $.ajax({
+        type: "GET",
+        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQcml-yIam8Hr8Z7EsOH2g7NfSUV1a2bgCiy8ksESqHmZdHKxPi5z-DZRAtiFAq5L1GxfJD6_Cr0t2O/pub?output=csv",
+        success: function(data) {
+          datatableData = processData(data);
+          console.log(datatableData);
+          $('.loading').hide();
+          $('.table-display').show();
+          $("#example").DataTable({
+              data:datatableData,
+              columns: [
+                { title: "Name" ,  render: function(datum, type, row) {
+                    return row[1]+ " " + row[2] + " " + row[3];
+                  } 
+                },
+                { title: "Birth Date" ,  render: function(datum, type, row) {
+                    return row[4];
+                  } 
+                },
+                { title: "Address" ,  render: function(datum, type, row) {
+                    return row[5];
+                  } 
+                },
+                { title: "Business" ,  render: function(datum, type, row) {
+                    return row[6];
+                  } 
+                },
+                { title: "Study" ,  render: function(datum, type, row) {
+                    return row[7];
+                  } 
+                },
+                { title: "Mobile Number" ,  render: function(datum, type, row) {
+                    return '<a href="tel:'+row[8]+'">'+row[8]+'</a>';
+                  } 
+                },
+                { title: "Blood Group" ,  render: function(datum, type, row) {
+                    return row[10];
+                  } 
+                },
+                { title: "Extra Details" ,  render: function(datum, type, row) {
+                    return row[9];
+                  } 
+                },
+                ],
+            });
+          
+        }
+      });
+      function processData(allText,addedText) {
+        var allTextLines = allText.split(/\r\n|\n/);
+        var headers = allTextLines[0].split(',');
+        var lines = [];
+
+        for (var i=1; i<allTextLines.length; i++) {
+            var data = allTextLines[i].split(',');
+            if (data.length == headers.length) {
+
+                var tarr = [];
+                for (var j=0; j<headers.length; j++) {
+                  var addedData = data[j];
+                    
+                    tarr.push(addedData);
+                }
+                lines.push(tarr);
+            }
+        }
+        console.log(lines);
+        // alert(lines);
+        return lines;
+    }
+
+      // $("#example").DataTable({
+      //   // dom: 'Bfrtip',
+      //   // buttons: [
+      //   //     'copy', 'csv', 'excel', 'pdf', 'print'
+      //   // ],
+      //   responsive: true,
+      //   processing: false,
+      //   serverSide: false,
+      //   ajax: {
+      //     url: "sheet.php",
+      //     type: "GET",
+      //   },
+      //   columns: [{ data: "flatno" }, { data: "name" }, { data: "mobileno" },{ data: "twowheel1" }, { data: "twowheel2" }, { data: "fourwheel" }],
+      // });
+      //       $('#example').dataTable( {
+      // "bServerSide":false,
+      // "bProcessing":false,
+      // // "sAjaxDataProp": "feed.entry",
+      // "sAjaxSource": "./sheet.php",
+      // "aoColumns": [
+      // { "mDataProp": "1" },
+      // { "mDataProp": "1" },
+      // { "mDataProp": "1" },
+      // ]
+      // } );
+    });
+  </script>
+</html>
