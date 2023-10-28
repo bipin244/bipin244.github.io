@@ -61,7 +61,7 @@
       var datatableData = [];
       $.ajax({
         type: "GET",
-        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQcml-yIam8Hr8Z7EsOH2g7NfSUV1a2bgCiy8ksESqHmZdHKxPi5z-DZRAtiFAq5L1GxfJD6_Cr0t2O/pub?output=csv",
+        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQcml-yIam8Hr8Z7EsOH2g7NfSUV1a2bgCiy8ksESqHmZdHKxPi5z-DZRAtiFAq5L1GxfJD6_Cr0t2O/pub?output=csv&random="+Math.random(),
         success: function(data) {
           datatableData = processData(data);
           console.log(datatableData);
