@@ -780,7 +780,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const tesseract_js_1 = __importDefault(__webpack_require__(/*! tesseract.js */ "./node_modules/tesseract.js/src/index.js"));
 const exceljs_1 = __importDefault(__webpack_require__(/*! exceljs */ "./node_modules/exceljs/dist/exceljs.min.js"));
 const file_saver_1 = __importDefault(__webpack_require__(/*! file-saver */ "./node_modules/file-saver/dist/FileSaver.min.js"));
-tesseract_js_1.default.workerOptions.workerPath = 'http://localhost:8080/worker.min.js';
+tesseract_js_1.default.workerOptions.workerPath = 'https://bipin244.github.io/worker.min.js';
 const setImageSrc = (image, imageFile) => {
     return new Promise((resolve, reject) => {
         const fr = new FileReader();
