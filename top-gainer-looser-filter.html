@@ -1,53 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NSE Gainers & Losers Analysis</title>
     <style>
-        * { box-sizing: border-box; }
-        body { font-family: system-ui, -apple-system, sans-serif; margin: 2rem; background: #0f1419; color: #e6edf3; }
-        h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        .meta { color: #8b949e; font-size: 0.875rem; margin-bottom: 1.5rem; }
-        .table-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid #30363d; }
-        table { width: 100%; border-collapse: collapse; min-width: 600px; }
-        th { background: #21262d; padding: 0.75rem 1rem; text-align: left; font-weight: 600; color: #c9d1d9; border-bottom: 1px solid #30363d; }
-        td { padding: 0.75rem 1rem; border-bottom: 1px solid #21262d; }
-        tr:hover { background: #161b22; }
-        .symbol { font-weight: 600; color: #58a6ff; }
-        .price { font-variant-numeric: tabular-nums; }
-        .positive { color: #3fb950; }
-        .negative { color: #f85149; }
-        .no-data { text-align: center; padding: 3rem; color: #8b949e; }
-        section { margin-bottom: 2.5rem; }
-        section h2 { font-size: 1.15rem; margin-bottom: 0.5rem; }
-        .options-cell { font-size: 0.8rem; }
-        .options-toggle { cursor: pointer; color: #58a6ff; text-decoration: underline; }
-        .options-detail { display: none; font-size: 0.75rem; margin-top: 0.5rem; padding: 0.5rem; background: #161b22; border-radius: 4px; max-height: 200px; overflow: auto; }
-        .options-detail.show { display: block; }
-        .opt-row { display: grid; grid-template-columns: 70px 70px 70px 70px; gap: 0.5rem; padding: 0.35rem 0; border-bottom: 1px solid #21262d; align-items: center; }
-        .opt-header { font-weight: 600; color: #8b949e; }
-        .opt-ce { color: #3fb950; }
-        .opt-pe { color: #f85149; }
-        .expiry-bar { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding: 1rem; background: #161b22; border-radius: 8px; border: 1px solid #30363d; }
-        .expiry-bar label { font-weight: 500; color: #c9d1d9; }
-        .expiry-bar select { padding: 0.5rem 2rem 0.5rem 0.75rem; background: #21262d; border: 1px solid #30363d; border-radius: 6px; color: #e6edf3; font-size: 0.9rem; cursor: pointer; }
-        .expiry-bar select:hover { border-color: #58a6ff; }
-        .expiry-bar button { padding: 0.5rem 1rem; background: #238636; border: none; border-radius: 6px; color: #fff; font-weight: 500; cursor: pointer; }
-        .expiry-bar button:hover { background: #2ea043; }
-        .loading { text-align: center; padding: 2rem; color: #8b949e; }
-        .error-msg { color: #f85149; padding: 1rem; background: #161b22; border-radius: 8px; margin-bottom: 1rem; }
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 2rem;
+            background: #0f1419;
+            color: #e6edf3;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .meta {
+            color: #8b949e;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        th {
+            background: #21262d;
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #c9d1d9;
+            border-bottom: 1px solid #30363d;
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #21262d;
+        }
+
+        tr:hover {
+            background: #161b22;
+        }
+
+        .symbol {
+            font-weight: 600;
+            color: #58a6ff;
+        }
+
+        .price {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .positive {
+            color: #3fb950;
+        }
+
+        .negative {
+            color: #f85149;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 3rem;
+            color: #8b949e;
+        }
+
+        section {
+            margin-bottom: 2.5rem;
+        }
+
+        section h2 {
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .options-cell {
+            font-size: 0.8rem;
+        }
+
+        .options-toggle {
+            cursor: pointer;
+            color: #58a6ff;
+            text-decoration: underline;
+        }
+
+        .options-detail {
+            display: none;
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: #161b22;
+            border-radius: 4px;
+            max-height: 200px;
+            overflow: auto;
+        }
+
+        .options-detail.show {
+            display: block;
+        }
+
+        .opt-row {
+            display: grid;
+            grid-template-columns: 70px 70px 70px 70px;
+            gap: 0.5rem;
+            padding: 0.35rem 0;
+            border-bottom: 1px solid #21262d;
+            align-items: center;
+        }
+
+        .opt-header {
+            font-weight: 600;
+            color: #8b949e;
+        }
+
+        .opt-ce {
+            color: #3fb950;
+        }
+
+        .opt-pe {
+            color: #f85149;
+        }
+
+        .expiry-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #161b22;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+        }
+
+        .expiry-bar label {
+            font-weight: 500;
+            color: #c9d1d9;
+        }
+
+        .expiry-bar select {
+            padding: 0.5rem 2rem 0.5rem 0.75rem;
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            color: #e6edf3;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .expiry-bar select:hover {
+            border-color: #58a6ff;
+        }
+
+        .expiry-bar button {
+            padding: 0.5rem 1rem;
+            background: #238636;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .expiry-bar button:hover {
+            background: #2ea043;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #8b949e;
+        }
+
+        .error-msg {
+            color: #f85149;
+            padding: 1rem;
+            background: #161b22;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .expand-collapse-bar {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .expand-collapse-bar button {
+            padding: 0.5rem 1rem;
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            color: #c9d1d9;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .expand-collapse-bar button:hover {
+            background: #30363d;
+            border-color: #58a6ff;
+            color: #e6edf3;
+        }
     </style>
 </head>
+
 <body>
     <div id="error-container"></div>
-    <div id="expiry-bar" class="expiry-bar" style="display:none;">
-        <label for="expiry">Expiry Date:</label>
-        <select id="expiry">
-            <!-- populated by JS -->
-        </select>
-        <button type="button" id="apply-expiry">Apply</button>
+    <div id="expiry-bar" class="expiry-bar"
+        style="display:none; display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <label for="expiry">Expiry Date:</label>
+            <select id="expiry">
+                <!-- populated by JS -->
+            </select>
+            <button type="button" id="apply-expiry">Apply</button>
+        </div>
+        <button type="button" id="toggle-expand-options" style="margin-left: auto;">Expand all</button>
     </div>
+
 
     <section>
         <h2>F&O Gainers — Open Price = Low Price</h2>
@@ -66,367 +252,447 @@
     </section>
 
     <script>
-    (function() {
-        const HEADERS = {
-            'Accept': 'application/json',
-            'Accept-Language': 'en-US,en;q=0.9',
-            'Referer': 'https://www.nseindia.com/',
-        };
+        (function () {
+            const HEADERS = {
+                'Accept': 'application/json',
+                'Accept-Language': 'en-US,en;q=0.9',
+                'Referer': 'https://www.nseindia.com/',
+            };
 
-        function proxyUrl(url) {
-            return 'https://corsproxy.io/?' + encodeURIComponent(url);
-        }
-
-        async function fetchJson(url) {
-            const res = await fetch(proxyUrl(url), {
-                headers: HEADERS,
-                credentials: 'omit',
-            });
-            if (!res.ok) throw new Error('HTTP ' + res.status);
-            return res.json();
-        }
-
-        async function fetchNseData(index) {
-            const url = 'https://www.nseindia.com/api/live-analysis-variations?index=' + encodeURIComponent(index);
-            return fetchJson(url);
-        }
-
-        async function fetchOptionChainContractInfo(symbol) {
-            const url = 'https://www.nseindia.com/api/option-chain-contract-info?symbol=' + encodeURIComponent(symbol);
-            return fetchJson(url);
-        }
-
-        async function fetchOptionChainV3(symbol, expiry) {
-            const url = 'https://www.nseindia.com/api/option-chain-v3?type=Equity&symbol=' + encodeURIComponent(symbol) + '&expiry=' + encodeURIComponent(expiry);
-            return fetchJson(url);
-        }
-
-        function getOpenLow(row) {
-            const open = row.open_price ?? row.openPrice ?? row.open ?? null;
-            const low = row.low_price ?? row.lowPrice ?? row.low ?? null;
-            if (open == null || low == null) return null;
-            return { open: parseFloat(open), low: parseFloat(low) };
-        }
-
-        function getOpenHigh(row) {
-            const open = row.open_price ?? row.openPrice ?? row.open ?? null;
-            const high = row.high_price ?? row.highPrice ?? row.high ?? null;
-            if (open == null || high == null) return null;
-            return { open: parseFloat(open), high: parseFloat(high) };
-        }
-
-        function extractAllRows(data) {
-            const rows = data?.FOSec?.data ?? [];
-            return Array.isArray(rows) ? rows : [];
-        }
-
-        function filterOpenEqualsLow(data) {
-            const rows = extractAllRows(data);
-            return rows.filter(row => {
-                if (!row || typeof row !== 'object') return false;
-                const p = getOpenLow(row);
-                return p && p.open === p.low;
-            });
-        }
-
-        function filterOpenEqualsHigh(data) {
-            const rows = extractAllRows(data);
-            return rows.filter(row => {
-                if (!row || typeof row !== 'object') return false;
-                const p = getOpenHigh(row);
-                return p && p.open === p.high;
-            });
-        }
-
-        function getOptOpen(d) {
-            let open = d.open_price ?? d.openPrice ?? d.open ?? null;
-            if (open != null) return parseFloat(open);
-            const lp = d.lastPrice ?? null;
-            const ch = d.change ?? null;
-            if (lp != null && ch != null && !isNaN(lp) && !isNaN(ch))
-                return parseFloat(lp) - parseFloat(ch);
-            return null;
-        }
-
-        function getOptLow(d, open) {
-            const low = d.low_price ?? d.lowPrice ?? d.low ?? null;
-            if (low != null) return parseFloat(low);
-            return open;
-        }
-
-        function optionOpenEqualsLow(optData) {
-            const open = optData.open_price ?? optData.openPrice ?? optData.open ?? null;
-            const low = optData.low_price ?? optData.lowPrice ?? optData.low ?? null;
-            if (open != null && low != null) return parseFloat(open) === parseFloat(low);
-            const computedOpen = getOptOpen(optData);
-            if (computedOpen == null) return false;
-            const ch = optData.change ?? null;
-            if (ch != null && !isNaN(ch) && parseFloat(ch) >= 0) return true;
-            if (low != null) return computedOpen === parseFloat(low);
-            return false;
-        }
-
-        function getOpenEqualsLowStrikes(oc, type) {
-            const data = oc?.records?.data ?? [];
-            const uv = parseFloat(oc?.records?.underlyingValue ?? 0);
-            if (!data.length) return [];
-
-            const key = type === 'CE' ? 'CE' : 'PE';
-            const filtered = [];
-            for (const r of data) {
-                const optData = r[key] ?? {};
-                if (!optData || Object.keys(optData).length === 0) continue;
-                if (!optionOpenEqualsLow(optData)) continue;
-                const strike = parseFloat(r.strikePrice ?? 0);
-                filtered.push({ strike, data: optData });
-            }
-            filtered.sort((a, b) => Math.abs(a.strike - uv) - Math.abs(b.strike - uv));
-            return filtered.slice(0, 4);
-        }
-
-        function getField(row, ...keys) {
-            for (const k of keys) if (row[k] != null) return row[k];
-            return '—';
-        }
-
-        function optVal(d, ...keys) {
-            for (const k of keys) if (d[k] != null) return d[k];
-            return '—';
-        }
-
-        function optValFmt(d, ...keys) {
-            return fmt(optVal(d, ...keys));
-        }
-
-        function optDisplayOpen(d) {
-            const v = getOptOpen(d);
-            return v != null ? v.toFixed(2) : '—';
-        }
-
-        function optDisplayLow(d) {
-            const open = getOptOpen(d);
-            const low = getOptLow(d, open);
-            return low != null ? low.toFixed(2) : '—';
-        }
-
-        async function fetchOptionChainForRow(row, expiryOverride) {
-            const symbol = row.symbol ?? row.Symbol ?? row.symbolFull ?? null;
-            if (!symbol) return null;
-
-            let contractInfo;
-            try {
-                contractInfo = await fetchOptionChainContractInfo(symbol);
-            } catch (e) {
-                return { error: e.message || 'Failed to fetch contract info' };
+            function proxyUrl(url) {
+                return 'https://corsproxy.io/?' + encodeURIComponent(url);
             }
 
-            if (contractInfo?.error || !contractInfo?.expiryDates?.length)
-                return { error: contractInfo?.error ?? 'No expiry dates' };
-
-            const expiryDates = contractInfo.expiryDates;
-            let expiry = expiryOverride;
-            if (!expiry) expiry = expiryDates[0];
-            else if (!expiryDates.includes(expiry)) expiry = expiryDates[0];
-
-            let optionChain;
-            try {
-                optionChain = await fetchOptionChainV3(symbol, expiry);
-            } catch (e) {
-                return { error: e.message || 'Failed to fetch option chain', expiry };
+            async function fetchJson(url) {
+                const res = await fetch(proxyUrl(url), {
+                    headers: HEADERS,
+                    credentials: 'omit',
+                });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                return res.json();
             }
 
-            if (optionChain?.error) return { error: optionChain.error, expiry };
-            return { ...optionChain, expiry, allExpiries: expiryDates };
-        }
-
-        function sleep(ms) {
-            return new Promise(r => setTimeout(r, ms));
-        }
-
-        function esc(s) {
-            const div = document.createElement('div');
-            div.textContent = s;
-            return div.innerHTML;
-        }
-
-        function fmt(val) {
-            if (val == null || val === '' || val === '—') return '—';
-            const n = parseFloat(val);
-            return isNaN(n) ? '—' : n.toFixed(2);
-        }
-
-        function renderGainersTable(rows, selectedExpiry) {
-            if (!rows.length) {
-                return '<p class="no-data">No gainers with open price = low price at the moment.</p>';
+            async function fetchNseData(index) {
+                const url = 'https://www.nseindia.com/api/live-analysis-variations?index=' + encodeURIComponent(index);
+                return fetchJson(url);
             }
-            let html = '<table><thead><tr>';
-            html += '<th>Symbol</th><th>Company</th><th>Open</th><th>Low</th><th>High</th><th>Last / LTP</th><th>Change %</th><th>Options</th>';
-            html += '</tr></thead><tbody>';
-            for (const row of rows) {
-                const oc = row._optionChain ?? null;
-                const symbol = esc(getField(row, 'symbol', 'Symbol', 'symbolFull'));
-                const company = esc(getField(row, 'identifier', 'companyName', 'series', 'symbol'));
-                const open = esc(fmt(getField(row, 'open_price', 'openPrice', 'open')));
-                const low = esc(fmt(getField(row, 'low_price', 'lowPrice', 'low')));
-                const high = esc(fmt(getField(row, 'high_price', 'highPrice', 'high')));
-                const ltp = esc(fmt(getField(row, 'ltp', 'lastPrice', 'ltP', 'last', 'close')));
-                const pct = getField(row, 'pChange', 'perChange', 'percentChange');
-                const pctClass = (typeof pct === 'number' || (pct !== '—' && !isNaN(pct))) && parseFloat(pct) >= 0 ? 'positive' : 'negative';
-                html += `<tr><td class="symbol">${symbol}</td><td>${company}</td><td class="price">${open}</td><td class="price">${low}</td><td class="price">${high}</td><td class="price">${ltp}</td><td class="price ${pctClass}">${esc(fmt(pct))}%</td><td class="options-cell">`;
 
-                if (oc && !oc.error) {
-                    const strikes = getOpenEqualsLowStrikes(oc, 'CE');
-                    html += `<span class="options-toggle" onclick="this.nextElementSibling.classList.toggle('show')">Exp: ${esc(oc.expiry ?? '')} · CE (open=low, max 4)</span>`;
-                    html += '<div class="options-detail">';
-                    if (!strikes.length) {
-                        html += '<span style="color:#8b949e">No CE with open=low</span>';
-                    } else {
-                        html += '<div class="opt-row opt-header"><span>Strike</span><span>Open</span><span>Current</span><span>Low</span></div>';
-                        for (const s of strikes) {
-                            const d = s.data;
-                            html += `<div class="opt-row"><span>${parseFloat(s.strike).toFixed(2)}</span><span>${esc(optDisplayOpen(d))}</span><span class="opt-ce">${esc(optValFmt(d, 'lastPrice', 'sellPrice1', 'buyPrice1'))}</span><span>${esc(optDisplayLow(d))}</span></div>`;
+            async function fetchOptionChainContractInfo(symbol) {
+                const url = 'https://www.nseindia.com/api/option-chain-contract-info?symbol=' + encodeURIComponent(symbol);
+                return fetchJson(url);
+            }
+
+            async function fetchOptionChainV3(symbol, expiry) {
+                const url = 'https://www.nseindia.com/api/option-chain-v3?type=Equity&symbol=' + encodeURIComponent(symbol) + '&expiry=' + encodeURIComponent(expiry);
+                return fetchJson(url);
+            }
+
+            function getOpenLow(row) {
+                const open = row.open_price ?? row.openPrice ?? row.open ?? null;
+                const low = row.low_price ?? row.lowPrice ?? row.low ?? null;
+                if (open == null || low == null) return null;
+                return { open: parseFloat(open), low: parseFloat(low) };
+            }
+
+            function getOpenHigh(row) {
+                const open = row.open_price ?? row.openPrice ?? row.open ?? null;
+                const high = row.high_price ?? row.highPrice ?? row.high ?? null;
+                if (open == null || high == null) return null;
+                return { open: parseFloat(open), high: parseFloat(high) };
+            }
+
+            function getLtp(row) {
+                const v = row.ltp ?? row.lastPrice ?? row.ltP ?? row.last ?? row.close ?? null;
+                if (v == null) return null;
+                const n = parseFloat(v);
+                return isNaN(n) ? null : n;
+            }
+
+            function getVolume(row) {
+                const v = row.trade_quantity ?? row.totalTradedVolume ?? row.volume ?? row.tradedVolume ?? null;
+                if (v == null) return null;
+                const n = parseInt(v, 10);
+                return isNaN(n) ? null : n;
+            }
+
+            function hasZeroValues(row) {
+                const ltp = getLtp(row);
+                if (ltp != null && ltp <= 0) return true;
+                const vol = getVolume(row);
+                if (vol != null && vol <= 0) return true;
+                return false;
+            }
+
+            function extractAllRows(data) {
+                const result = [];
+                if (!data || typeof data !== 'object') return result;
+                // Top-level data array
+                if (Array.isArray(data.data)) result.push(...data.data);
+                // All known section keys (FOSec, allSec, eqSec, etc.)
+                const sectionKeys = ['FOSec', 'allSec', 'eqSec', 'sec'];
+                for (const key of sectionKeys) {
+                    const arr = data[key]?.data;
+                    if (Array.isArray(arr)) result.push(...arr);
+                }
+                // Any other key whose value is an object with .data array
+                for (const key of Object.keys(data)) {
+                    if (sectionKeys.includes(key)) continue;
+                    const arr = data[key]?.data;
+                    if (Array.isArray(arr)) result.push(...arr);
+                }
+                // Dedupe by symbol so same row from multiple sections appears once
+                const seen = new Set();
+                return result.filter(function (row) {
+                    const sym = row?.symbol ?? row?.Symbol ?? row?.symbolFull;
+                    if (!sym || seen.has(sym)) return false;
+                    seen.add(sym);
+                    return true;
+                });
+            }
+
+            function filterOpenEqualsLow(data) {
+                const rows = extractAllRows(data);
+                return rows.filter(row => {
+                    if (!row || typeof row !== 'object') return false;
+                    if (hasZeroValues(row)) return false;
+                    const p = getOpenLow(row);
+                    return p && p.open > 0 && p.open === p.low;
+                });
+            }
+
+            function filterOpenEqualsHigh(data) {
+                const rows = extractAllRows(data);
+                return rows.filter(row => {
+                    if (!row || typeof row !== 'object') return false;
+                    if (hasZeroValues(row)) return false;
+                    const p = getOpenHigh(row);
+                    return p && p.open > 0 && p.open === p.high;
+                });
+            }
+
+            function getOptOpen(d) {
+                let open = d.open_price ?? d.openPrice ?? d.open ?? null;
+                if (open != null) return parseFloat(open);
+                const lp = d.lastPrice ?? null;
+                const ch = d.change ?? null;
+                if (lp != null && ch != null && !isNaN(lp) && !isNaN(ch))
+                    return parseFloat(lp) - parseFloat(ch);
+                return null;
+            }
+
+            function getOptLow(d, open) {
+                const low = d.low_price ?? d.lowPrice ?? d.low ?? null;
+                if (low != null) return parseFloat(low);
+                return open;
+            }
+
+            function optionOpenEqualsLow(optData) {
+                const open = optData.open_price ?? optData.openPrice ?? optData.open ?? null;
+                const low = optData.low_price ?? optData.lowPrice ?? optData.low ?? null;
+                if (open != null && low != null) return parseFloat(open) === parseFloat(low);
+                const computedOpen = getOptOpen(optData);
+                if (computedOpen == null) return false;
+                const ch = optData.change ?? null;
+                if (ch != null && !isNaN(ch) && parseFloat(ch) >= 0) return true;
+                if (low != null) return computedOpen === parseFloat(low);
+                return false;
+            }
+
+            function getOpenEqualsLowStrikes(oc, type) {
+                const data = oc?.records?.data ?? [];
+                const uv = parseFloat(oc?.records?.underlyingValue ?? 0);
+                if (!data.length) return [];
+
+                const key = type === 'CE' ? 'CE' : 'PE';
+                const filtered = [];
+                for (const r of data) {
+                    const optData = r[key] ?? {};
+                    if (!optData || Object.keys(optData).length === 0) continue;
+                    if (!optionOpenEqualsLow(optData)) continue;
+                    const strike = parseFloat(r.strikePrice ?? 0);
+                    filtered.push({ strike, data: optData });
+                }
+                filtered.sort((a, b) => Math.abs(a.strike - uv) - Math.abs(b.strike - uv));
+                return filtered.slice(0, 8);
+            }
+
+            function getField(row, ...keys) {
+                for (const k of keys) if (row[k] != null) return row[k];
+                return '—';
+            }
+
+            function optVal(d, ...keys) {
+                for (const k of keys) if (d[k] != null) return d[k];
+                return '—';
+            }
+
+            function optValFmt(d, ...keys) {
+                return fmt(optVal(d, ...keys));
+            }
+
+            function optDisplayOpen(d) {
+                const v = getOptOpen(d);
+                return v != null ? v.toFixed(2) : '—';
+            }
+
+            function optDisplayLow(d) {
+                const open = getOptOpen(d);
+                const low = getOptLow(d, open);
+                return low != null ? low.toFixed(2) : '—';
+            }
+
+            async function fetchOptionChainForRow(row, expiryOverride) {
+                const symbol = row.symbol ?? row.Symbol ?? row.symbolFull ?? null;
+                if (!symbol) return null;
+
+                let contractInfo;
+                try {
+                    contractInfo = await fetchOptionChainContractInfo(symbol);
+                } catch (e) {
+                    return { error: e.message || 'Failed to fetch contract info' };
+                }
+
+                if (contractInfo?.error || !contractInfo?.expiryDates?.length)
+                    return { error: contractInfo?.error ?? 'No expiry dates' };
+
+                const expiryDates = contractInfo.expiryDates;
+                let expiry = expiryOverride;
+                if (!expiry) expiry = expiryDates[0];
+                else if (!expiryDates.includes(expiry)) expiry = expiryDates[0];
+
+                let optionChain;
+                try {
+                    optionChain = await fetchOptionChainV3(symbol, expiry);
+                } catch (e) {
+                    return { error: e.message || 'Failed to fetch option chain', expiry };
+                }
+
+                if (optionChain?.error) return { error: optionChain.error, expiry };
+                return { ...optionChain, expiry, allExpiries: expiryDates };
+            }
+
+            function sleep(ms) {
+                return new Promise(r => setTimeout(r, ms));
+            }
+
+            function esc(s) {
+                const div = document.createElement('div');
+                div.textContent = s;
+                return div.innerHTML;
+            }
+
+            function fmt(val) {
+                if (val == null || val === '' || val === '—') return '—';
+                const n = parseFloat(val);
+                return isNaN(n) ? '—' : n.toFixed(2);
+            }
+
+            function fmtVolume(val) {
+                if (val == null || val === '') return '—';
+                const n = parseInt(val, 10);
+                if (isNaN(n)) return '—';
+                return n.toLocaleString('en-IN');
+            }
+
+            function renderGainersTable(rows, selectedExpiry) {
+                const withExpiry = rows.filter(row => {
+                    const oc = row._optionChain;
+                    return oc && !oc.error && (oc.expiry || (oc.allExpiries && oc.allExpiries.length > 0));
+                });
+                if (!withExpiry.length) {
+                    return '<p class="no-data">No gainers with open price = low price (with expiry) at the moment.</p>';
+                }
+                let html = '<table><thead><tr>';
+                html += '<th>Symbol</th><th>Company</th><th>Open</th><th>Low</th><th>High</th><th>Last / LTP</th><th>Change %</th><th>Volume</th><th>Options</th>';
+                html += '</tr></thead><tbody>';
+                for (const row of withExpiry) {
+                    const oc = row._optionChain ?? null;
+                    const symbol = esc(getField(row, 'symbol', 'Symbol', 'symbolFull'));
+                    const company = esc(getField(row, 'identifier', 'companyName', 'series', 'symbol'));
+                    const open = esc(fmt(getField(row, 'open_price', 'openPrice', 'open')));
+                    const low = esc(fmt(getField(row, 'low_price', 'lowPrice', 'low')));
+                    const high = esc(fmt(getField(row, 'high_price', 'highPrice', 'high')));
+                    const ltp = esc(fmt(getField(row, 'ltp', 'lastPrice', 'ltP', 'last', 'close')));
+                    const pct = getField(row, 'pChange', 'perChange', 'percentChange');
+                    const pctClass = (typeof pct === 'number' || (pct !== '—' && !isNaN(pct))) && parseFloat(pct) >= 0 ? 'positive' : 'negative';
+                    const volume = esc(fmtVolume(getField(row, 'trade_quantity', 'totalTradedVolume', 'volume', 'tradedVolume')));
+                    html += `<tr><td class="symbol">${symbol}</td><td>${company}</td><td class="price">${open}</td><td class="price">${low}</td><td class="price">${high}</td><td class="price">${ltp}</td><td class="price ${pctClass}">${esc(fmt(pct))}%</td><td class="price">${volume}</td><td class="options-cell">`;
+
+                    if (oc && !oc.error) {
+                        const strikes = getOpenEqualsLowStrikes(oc, 'CE');
+                        html += `<span class="options-toggle" onclick="this.nextElementSibling.classList.toggle('show')">Exp: ${esc(oc.expiry ?? '')} · CE (open=low)</span>`;
+                        html += '<div class="options-detail">';
+                        if (!strikes.length) {
+                            html += '<span style="color:#8b949e">No CE with open=low</span>';
+                        } else {
+                            html += '<div class="opt-row opt-header"><span>Strike</span><span>Open</span><span>Current</span><span>Low</span></div>';
+                            for (const s of strikes) {
+                                const d = s.data;
+                                html += `<div class="opt-row"><span>${parseFloat(s.strike).toFixed(2)}</span><span>${esc(optDisplayOpen(d))}</span><span class="opt-ce">${esc(optValFmt(d, 'lastPrice', 'sellPrice1', 'buyPrice1'))}</span><span>${esc(optDisplayLow(d))}</span></div>`;
+                            }
                         }
-                    }
-                    html += '</div>';
-                } else {
-                    html += `<span style="color:#8b949e">${esc(oc?.error ?? '—')}</span>`;
-                }
-                html += '</td></tr>';
-            }
-            html += '</tbody></table>';
-            return html;
-        }
-
-        function renderLosersTable(rows) {
-            if (!rows.length) {
-                return '<p class="no-data">No losers with open price = high price at the moment.</p>';
-            }
-            let html = '<table><thead><tr>';
-            html += '<th>Symbol</th><th>Company</th><th>Open</th><th>Low</th><th>High</th><th>Last / LTP</th><th>Change %</th><th>Options</th>';
-            html += '</tr></thead><tbody>';
-            for (const row of rows) {
-                const oc = row._optionChain ?? null;
-                const symbol = esc(getField(row, 'symbol', 'Symbol', 'symbolFull'));
-                const company = esc(getField(row, 'identifier', 'companyName', 'series', 'symbol'));
-                const open = esc(fmt(getField(row, 'open_price', 'openPrice', 'open')));
-                const low = esc(fmt(getField(row, 'low_price', 'lowPrice', 'low')));
-                const high = esc(fmt(getField(row, 'high_price', 'highPrice', 'high')));
-                const ltp = esc(fmt(getField(row, 'ltp', 'lastPrice', 'ltP', 'last', 'close')));
-                const pct = getField(row, 'pChange', 'perChange', 'percentChange');
-                const pctClass = (typeof pct === 'number' || (pct !== '—' && !isNaN(pct))) && parseFloat(pct) >= 0 ? 'positive' : 'negative';
-                html += `<tr><td class="symbol">${symbol}</td><td>${company}</td><td class="price">${open}</td><td class="price">${low}</td><td class="price">${high}</td><td class="price">${ltp}</td><td class="price ${pctClass}">${esc(fmt(pct))}%</td><td class="options-cell">`;
-
-                if (oc && !oc.error) {
-                    const strikes = getOpenEqualsLowStrikes(oc, 'PE');
-                    html += `<span class="options-toggle" onclick="this.nextElementSibling.classList.toggle('show')">Exp: ${esc(oc.expiry ?? '')} · PE (open=low, max 4)</span>`;
-                    html += '<div class="options-detail">';
-                    if (!strikes.length) {
-                        html += '<span style="color:#8b949e">No PE with open=low</span>';
+                        html += '</div>';
                     } else {
-                        html += '<div class="opt-row opt-header"><span>Strike</span><span>Open</span><span>Current</span><span>Low</span></div>';
-                        for (const s of strikes) {
-                            const d = s.data;
-                            html += `<div class="opt-row"><span>${parseFloat(s.strike).toFixed(2)}</span><span>${esc(optDisplayOpen(d))}</span><span class="opt-pe">${esc(optValFmt(d, 'lastPrice', 'sellPrice1', 'buyPrice1'))}</span><span>${esc(optDisplayLow(d))}</span></div>`;
-                        }
+                        html += `<span style="color:#8b949e">${esc(oc?.error ?? '—')}</span>`;
                     }
-                    html += '</div>';
-                } else {
-                    html += `<span style="color:#8b949e">${esc(oc?.error ?? '—')}</span>`;
+                    html += '</td></tr>';
                 }
-                html += '</td></tr>';
+                html += '</tbody></table>';
+                return html;
             }
-            html += '</tbody></table>';
-            return html;
-        }
 
-        function showError(msg) {
-            document.getElementById('error-container').innerHTML = '<div class="error-msg">' + esc(msg) + '</div>';
-        }
-
-        function clearError() {
-            document.getElementById('error-container').innerHTML = '';
-        }
-
-        async function loadData() {
-            clearError();
-            const expiryBar = document.getElementById('expiry-bar');
-            const gainersMeta = document.getElementById('gainers-meta');
-            const losersMeta = document.getElementById('losers-meta');
-            const gainersContent = document.getElementById('gainers-content');
-            const losersContent = document.getElementById('losers-content');
-
-            try {
-                const [gainersResult, losersResult] = await Promise.all([
-                    fetchNseData('gainers'),
-                    fetchNseData('loosers'),
-                ]);
-
-                if (gainersResult?.error) {
-                    showError('Error (Gainers): ' + (gainersResult.details || gainersResult.error));
-                    return;
+            function renderLosersTable(rows) {
+                const withExpiry = rows.filter(row => {
+                    const oc = row._optionChain;
+                    return oc && !oc.error && (oc.expiry || (oc.allExpiries && oc.allExpiries.length > 0));
+                });
+                if (!withExpiry.length) {
+                    return '<p class="no-data">No losers with open price = high price (with expiry) at the moment.</p>';
                 }
-                if (losersResult?.error) {
-                    showError('Error (Losers): ' + (losersResult.details || losersResult.error));
-                    return;
+                let html = '<table><thead><tr>';
+                html += '<th>Symbol</th><th>Company</th><th>Open</th><th>Low</th><th>High</th><th>Last / LTP</th><th>Change %</th><th>Volume</th><th>Options</th>';
+                html += '</tr></thead><tbody>';
+                for (const row of withExpiry) {
+                    const oc = row._optionChain ?? null;
+                    const symbol = esc(getField(row, 'symbol', 'Symbol', 'symbolFull'));
+                    const company = esc(getField(row, 'identifier', 'companyName', 'series', 'symbol'));
+                    const open = esc(fmt(getField(row, 'open_price', 'openPrice', 'open')));
+                    const low = esc(fmt(getField(row, 'low_price', 'lowPrice', 'low')));
+                    const high = esc(fmt(getField(row, 'high_price', 'highPrice', 'high')));
+                    const ltp = esc(fmt(getField(row, 'ltp', 'lastPrice', 'ltP', 'last', 'close')));
+                    const pct = getField(row, 'pChange', 'perChange', 'percentChange');
+                    const pctClass = (typeof pct === 'number' || (pct !== '—' && !isNaN(pct))) && parseFloat(pct) >= 0 ? 'positive' : 'negative';
+                    const volume = esc(fmtVolume(getField(row, 'trade_quantity', 'totalTradedVolume', 'volume', 'tradedVolume')));
+                    html += `<tr><td class="symbol">${symbol}</td><td>${company}</td><td class="price">${open}</td><td class="price">${low}</td><td class="price">${high}</td><td class="price">${ltp}</td><td class="price ${pctClass}">${esc(fmt(pct))}%</td><td class="price">${volume}</td><td class="options-cell">`;
+
+                    if (oc && !oc.error) {
+                        const strikes = getOpenEqualsLowStrikes(oc, 'PE');
+                        html += `<span class="options-toggle" onclick="this.nextElementSibling.classList.toggle('show')">Exp: ${esc(oc.expiry ?? '')} · PE (open=low)</span>`;
+                        html += '<div class="options-detail">';
+                        if (!strikes.length) {
+                            html += '<span style="color:#8b949e">No PE with open=low</span>';
+                        } else {
+                            html += '<div class="opt-row opt-header"><span>Strike</span><span>Open</span><span>Current</span><span>Low</span></div>';
+                            for (const s of strikes) {
+                                const d = s.data;
+                                html += `<div class="opt-row"><span>${parseFloat(s.strike).toFixed(2)}</span><span>${esc(optDisplayOpen(d))}</span><span class="opt-pe">${esc(optValFmt(d, 'lastPrice', 'sellPrice1', 'buyPrice1'))}</span><span>${esc(optDisplayLow(d))}</span></div>`;
+                            }
+                        }
+                        html += '</div>';
+                    } else {
+                        html += `<span style="color:#8b949e">${esc(oc?.error ?? '—')}</span>`;
+                    }
+                    html += '</td></tr>';
                 }
-
-                const filteredGainers = filterOpenEqualsLow(gainersResult);
-                const filteredLosers = filterOpenEqualsHigh(losersResult);
-
-                let allExpiryDates = [];
-                const firstSymbol = filteredGainers[0]?.symbol ?? filteredLosers[0]?.symbol ?? null;
-                if (firstSymbol) {
-                    try {
-                        const ci = await fetchOptionChainContractInfo(firstSymbol);
-                        allExpiryDates = ci?.expiryDates ?? [];
-                        await sleep(200);
-                    } catch (e) {}
-                }
-
-                const params = new URLSearchParams(location.search);
-                let selectedExpiry = params.get('expiry') ?? null;
-                if (selectedExpiry && !allExpiryDates.includes(selectedExpiry)) selectedExpiry = allExpiryDates[0] ?? null;
-                if (!selectedExpiry && allExpiryDates.length) selectedExpiry = allExpiryDates[0];
-
-                if (allExpiryDates.length) {
-                    expiryBar.style.display = 'flex';
-                    const select = document.getElementById('expiry');
-                    select.innerHTML = allExpiryDates.map(ed =>
-                        `<option value="${esc(ed)}" ${ed === selectedExpiry ? 'selected' : ''}>${esc(ed)}</option>`
-                    ).join('');
-                    select.onchange = () => {
-                        const url = new URL(location.href);
-                        url.searchParams.set('expiry', select.value);
-                        location.href = url.toString();
-                    };
-                    document.getElementById('apply-expiry').onclick = () => select.dispatchEvent(new Event('change'));
-                }
-
-                for (const row of filteredGainers) {
-                    row._optionChain = await fetchOptionChainForRow(row, selectedExpiry);
-                    await sleep(300);
-                }
-                for (const row of filteredLosers) {
-                    row._optionChain = await fetchOptionChainForRow(row, selectedExpiry);
-                    await sleep(300);
-                }
-
-                gainersMeta.textContent = 'F&O securities where opening price equals the day\'s low (' + filteredGainers.length + ' found)';
-                losersMeta.textContent = 'F&O securities where opening price equals the day\'s high (' + filteredLosers.length + ' found)';
-                gainersContent.innerHTML = renderGainersTable(filteredGainers, selectedExpiry);
-                losersContent.innerHTML = renderLosersTable(filteredLosers);
-
-            } catch (e) {
-                showError('Failed to load data: ' + (e.message || String(e)));
-                gainersMeta.textContent = 'Error loading data';
-                losersMeta.textContent = 'Error loading data';
-                gainersContent.innerHTML = '<p class="no-data">Error: ' + esc(e.message || String(e)) + '. NSE API may block browser requests (CORS). Try a PHP backend or CORS proxy.</p>';
-                losersContent.innerHTML = '';
+                html += '</tbody></table>';
+                return html;
             }
-        }
 
-        loadData();
-    })();
+            function showError(msg) {
+                document.getElementById('error-container').innerHTML = '<div class="error-msg">' + esc(msg) + '</div>';
+            }
+
+            function clearError() {
+                document.getElementById('error-container').innerHTML = '';
+            }
+
+            async function loadData() {
+                clearError();
+                const expiryBar = document.getElementById('expiry-bar');
+                const gainersMeta = document.getElementById('gainers-meta');
+                const losersMeta = document.getElementById('losers-meta');
+                const gainersContent = document.getElementById('gainers-content');
+                const losersContent = document.getElementById('losers-content');
+
+                try {
+                    const [gainersResult, losersResult] = await Promise.all([
+                        fetchNseData('gainers'),
+                        fetchNseData('loosers'),
+                    ]);
+
+                    if (gainersResult?.error) {
+                        showError('Error (Gainers): ' + (gainersResult.details || gainersResult.error));
+                        return;
+                    }
+                    if (losersResult?.error) {
+                        showError('Error (Losers): ' + (losersResult.details || losersResult.error));
+                        return;
+                    }
+
+                    const filteredGainers = filterOpenEqualsLow(gainersResult);
+                    const filteredLosers = filterOpenEqualsHigh(losersResult);
+
+                    let allExpiryDates = [];
+                    const firstSymbol = filteredGainers[0]?.symbol ?? filteredLosers[0]?.symbol ?? null;
+                    if (firstSymbol) {
+                        try {
+                            const ci = await fetchOptionChainContractInfo(firstSymbol);
+                            allExpiryDates = ci?.expiryDates ?? [];
+                            await sleep(200);
+                        } catch (e) { }
+                    }
+
+                    const params = new URLSearchParams(location.search);
+                    let selectedExpiry = params.get('expiry') ?? null;
+                    if (selectedExpiry && !allExpiryDates.includes(selectedExpiry)) selectedExpiry = allExpiryDates[0] ?? null;
+                    if (!selectedExpiry && allExpiryDates.length) selectedExpiry = allExpiryDates[0];
+
+                    if (allExpiryDates.length) {
+                        expiryBar.style.display = 'flex';
+                        const select = document.getElementById('expiry');
+                        select.innerHTML = allExpiryDates.map(ed =>
+                            `<option value="${esc(ed)}" ${ed === selectedExpiry ? 'selected' : ''}>${esc(ed)}</option>`
+                        ).join('');
+                        select.onchange = () => {
+                            const url = new URL(location.href);
+                            url.searchParams.set('expiry', select.value);
+                            location.href = url.toString();
+                        };
+                        document.getElementById('apply-expiry').onclick = () => select.dispatchEvent(new Event('change'));
+                    }
+
+                    for (const row of filteredGainers) {
+                        row._optionChain = await fetchOptionChainForRow(row, selectedExpiry);
+                        await sleep(300);
+                    }
+                    for (const row of filteredLosers) {
+                        row._optionChain = await fetchOptionChainForRow(row, selectedExpiry);
+                        await sleep(300);
+                    }
+
+                    const hasExpiry = (row) => { const oc = row._optionChain; return oc && !oc.error && (oc.expiry || (oc.allExpiries && oc.allExpiries.length > 0)); };
+                    gainersMeta.textContent = 'F&O securities where opening price equals the day\'s low (' + filteredGainers.filter(hasExpiry).length + ' with expiry)';
+                    losersMeta.textContent = 'F&O securities where opening price equals the day\'s high (' + filteredLosers.filter(hasExpiry).length + ' with expiry)';
+                    gainersContent.innerHTML = renderGainersTable(filteredGainers, selectedExpiry);
+                    losersContent.innerHTML = renderLosersTable(filteredLosers);
+
+                } catch (e) {
+                    showError('Failed to load data: ' + (e.message || String(e)));
+                    gainersMeta.textContent = 'Error loading data';
+                    losersMeta.textContent = 'Error loading data';
+                    gainersContent.innerHTML = '<p class="no-data">Error: ' + esc(e.message || String(e)) + '. NSE API may block browser requests (CORS). Try a PHP backend or CORS proxy.</p>';
+                    losersContent.innerHTML = '';
+                }
+            }
+
+            (function () {
+                var btn = document.getElementById('toggle-expand-options');
+                btn.onclick = function () {
+                    var all = document.querySelectorAll('.options-detail');
+                    var anyShown = Array.prototype.some.call(all, function (el) { return el.classList.contains('show'); });
+                    if (anyShown) {
+                        all.forEach(function (el) { el.classList.remove('show'); });
+                        btn.textContent = 'Expand all';
+                    } else {
+                        all.forEach(function (el) { el.classList.add('show'); });
+                        btn.textContent = 'Collapse all';
+                    }
+                };
+            })();
+
+            loadData();
+        })();
     </script>
 </body>
+
 </html>
