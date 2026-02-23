@@ -217,10 +217,48 @@
             border-color: #58a6ff;
             color: #e6edf3;
         }
+
+        .top-loading {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            color: #c9d1d9;
+            font-size: 0.9rem;
+        }
+
+        .top-loading.hidden {
+            display: none;
+        }
+
+        .top-loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #30363d;
+            border-top-color: #58a6ff;
+            border-radius: 50%;
+            animation: top-loading-spin 0.8s linear infinite;
+        }
+
+        @keyframes top-loading-spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .top-loading-text {
+            flex: 1;
+        }
     </style>
 </head>
 
 <body>
+    <div id="top-loading" class="top-loading" aria-live="polite">
+        <div class="top-loading-spinner" aria-hidden="true"></div>
+        <span class="top-loading-text" id="top-loading-text">Loading data...</span>
+    </div>
     <div id="error-container"></div>
     <div id="expiry-bar" class="expiry-bar"
         style="display:none; display: flex; align-items: center; justify-content: space-between;">
@@ -596,6 +634,20 @@
                 document.getElementById('error-container').innerHTML = '';
             }
 
+            function setTopLoading(show, text) {
+                const el = document.getElementById('top-loading');
+                const textEl = document.getElementById('top-loading-text');
+                if (!el || !textEl) return;
+                if (show) {
+                    el.classList.remove('hidden');
+                    if (text != null) textEl.textContent = text;
+                } else {
+                    el.classList.add('hidden');
+                }
+            }
+
+            const hasExpiry = (row) => { const oc = row._optionChain; return oc && !oc.error && (oc.expiry || (oc.allExpiries && oc.allExpiries.length > 0)); };
+
             async function loadData() {
                 clearError();
                 const expiryBar = document.getElementById('expiry-bar');
@@ -604,31 +656,27 @@
                 const gainersContent = document.getElementById('gainers-content');
                 const losersContent = document.getElementById('losers-content');
 
+                setTopLoading(true, 'Fetching gainers...');
+
                 try {
-                    const [gainersResult, losersResult] = await Promise.all([
-                        fetchNseData('gainers'),
-                        fetchNseData('loosers'),
-                    ]);
+                    // Start both fetches; we only wait for gainers before getting contract info, so loading can start as soon as contract info returns
+                    const losersPromise = fetchNseData('loosers');
+                    const gainersResult = await fetchNseData('gainers');
 
                     if (gainersResult?.error) {
+                        setTopLoading(false);
                         showError('Error (Gainers): ' + (gainersResult.details || gainersResult.error));
-                        return;
-                    }
-                    if (losersResult?.error) {
-                        showError('Error (Losers): ' + (losersResult.details || losersResult.error));
                         return;
                     }
 
                     const filteredGainers = filterOpenEqualsLow(gainersResult);
-                    const filteredLosers = filterOpenEqualsHigh(losersResult);
-
+                    const firstSymbol = filteredGainers[0]?.symbol ?? null;
                     let allExpiryDates = [];
-                    const firstSymbol = filteredGainers[0]?.symbol ?? filteredLosers[0]?.symbol ?? null;
                     if (firstSymbol) {
+                        setTopLoading(true, 'Getting expiry dates...');
                         try {
                             const ci = await fetchOptionChainContractInfo(firstSymbol);
                             allExpiryDates = ci?.expiryDates ?? [];
-                            await sleep(200);
                         } catch (e) { }
                     }
 
@@ -648,25 +696,53 @@
                             url.searchParams.set('expiry', select.value);
                             location.href = url.toString();
                         };
-                        document.getElementById('apply-expiry').onclick = () => select.dispatchEvent(new Event('change'));
+                        document.getElementById('apply-expiry').onclick = () => document.getElementById('expiry').dispatchEvent(new Event('change'));
                     }
 
+                    // Start loading gainers as soon as we have contract info (expiry) — don't wait for losers
+                    setTopLoading(true, 'Loading gainers...');
+                    gainersContent.innerHTML = '<p class="loading">Loading gainers...</p>';
+                    losersContent.innerHTML = '<p class="loading">Waiting... (loading after gainers)</p>';
+                    const totalG = filteredGainers.length;
+                    let idx = 0;
                     for (const row of filteredGainers) {
                         row._optionChain = await fetchOptionChainForRow(row, selectedExpiry);
-                        await sleep(300);
+                        idx++;
+                        setTopLoading(true, totalG ? 'Loading gainers (' + idx + ' / ' + totalG + ')...' : 'Loading gainers...');
+                        gainersContent.innerHTML = renderGainersTable(filteredGainers, selectedExpiry);
+                        gainersMeta.textContent = 'F&O securities where opening price equals the day\'s low (' + filteredGainers.filter(hasExpiry).length + ' with expiry)';
+                        await sleep(100);
                     }
+
+                    // Now get losers (may already be resolved) and load losers section
+                    const losersResult = await losersPromise;
+                    if (losersResult?.error) {
+                        setTopLoading(false);
+                        showError('Error (Losers): ' + (losersResult.details || losersResult.error));
+                        losersContent.innerHTML = '<p class="no-data">Failed to load losers.</p>';
+                        return;
+                    }
+                    const filteredLosers = filterOpenEqualsHigh(losersResult);
+
+                    setTopLoading(true, 'Loading losers...');
+                    losersContent.innerHTML = '<p class="loading">Loading losers...</p>';
+                    const totalL = filteredLosers.length;
+                    idx = 0;
                     for (const row of filteredLosers) {
                         row._optionChain = await fetchOptionChainForRow(row, selectedExpiry);
-                        await sleep(300);
+                        idx++;
+                        setTopLoading(true, totalL ? 'Loading losers (' + idx + ' / ' + totalL + ')...' : 'Loading losers...');
+                        losersContent.innerHTML = renderLosersTable(filteredLosers);
+                        losersMeta.textContent = 'F&O securities where opening price equals the day\'s high (' + filteredLosers.filter(hasExpiry).length + ' with expiry)';
+                        await sleep(100);
                     }
 
-                    const hasExpiry = (row) => { const oc = row._optionChain; return oc && !oc.error && (oc.expiry || (oc.allExpiries && oc.allExpiries.length > 0)); };
+                    setTopLoading(false);
                     gainersMeta.textContent = 'F&O securities where opening price equals the day\'s low (' + filteredGainers.filter(hasExpiry).length + ' with expiry)';
                     losersMeta.textContent = 'F&O securities where opening price equals the day\'s high (' + filteredLosers.filter(hasExpiry).length + ' with expiry)';
-                    gainersContent.innerHTML = renderGainersTable(filteredGainers, selectedExpiry);
-                    losersContent.innerHTML = renderLosersTable(filteredLosers);
 
                 } catch (e) {
+                    setTopLoading(false);
                     showError('Failed to load data: ' + (e.message || String(e)));
                     gainersMeta.textContent = 'Error loading data';
                     losersMeta.textContent = 'Error loading data';
