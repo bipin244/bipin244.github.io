@@ -49,6 +49,15 @@
             border-bottom: 1px solid #30363d;
         }
 
+        th.sortable {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        th.sortable:hover {
+            color: #58a6ff;
+        }
+
         td {
             padding: 0.75rem 1rem;
             border-bottom: 1px solid #21262d;
@@ -245,7 +254,9 @@
         }
 
         @keyframes top-loading-spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .top-loading-text {
@@ -440,7 +451,6 @@
                 const data = oc?.records?.data ?? [];
                 const uv = parseFloat(oc?.records?.underlyingValue ?? 0);
                 if (!data.length) return [];
-
                 const key = type === 'CE' ? 'CE' : 'PE';
                 const filtered = [];
                 for (const r of data) {
@@ -452,11 +462,6 @@
                 }
                 filtered.sort((a, b) => Math.abs(a.strike - uv) - Math.abs(b.strike - uv));
                 return filtered.slice(0, 8);
-            }
-
-            function getField(row, ...keys) {
-                for (const k of keys) if (row[k] != null) return row[k];
-                return '—';
             }
 
             function optVal(d, ...keys) {
@@ -477,6 +482,11 @@
                 const open = getOptOpen(d);
                 const low = getOptLow(d, open);
                 return low != null ? low.toFixed(2) : '—';
+            }
+
+            function getField(row, ...keys) {
+                for (const k of keys) if (row[k] != null) return row[k];
+                return '—';
             }
 
             async function fetchOptionChainForRow(row, expiryOverride) {
@@ -513,6 +523,33 @@
                 return new Promise(r => setTimeout(r, ms));
             }
 
+            /** Parse assets/lot_size.csv and return Map<symbolUpperCase, lotSize> */
+            async function loadLotSizeMap() {
+                try {
+                    const res = await fetch('assets/lot_size.csv');
+                    if (!res.ok) return new Map();
+                    const text = await res.text();
+                    const lines = text.trim().split(/\r?\n/);
+                    if (lines.length < 2) return new Map();
+                    const header = lines[0];
+                    const cols = header.split(',').map(s => s.replace(/^"|"$/g, '').trim());
+                    const symIdx = cols.indexOf('Symbol');
+                    const lotColNames = cols.filter(c => /Lot Size/i.test(c));
+                    const lotIdx = lotColNames.length ? cols.indexOf(lotColNames[lotColNames.length - 1]) : -1;
+                    if (symIdx < 0 || lotIdx < 0) return new Map();
+                    const map = new Map();
+                    for (let i = 1; i < lines.length; i++) {
+                        const parts = lines[i].split(',').map(s => s.replace(/^"|"$/g, '').trim());
+                        const sym = (parts[symIdx] || '').toUpperCase();
+                        const lot = parts[lotIdx];
+                        if (sym && lot) map.set(sym, lot);
+                    }
+                    return map;
+                } catch (e) {
+                    return new Map();
+                }
+            }
+
             function esc(s) {
                 const div = document.createElement('div');
                 div.textContent = s;
@@ -532,21 +569,31 @@
                 return n.toLocaleString('en-IN');
             }
 
-            function renderGainersTable(rows, selectedExpiry) {
-                const withExpiry = rows.filter(row => {
+            function thSort(label, col, sortState) {
+                const s = sortState;
+                const isSorted = s && s.col === col;
+                const ind = isSorted ? (s.asc ? ' ▲' : ' ▼') : '';
+                return '<th class="sortable" data-sort="' + esc(col) + '" style="text-align:center;">' + esc(label) + ind + '</th>';
+            }
+
+            function renderGainersTable(rows, selectedExpiry, lotSizeMap) {
+                lotSizeMap = lotSizeMap || new Map();
+                let withExpiry = rows.filter(row => {
                     const oc = row._optionChain;
                     return oc && !oc.error && (oc.expiry || (oc.allExpiries && oc.allExpiries.length > 0));
                 });
+                withExpiry = sortRows(withExpiry, sortGainers.col, sortGainers.asc, lotSizeMap);
                 if (!withExpiry.length) {
                     return '<p class="no-data">No gainers with open price = low price (with expiry) at the moment.</p>';
                 }
                 let html = '<table><thead><tr>';
-                html += '<th>Symbol</th><th>Company</th><th>Open</th><th>Low</th><th>High</th><th>Last / LTP</th><th>Change %</th><th>Volume</th><th>Options</th>';
+                html += thSort('Symbol', 'symbol', sortGainers) + thSort('Lot Size', 'lotSize', sortGainers) + thSort('Open', 'open', sortGainers) + thSort('Low', 'low', sortGainers) + thSort('High', 'high', sortGainers) + thSort('Last / LTP', 'ltp', sortGainers) + thSort('Change %', 'pct', sortGainers) + thSort('Volume', 'volume', sortGainers) + '<th style="text-align:center;">Options</th>';
                 html += '</tr></thead><tbody>';
                 for (const row of withExpiry) {
                     const oc = row._optionChain ?? null;
                     const symbol = esc(getField(row, 'symbol', 'Symbol', 'symbolFull'));
-                    const company = esc(getField(row, 'identifier', 'companyName', 'series', 'symbol'));
+                    const symKey = (getField(row, 'symbol', 'Symbol', 'symbolFull') || '').toString().toUpperCase();
+                    const lotSize = lotSizeMap.get(symKey) || '—';
                     const open = esc(fmt(getField(row, 'open_price', 'openPrice', 'open')));
                     const low = esc(fmt(getField(row, 'low_price', 'lowPrice', 'low')));
                     const high = esc(fmt(getField(row, 'high_price', 'highPrice', 'high')));
@@ -554,8 +601,7 @@
                     const pct = getField(row, 'pChange', 'perChange', 'percentChange');
                     const pctClass = (typeof pct === 'number' || (pct !== '—' && !isNaN(pct))) && parseFloat(pct) >= 0 ? 'positive' : 'negative';
                     const volume = esc(fmtVolume(getField(row, 'trade_quantity', 'totalTradedVolume', 'volume', 'tradedVolume')));
-                    html += `<tr><td class="symbol">${symbol}</td><td>${company}</td><td class="price">${open}</td><td class="price">${low}</td><td class="price">${high}</td><td class="price">${ltp}</td><td class="price ${pctClass}">${esc(fmt(pct))}%</td><td class="price">${volume}</td><td class="options-cell">`;
-
+                    html += `<tr><td class="symbol">${symbol}</td><td class="price">${esc(lotSize)}</td><td class="price">${open}</td><td class="price">${low}</td><td class="price">${high}</td><td class="price">${ltp}</td><td class="price ${pctClass}">${esc(fmt(pct))}%</td><td class="price">${volume}</td><td class="options-cell">`;
                     if (oc && !oc.error) {
                         const strikes = getOpenEqualsLowStrikes(oc, 'CE');
                         html += `<span class="options-toggle" onclick="this.nextElementSibling.classList.toggle('show')">Exp: ${esc(oc.expiry ?? '')} · CE (open=low)</span>`;
@@ -579,21 +625,24 @@
                 return html;
             }
 
-            function renderLosersTable(rows) {
-                const withExpiry = rows.filter(row => {
+            function renderLosersTable(rows, lotSizeMap) {
+                lotSizeMap = lotSizeMap || new Map();
+                let withExpiry = rows.filter(row => {
                     const oc = row._optionChain;
                     return oc && !oc.error && (oc.expiry || (oc.allExpiries && oc.allExpiries.length > 0));
                 });
+                withExpiry = sortRows(withExpiry, sortLosers.col, sortLosers.asc, lotSizeMap);
                 if (!withExpiry.length) {
                     return '<p class="no-data">No losers with open price = high price (with expiry) at the moment.</p>';
                 }
                 let html = '<table><thead><tr>';
-                html += '<th>Symbol</th><th>Company</th><th>Open</th><th>Low</th><th>High</th><th>Last / LTP</th><th>Change %</th><th>Volume</th><th>Options</th>';
+                html += thSort('Symbol', 'symbol', sortLosers) + thSort('Lot Size', 'lotSize', sortLosers) + thSort('Open', 'open', sortLosers) + thSort('Low', 'low', sortLosers) + thSort('High', 'high', sortLosers) + thSort('Last / LTP', 'ltp', sortLosers) + thSort('Change %', 'pct', sortLosers) + thSort('Volume', 'volume', sortLosers) + '<th style="text-align:center;">Options</th>';
                 html += '</tr></thead><tbody>';
                 for (const row of withExpiry) {
                     const oc = row._optionChain ?? null;
                     const symbol = esc(getField(row, 'symbol', 'Symbol', 'symbolFull'));
-                    const company = esc(getField(row, 'identifier', 'companyName', 'series', 'symbol'));
+                    const symKey = (getField(row, 'symbol', 'Symbol', 'symbolFull') || '').toString().toUpperCase();
+                    const lotSize = lotSizeMap.get(symKey) || '—';
                     const open = esc(fmt(getField(row, 'open_price', 'openPrice', 'open')));
                     const low = esc(fmt(getField(row, 'low_price', 'lowPrice', 'low')));
                     const high = esc(fmt(getField(row, 'high_price', 'highPrice', 'high')));
@@ -601,8 +650,7 @@
                     const pct = getField(row, 'pChange', 'perChange', 'percentChange');
                     const pctClass = (typeof pct === 'number' || (pct !== '—' && !isNaN(pct))) && parseFloat(pct) >= 0 ? 'positive' : 'negative';
                     const volume = esc(fmtVolume(getField(row, 'trade_quantity', 'totalTradedVolume', 'volume', 'tradedVolume')));
-                    html += `<tr><td class="symbol">${symbol}</td><td>${company}</td><td class="price">${open}</td><td class="price">${low}</td><td class="price">${high}</td><td class="price">${ltp}</td><td class="price ${pctClass}">${esc(fmt(pct))}%</td><td class="price">${volume}</td><td class="options-cell">`;
-
+                    html += `<tr><td class="symbol">${symbol}</td><td class="price">${esc(lotSize)}</td><td class="price">${open}</td><td class="price">${low}</td><td class="price">${high}</td><td class="price">${ltp}</td><td class="price ${pctClass}">${esc(fmt(pct))}%</td><td class="price">${volume}</td><td class="options-cell">`;
                     if (oc && !oc.error) {
                         const strikes = getOpenEqualsLowStrikes(oc, 'PE');
                         html += `<span class="options-toggle" onclick="this.nextElementSibling.classList.toggle('show')">Exp: ${esc(oc.expiry ?? '')} · PE (open=low)</span>`;
@@ -648,6 +696,45 @@
 
             const hasExpiry = (row) => { const oc = row._optionChain; return oc && !oc.error && (oc.expiry || (oc.allExpiries && oc.allExpiries.length > 0)); };
 
+            let cachedGainers = [];
+            let cachedLosers = [];
+            let cachedLotSizeMap = null;
+            let cachedSelectedExpiry = null;
+            let sortGainers = { col: null, asc: true };
+            let sortLosers = { col: null, asc: true };
+
+            const COLS = ['symbol', 'lotSize', 'open', 'low', 'high', 'ltp', 'pct', 'volume'];
+
+            function getSortVal(row, col, lotSizeMap) {
+                const get = (r, ...k) => { for (const x of k) if (r[x] != null) return r[x]; return null; };
+                const sym = (get(row, 'symbol', 'Symbol', 'symbolFull') || '').toString().toUpperCase();
+                switch (col) {
+                    case 'symbol': return sym.toLowerCase();
+                    case 'lotSize': const lot = lotSizeMap?.get(sym); return lot != null ? parseInt(lot, 10) || 0 : -1;
+                    case 'open': return parseFloat(get(row, 'open_price', 'openPrice', 'open')) || 0;
+                    case 'low': return parseFloat(get(row, 'low_price', 'lowPrice', 'low')) || 0;
+                    case 'high': return parseFloat(get(row, 'high_price', 'highPrice', 'high')) || 0;
+                    case 'ltp': return parseFloat(get(row, 'ltp', 'lastPrice', 'ltP', 'last', 'close')) || 0;
+                    case 'pct': return parseFloat(get(row, 'pChange', 'perChange', 'percentChange')) || 0;
+                    case 'volume': return parseInt(get(row, 'trade_quantity', 'totalTradedVolume', 'volume', 'tradedVolume'), 10) || 0;
+                    default: return 0;
+                }
+            }
+
+            function sortRows(rows, col, asc, lotSizeMap) {
+                if (!col) return rows;
+                const arr = rows.slice();
+                arr.sort((a, b) => {
+                    const va = getSortVal(a, col, lotSizeMap);
+                    const vb = getSortVal(b, col, lotSizeMap);
+                    let cmp = 0;
+                    if (typeof va === 'string') cmp = va.localeCompare(vb);
+                    else cmp = va - vb;
+                    return asc ? cmp : -cmp;
+                });
+                return arr;
+            }
+
             async function loadData() {
                 clearError();
                 const expiryBar = document.getElementById('expiry-bar');
@@ -659,7 +746,8 @@
                 setTopLoading(true, 'Fetching gainers...');
 
                 try {
-                    // Start both fetches; we only wait for gainers before getting contract info, so loading can start as soon as contract info returns
+                    // Load lot size map in parallel (from assets/lot_size.csv)
+                    const lotSizePromise = loadLotSizeMap();
                     const losersPromise = fetchNseData('loosers');
                     const gainersResult = await fetchNseData('gainers');
 
@@ -685,6 +773,8 @@
                     if (selectedExpiry && !allExpiryDates.includes(selectedExpiry)) selectedExpiry = allExpiryDates[0] ?? null;
                     if (!selectedExpiry && allExpiryDates.length) selectedExpiry = allExpiryDates[0];
 
+                    const lotSizeMap = await lotSizePromise;
+
                     if (allExpiryDates.length) {
                         expiryBar.style.display = 'flex';
                         const select = document.getElementById('expiry');
@@ -709,10 +799,17 @@
                         row._optionChain = await fetchOptionChainForRow(row, selectedExpiry);
                         idx++;
                         setTopLoading(true, totalG ? 'Loading gainers (' + idx + ' / ' + totalG + ')...' : 'Loading gainers...');
-                        gainersContent.innerHTML = renderGainersTable(filteredGainers, selectedExpiry);
+                        cachedGainers = filteredGainers;
+                        cachedLotSizeMap = lotSizeMap;
+                        cachedSelectedExpiry = selectedExpiry;
+                        gainersContent.innerHTML = renderGainersTable(filteredGainers, selectedExpiry, lotSizeMap);
                         gainersMeta.textContent = 'F&O securities where opening price equals the day\'s low (' + filteredGainers.filter(hasExpiry).length + ' with expiry)';
                         await sleep(100);
                     }
+
+                    cachedGainers = filteredGainers;
+                    cachedLotSizeMap = lotSizeMap;
+                    cachedSelectedExpiry = selectedExpiry;
 
                     // Now get losers (may already be resolved) and load losers section
                     const losersResult = await losersPromise;
@@ -723,6 +820,7 @@
                         return;
                     }
                     const filteredLosers = filterOpenEqualsHigh(losersResult);
+                    cachedLosers = filteredLosers;
 
                     setTopLoading(true, 'Loading losers...');
                     losersContent.innerHTML = '<p class="loading">Loading losers...</p>';
@@ -732,7 +830,8 @@
                         row._optionChain = await fetchOptionChainForRow(row, selectedExpiry);
                         idx++;
                         setTopLoading(true, totalL ? 'Loading losers (' + idx + ' / ' + totalL + ')...' : 'Loading losers...');
-                        losersContent.innerHTML = renderLosersTable(filteredLosers);
+                        cachedLosers = filteredLosers;
+                        losersContent.innerHTML = renderLosersTable(filteredLosers, lotSizeMap);
                         losersMeta.textContent = 'F&O securities where opening price equals the day\'s high (' + filteredLosers.filter(hasExpiry).length + ' with expiry)';
                         await sleep(100);
                     }
@@ -751,19 +850,39 @@
                 }
             }
 
+            document.body.addEventListener('click', function (e) {
+                const th = e.target.closest('th.sortable');
+                if (!th) return;
+                const col = th.getAttribute('data-sort');
+                if (!col) return;
+                const gainersContent = document.getElementById('gainers-content');
+                const losersContent = document.getElementById('losers-content');
+                if (th.closest('#gainers-content')) {
+                    if (sortGainers.col === col) sortGainers.asc = !sortGainers.asc;
+                    else { sortGainers.col = col; sortGainers.asc = true; }
+                    gainersContent.innerHTML = renderGainersTable(cachedGainers, cachedSelectedExpiry, cachedLotSizeMap);
+                } else if (th.closest('#losers-content')) {
+                    if (sortLosers.col === col) sortLosers.asc = !sortLosers.asc;
+                    else { sortLosers.col = col; sortLosers.asc = true; }
+                    losersContent.innerHTML = renderLosersTable(cachedLosers, cachedLotSizeMap);
+                }
+            });
+
             (function () {
                 var btn = document.getElementById('toggle-expand-options');
-                btn.onclick = function () {
-                    var all = document.querySelectorAll('.options-detail');
-                    var anyShown = Array.prototype.some.call(all, function (el) { return el.classList.contains('show'); });
-                    if (anyShown) {
-                        all.forEach(function (el) { el.classList.remove('show'); });
-                        btn.textContent = 'Expand all';
-                    } else {
-                        all.forEach(function (el) { el.classList.add('show'); });
-                        btn.textContent = 'Collapse all';
-                    }
-                };
+                if (btn) {
+                    btn.onclick = function () {
+                        var all = document.querySelectorAll('.options-detail');
+                        var anyShown = Array.prototype.some.call(all, function (el) { return el.classList.contains('show'); });
+                        if (anyShown) {
+                            all.forEach(function (el) { el.classList.remove('show'); });
+                            btn.textContent = 'Expand all';
+                        } else {
+                            all.forEach(function (el) { el.classList.add('show'); });
+                            btn.textContent = 'Collapse all';
+                        }
+                    };
+                }
             })();
 
             loadData();
