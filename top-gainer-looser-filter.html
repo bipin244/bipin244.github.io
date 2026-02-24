@@ -126,7 +126,7 @@
 
         .opt-row {
             display: grid;
-            grid-template-columns: 70px 70px 70px 70px 70px;
+            grid-template-columns: 70px 70px 70px 70px 70px 90px;
             gap: 0.5rem;
             padding: 0.35rem 0;
             border-bottom: 1px solid #21262d;
@@ -152,6 +152,21 @@
 
         .opt-high {
             color: #3fb950;
+        }
+
+        .opt-sl-hint {
+            font-size: 0.7rem;
+            color: #8b949e;
+            margin-bottom: 0.5rem;
+        }
+
+        .opt-sl-hint .highlight {
+            color: #f0883e;
+            font-weight: 600;
+        }
+
+        .opt-sl-risk {
+            color: #f85149;
         }
 
         .expiry-bar {
@@ -269,6 +284,34 @@
 
         .top-loading-text {
             flex: 1;
+        }
+
+        .dev-banner {
+            margin-top: 3rem;
+            padding: 1rem 2rem;
+            background: #161b22;
+            border-top: 1px solid #30363d;
+            text-align: center;
+            font-size: 0.875rem;
+            color: #8b949e;
+        }
+
+        .dev-banner a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+
+        .dev-banner a:hover {
+            text-decoration: underline;
+        }
+
+        .dev-banner .dev-name {
+            font-weight: 600;
+            color: #c9d1d9;
+        }
+
+        .dev-banner .upi {
+            color: #3fb950;
         }
     </style>
 </head>
@@ -483,6 +526,17 @@
                 return false;
             }
 
+            function optionOpenLowCurrentHighAllSame(optData) {
+                const open = getOptOpen(optData);
+                const low = getOptLow(optData, open);
+                const high = parseFloat(optData.high_price ?? optData.highPrice ?? optData.high);
+                const current = parseFloat(optData.lastPrice ?? optData.ltp ?? optData.last ?? optData.close);
+                if (open == null || low == null) return false;
+                const o = Number(open), l = Number(low);
+                if (isNaN(high) || isNaN(current)) return o === l;
+                return o === l && l === high && high === current;
+            }
+
             /** Get strikes where open=low. Works with GetQuoteApi format { data: [...] } or legacy { records: { data: [{CE/PE}] } } */
             function getOpenEqualsLowStrikes(oc, type) {
                 const uv = parseFloat(oc?.records?.underlyingValue ?? oc?.data?.[0]?.underlyingValue ?? 0);
@@ -490,6 +544,7 @@
                 if (Array.isArray(oc?.data)) {
                     for (const optData of oc.data) {
                         if (!optionOpenEqualsLow(optData)) continue;
+                        if (optionOpenLowCurrentHighAllSame(optData)) continue;
                         const strike = parseFloat(String(optData.strikePrice || 0).trim());
                         list.push({ strike, data: optData });
                     }
@@ -500,6 +555,7 @@
                         const optData = r[key] ?? {};
                         if (!optData || Object.keys(optData).length === 0) continue;
                         if (!optionOpenEqualsLow(optData)) continue;
+                        if (optionOpenLowCurrentHighAllSame(optData)) continue;
                         const strike = parseFloat(r.strikePrice ?? 0);
                         list.push({ strike, data: optData });
                     }
@@ -533,6 +589,16 @@
             function optDisplayHigh(d) {
                 const high = d.high_price ?? d.highPrice ?? d.high ?? null;
                 return high != null ? parseFloat(high).toFixed(2) : '—';
+            }
+
+            /** SL Risk = (High - Low) * lot size. Returns formatted amount (₹) or '—' */
+            function optSlRiskAmount(optData, lotSizeStr) {
+                const lotNum = parseInt(String(lotSizeStr || '').replace(/\D/g, ''), 10) || 0;
+                if (lotNum <= 0) return '—';
+                const high = parseFloat(optData.high_price ?? optData.highPrice ?? optData.high) || 0;
+                const low = parseFloat(optData.low_price ?? optData.lowPrice ?? optData.low) || 0;
+                const amount = (high - low) * lotNum;
+                return isNaN(amount) ? '—' : '₹' + Math.round(amount).toLocaleString('en-IN');
             }
 
             function getField(row, ...keys) {
@@ -656,13 +722,14 @@
                         const strikes = getOpenEqualsLowStrikes(oc, 'CE');
                         html += `<span class="options-toggle" onclick="this.nextElementSibling.classList.toggle('show')">Exp: ${esc(oc.expiry ?? '')} · CE (open=low)</span>`;
                         html += '<div class="options-detail">';
+                        html += '<p class="opt-sl-hint"><span class="highlight">SL should be Same as Low</span></p>';
                         if (!strikes.length) {
                             html += '<span style="color:#8b949e">No CE with open=low</span>';
                         } else {
-                            html += '<div class="opt-row opt-header"><span>Strike</span><span>Open</span><span>Low</span><span>Current</span><span>High</span></div>';
+                            html += '<div class="opt-row opt-header"><span>Strike</span><span>Open</span><span>Low</span><span>Current</span><span>High</span><span>Approx SL risk(₹)</span></div>';
                             for (const s of strikes) {
                                 const d = s.data;
-                                html += `<div class="opt-row"><span>${parseFloat(s.strike).toFixed(2)}</span><span>${esc(optDisplayOpen(d))}</span><span>${esc(optDisplayLow(d))}</span><span class="opt-current">${esc(optValFmt(d, 'lastPrice', 'sellPrice1', 'buyPrice1'))}</span><span class="opt-high">${esc(optDisplayHigh(d))}</span></div>`;
+                                html += `<div class="opt-row"><span>${parseFloat(s.strike).toFixed(2)}</span><span>${esc(optDisplayOpen(d))}</span><span>${esc(optDisplayLow(d))}</span><span class="opt-current">${esc(optValFmt(d, 'lastPrice', 'sellPrice1', 'buyPrice1'))}</span><span class="opt-high">${esc(optDisplayHigh(d))}</span><span class="opt-sl-risk">${esc(optSlRiskAmount(d, lotSize))}</span></div>`;
                             }
                         }
                         html += '</div>';
@@ -705,13 +772,14 @@
                         const strikes = getOpenEqualsLowStrikes(oc, 'PE');
                         html += `<span class="options-toggle" onclick="this.nextElementSibling.classList.toggle('show')">Exp: ${esc(oc.expiry ?? '')} · PE (open=low)</span>`;
                         html += '<div class="options-detail">';
+                        html += '<p class="opt-sl-hint"><span class="highlight">SL should be Same as Low</span></p>';
                         if (!strikes.length) {
                             html += '<span style="color:#8b949e">No PE with open=low</span>';
                         } else {
-                            html += '<div class="opt-row opt-header"><span>Strike</span><span>Open</span><span>Low</span><span>Current</span><span>High</span></div>';
+                            html += '<div class="opt-row opt-header"><span>Strike</span><span>Open</span><span>Low</span><span>Current</span><span>High</span><span>Approx SL risk(₹)</span></div>';
                             for (const s of strikes) {
                                 const d = s.data;
-                                html += `<div class="opt-row"><span>${parseFloat(s.strike).toFixed(2)}</span><span>${esc(optDisplayOpen(d))}</span><span>${esc(optDisplayLow(d))}</span><span class="opt-current">${esc(optValFmt(d, 'lastPrice', 'sellPrice1', 'buyPrice1'))}</span><span class="opt-high">${esc(optDisplayHigh(d))}</span></div>`;
+                                html += `<div class="opt-row"><span>${parseFloat(s.strike).toFixed(2)}</span><span>${esc(optDisplayOpen(d))}</span><span>${esc(optDisplayLow(d))}</span><span class="opt-current">${esc(optValFmt(d, 'lastPrice', 'sellPrice1', 'buyPrice1'))}</span><span class="opt-high">${esc(optDisplayHigh(d))}</span><span class="opt-sl-risk">${esc(optSlRiskAmount(d, lotSize))}</span></div>`;
                             }
                         }
                         html += '</div>';
@@ -938,6 +1006,11 @@
             loadData();
         })();
     </script>
+    <footer class="dev-banner">
+        Developed by <span class="dev-name">Bipin Fultariya</span> · Contact: <a
+            href="mailto:bpnptl24@gmail.com">bpnptl24@gmail.com</a> · UPI ID: <span class="upi">bpnptl24@okicici</span>
+        <span style="color:#6e7681">(if you're happy and want to tip)</span>
+    </footer>
 </body>
 
 </html>
