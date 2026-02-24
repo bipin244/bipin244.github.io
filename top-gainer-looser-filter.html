@@ -322,8 +322,7 @@
         <span class="top-loading-text" id="top-loading-text">Loading data...</span>
     </div>
     <div id="error-container"></div>
-    <div id="expiry-bar" class="expiry-bar"
-        style="display:none; display: flex; align-items: center; justify-content: space-between;">
+    <div id="expiry-bar" class="expiry-bar" style="display: none; align-items: center; justify-content: space-between;">
         <div style="display: flex; align-items: center; gap: 0.75rem;">
             <label for="expiry">Expiry Date:</label>
             <select id="expiry">
@@ -387,6 +386,12 @@
             async function fetchOptionChainContractInfo(symbol) {
                 const url = 'https://www.nseindia.com/api/option-chain-contract-info?symbol=' + encodeURIComponent(symbol);
                 return fetchJson(url);
+            }
+
+            function extractExpiryDatesFromContractInfo(ci) {
+                if (!ci || typeof ci !== 'object') return [];
+                const arr = ci.expiryDates ?? ci.expiryDatesList ?? ci.expiry_list ?? ci.all_expiries ?? ci.data?.expiryDates ?? ci.data?.expiryDatesList;
+                return Array.isArray(arr) ? arr : [];
             }
 
             /** Convert expiry to DD-MMM-YYYY for GetQuoteApi (e.g. 24-Feb-2026) */
@@ -856,6 +861,7 @@
             async function loadData() {
                 clearError();
                 const expiryBar = document.getElementById('expiry-bar');
+                expiryBar.style.display = 'none';
                 const gainersMeta = document.getElementById('gainers-meta');
                 const losersMeta = document.getElementById('losers-meta');
                 const gainersContent = document.getElementById('gainers-content');
@@ -882,7 +888,7 @@
                         setTopLoading(true, 'Getting expiry dates...');
                         try {
                             const ci = await fetchOptionChainContractInfo(firstSymbol);
-                            allExpiryDates = ci?.expiryDates ?? [];
+                            allExpiryDates = extractExpiryDatesFromContractInfo(ci);
                         } catch (e) { }
                     }
 
@@ -893,11 +899,12 @@
 
                     const lotSizeMap = await lotSizePromise;
 
-                    if (allExpiryDates.length) {
+                    function renderExpiryBar(expiryDates, selected) {
+                        if (!expiryDates.length) return;
                         expiryBar.style.display = 'flex';
                         const select = document.getElementById('expiry');
-                        select.innerHTML = allExpiryDates.map(ed =>
-                            `<option value="${esc(ed)}" ${ed === selectedExpiry ? 'selected' : ''}>${esc(ed)}</option>`
+                        select.innerHTML = expiryDates.map(ed =>
+                            `<option value="${esc(ed)}" ${ed === selected ? 'selected' : ''}>${esc(ed)}</option>`
                         ).join('');
                         select.onchange = () => {
                             const url = new URL(location.href);
@@ -907,6 +914,8 @@
                         document.getElementById('apply-expiry').onclick = () => document.getElementById('expiry').dispatchEvent(new Event('change'));
                     }
 
+                    renderExpiryBar(allExpiryDates, selectedExpiry);
+
                     // Start loading gainers as soon as we have contract info (expiry) — don't wait for losers
                     setTopLoading(true, 'Loading gainers...');
                     gainersContent.innerHTML = '<p class="loading">Loading gainers...</p>';
@@ -915,6 +924,12 @@
                     let idx = 0;
                     for (const row of filteredGainers) {
                         row._optionChain = await fetchOptionChainForRow(row, selectedExpiry, 'CE');
+                        if (!allExpiryDates.length && row._optionChain?.allExpiries?.length) {
+                            allExpiryDates = row._optionChain.allExpiries;
+                            if (!selectedExpiry) selectedExpiry = allExpiryDates[0];
+                            cachedSelectedExpiry = selectedExpiry;
+                            renderExpiryBar(allExpiryDates, selectedExpiry);
+                        }
                         idx++;
                         setTopLoading(true, totalG ? 'Loading gainers (' + idx + ' / ' + totalG + ')...' : 'Loading gainers...');
                         cachedGainers = filteredGainers;
