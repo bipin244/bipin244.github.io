@@ -320,10 +320,17 @@
                 return 'https://corsproxy.io/?' + encodeURIComponent(url);
             }
 
-            async function fetchJson(url) {
-                const res = await fetch(proxyUrl(url), {
+            function nseUrlWithNoCache(baseUrl) {
+                const sep = baseUrl.includes('?') ? '&' : '?';
+                return baseUrl + sep + '_=' + Date.now();
+            }
+
+            async function fetchJson(url, skipCacheBust) {
+                const finalUrl = skipCacheBust ? url : nseUrlWithNoCache(url);
+                const res = await fetch(proxyUrl(finalUrl), {
                     headers: HEADERS,
                     credentials: 'omit',
+                    cache: 'no-store',
                 });
                 if (!res.ok) throw new Error('HTTP ' + res.status);
                 return res.json();
