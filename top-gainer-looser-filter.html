@@ -67,9 +67,65 @@
             background: #161b22;
         }
 
+        .symbol-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
         .symbol {
             font-weight: 600;
             color: #58a6ff;
+        }
+
+        .copy-symbol-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.2rem;
+            background: transparent;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #8b949e;
+        }
+
+        .copy-symbol-btn:hover {
+            color: #58a6ff;
+            background: #21262d;
+        }
+
+        .copy-symbol-btn svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .strike-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .copy-strike-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.15rem;
+            background: transparent;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #8b949e;
+        }
+
+        .copy-strike-btn:hover {
+            color: #58a6ff;
+            background: #21262d;
+        }
+
+        .copy-strike-btn svg {
+            width: 12px;
+            height: 12px;
         }
 
         .price {
@@ -690,6 +746,26 @@
                 return n.toLocaleString('en-IN');
             }
 
+            var copyIconSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+
+            function formatStrikeForCopy(strike) {
+                const n = Number(strike);
+                return (n === Math.round(n)) ? String(Math.round(n)) : n.toFixed(2);
+            }
+
+            function getMonthFromExpiry(expiry) {
+                if (!expiry || typeof expiry !== 'string') return '';
+                const s = expiry.trim();
+                const m = s.match(/(\d{1,2})[-]?([A-Za-z]{3})[-]?(\d{4})/i);
+                if (m) return (m[2].charAt(0).toUpperCase() + m[2].slice(1).toLowerCase());
+                const d = s.match(/(\d{4})[-](\d{2})[-](\d{2})/);
+                if (d) {
+                    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                    return months[parseInt(d[2], 10) - 1] || '';
+                }
+                return '';
+            }
+
             function thSort(label, col, sortState) {
                 const s = sortState;
                 const isSorted = s && s.col === col;
@@ -722,7 +798,7 @@
                     const pct = getField(row, 'pChange', 'perChange', 'percentChange');
                     const pctClass = (typeof pct === 'number' || (pct !== '—' && !isNaN(pct))) && parseFloat(pct) >= 0 ? 'positive' : 'negative';
                     const volume = esc(fmtVolume(getField(row, 'trade_quantity', 'totalTradedVolume', 'volume', 'tradedVolume')));
-                    html += `<tr><td class="symbol">${symbol}</td><td class="price">${esc(lotSize)}</td><td class="price">${open}</td><td class="price">${low}</td><td class="price">${high}</td><td class="price">${ltp}</td><td class="price ${pctClass}">${esc(fmt(pct))}%</td><td class="price">${volume}</td><td class="options-cell">`;
+                    html += `<tr><td class="symbol-cell"><span class="symbol">${symbol}</span><button type="button" class="copy-symbol-btn" data-symbol="${esc(symKey)}" title="Copy symbol" aria-label="Copy symbol">${copyIconSvg}</button></td><td class="price">${esc(lotSize)}</td><td class="price">${open}</td><td class="price">${low}</td><td class="price">${high}</td><td class="price">${ltp}</td><td class="price ${pctClass}">${esc(fmt(pct))}%</td><td class="price">${volume}</td><td class="options-cell">`;
                     if (oc && !oc.error) {
                         const strikes = getOpenEqualsLowStrikes(oc, 'CE');
                         html += `<span class="options-toggle" onclick="this.nextElementSibling.classList.toggle('show')">Exp: ${esc(oc.expiry ?? '')} · CE (open=low)</span>`;
@@ -734,7 +810,9 @@
                             html += '<div class="opt-row opt-header"><span>Strike</span><span>Open</span><span>Low</span><span>Current</span><span>High</span><span>Approx SL risk(₹)</span></div>';
                             for (const s of strikes) {
                                 const d = s.data;
-                                html += `<div class="opt-row"><span>${parseFloat(s.strike).toFixed(2)}</span><span>${esc(optDisplayOpen(d))}</span><span>${esc(optDisplayLow(d))}</span><span class="opt-current">${esc(optValFmt(d, 'lastPrice', 'sellPrice1', 'buyPrice1'))}</span><span class="opt-high">${esc(optDisplayHigh(d))}</span><span class="opt-sl-risk">${esc(optSlRiskAmount(d, lotSize))}</span></div>`;
+                                const month = getMonthFromExpiry(selectedExpiry);
+                                const copyText = month ? (symKey + ' ' + month + ' ' + formatStrikeForCopy(s.strike) + ' CE') : (symKey + ' ' + formatStrikeForCopy(s.strike) + ' CE');
+                                html += `<div class="opt-row"><span class="strike-cell"><button type="button" class="copy-strike-btn" data-copy="${esc(copyText)}" title="Copy ${esc(copyText)}" aria-label="Copy">${copyIconSvg}</button><span>${parseFloat(s.strike).toFixed(2)}</span></span><span>${esc(optDisplayOpen(d))}</span><span>${esc(optDisplayLow(d))}</span><span class="opt-current">${esc(optValFmt(d, 'lastPrice', 'sellPrice1', 'buyPrice1'))}</span><span class="opt-high">${esc(optDisplayHigh(d))}</span><span class="opt-sl-risk">${esc(optSlRiskAmount(d, lotSize))}</span></div>`;
                             }
                         }
                         html += '</div>';
@@ -772,7 +850,7 @@
                     const pct = getField(row, 'pChange', 'perChange', 'percentChange');
                     const pctClass = (typeof pct === 'number' || (pct !== '—' && !isNaN(pct))) && parseFloat(pct) >= 0 ? 'positive' : 'negative';
                     const volume = esc(fmtVolume(getField(row, 'trade_quantity', 'totalTradedVolume', 'volume', 'tradedVolume')));
-                    html += `<tr><td class="symbol">${symbol}</td><td class="price">${esc(lotSize)}</td><td class="price">${open}</td><td class="price">${low}</td><td class="price">${high}</td><td class="price">${ltp}</td><td class="price ${pctClass}">${esc(fmt(pct))}%</td><td class="price">${volume}</td><td class="options-cell">`;
+                    html += `<tr><td class="symbol-cell"><span class="symbol">${symbol}</span><button type="button" class="copy-symbol-btn" data-symbol="${esc(symKey)}" title="Copy symbol" aria-label="Copy symbol">${copyIconSvg}</button></td><td class="price">${esc(lotSize)}</td><td class="price">${open}</td><td class="price">${low}</td><td class="price">${high}</td><td class="price">${ltp}</td><td class="price ${pctClass}">${esc(fmt(pct))}%</td><td class="price">${volume}</td><td class="options-cell">`;
                     if (oc && !oc.error) {
                         const strikes = getOpenEqualsLowStrikes(oc, 'PE');
                         html += `<span class="options-toggle" onclick="this.nextElementSibling.classList.toggle('show')">Exp: ${esc(oc.expiry ?? '')} · PE (open=low)</span>`;
@@ -784,7 +862,9 @@
                             html += '<div class="opt-row opt-header"><span>Strike</span><span>Open</span><span>Low</span><span>Current</span><span>High</span><span>Approx SL risk(₹)</span></div>';
                             for (const s of strikes) {
                                 const d = s.data;
-                                html += `<div class="opt-row"><span>${parseFloat(s.strike).toFixed(2)}</span><span>${esc(optDisplayOpen(d))}</span><span>${esc(optDisplayLow(d))}</span><span class="opt-current">${esc(optValFmt(d, 'lastPrice', 'sellPrice1', 'buyPrice1'))}</span><span class="opt-high">${esc(optDisplayHigh(d))}</span><span class="opt-sl-risk">${esc(optSlRiskAmount(d, lotSize))}</span></div>`;
+                                const month = getMonthFromExpiry(cachedSelectedExpiry);
+                                const copyText = month ? (symKey + ' ' + month + ' ' + formatStrikeForCopy(s.strike) + ' PE') : (symKey + ' ' + formatStrikeForCopy(s.strike) + ' PE');
+                                html += `<div class="opt-row"><span class="strike-cell"><button type="button" class="copy-strike-btn" data-copy="${esc(copyText)}" title="Copy ${esc(copyText)}" aria-label="Copy">${copyIconSvg}</button><span>${parseFloat(s.strike).toFixed(2)}</span></span><span>${esc(optDisplayOpen(d))}</span><span>${esc(optDisplayLow(d))}</span><span class="opt-current">${esc(optValFmt(d, 'lastPrice', 'sellPrice1', 'buyPrice1'))}</span><span class="opt-high">${esc(optDisplayHigh(d))}</span><span class="opt-sl-risk">${esc(optSlRiskAmount(d, lotSize))}</span></div>`;
                             }
                         }
                         html += '</div>';
@@ -984,6 +1064,22 @@
             }
 
             document.body.addEventListener('click', function (e) {
+                const copySymbolBtn = e.target.closest('.copy-symbol-btn');
+                if (copySymbolBtn) {
+                    const text = copySymbolBtn.getAttribute('data-symbol') || '';
+                    if (text && navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).catch(function () {});
+                    }
+                    return;
+                }
+                const copyStrikeBtn = e.target.closest('.copy-strike-btn');
+                if (copyStrikeBtn) {
+                    const text = copyStrikeBtn.getAttribute('data-copy') || '';
+                    if (text && navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).catch(function () {});
+                    }
+                    return;
+                }
                 const th = e.target.closest('th.sortable');
                 if (!th) return;
                 const col = th.getAttribute('data-sort');
