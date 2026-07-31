@@ -1,0 +1,16 @@
+# Dependencies that may be cached by the OS / IDE
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local env / secrets (keep config.js as a template — replace placeholders yourself)
+.env
+.env.*
+
+# Optional local notes
+*.local.md

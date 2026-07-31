@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+  <meta name="theme-color" content="#0f766e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Serial Number Manager</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- ============ DASHBOARD ============ -->
+  <div id="view-dashboard" class="app-view d-none">
+    <header class="app-topbar no-print">
+      <div class="title">
+        Sites
+        <span class="subtitle" id="site-count">—</span>
+      </div>
+      <button class="icon-btn btn-refresh-sites" type="button" title="Refresh" aria-label="Refresh">
+        <i class="bi bi-arrow-clockwise"></i>
+      </button>
+    </header>
+
+    <main class="page">
+      <div class="search-shell no-print">
+        <i class="bi bi-search"></i>
+        <input type="search" id="search-input" placeholder="Search site, customer, serial…"
+               enterkeyhint="search" autocomplete="off">
+      </div>
+
+      <div id="search-results" class="d-none mb-3"></div>
+
+      <div id="empty-state" class="empty-state d-none">
+        <i class="bi bi-building"></i>
+        <h2 class="h5">No sites yet</h2>
+        <p>Tap + below to create a customer site, then start scanning.</p>
+        <button class="btn btn-primary btn-lg-touch px-4" id="btn-empty-new" type="button">
+          <i class="bi bi-plus-lg"></i> New Site
+        </button>
+      </div>
+
+      <div class="sites-stack" id="sites-list"></div>
+    </main>
+  </div>
+
+  <!-- ============ SITE DETAIL ============ -->
+  <div id="view-site" class="app-view d-none">
+    <header class="app-topbar no-print">
+      <a class="icon-btn" href="#/" aria-label="Back to sites"><i class="bi bi-chevron-left"></i></a>
+      <div class="title">
+        <span id="site-title">Site</span>
+        <span class="subtitle" id="site-customer-label"></span>
+      </div>
+      <div class="dropdown">
+        <button class="icon-btn" type="button" data-bs-toggle="dropdown" aria-label="More">
+          <i class="bi bi-three-dots-vertical"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><button class="dropdown-item py-2" id="btn-export-excel" type="button">
+            <i class="bi bi-file-earmark-excel text-success"></i> Export Excel
+          </button></li>
+          <li><button class="dropdown-item py-2" id="btn-export-pdf" type="button">
+            <i class="bi bi-file-earmark-pdf text-danger"></i> Export PDF
+          </button></li>
+          <li><button class="dropdown-item py-2" id="btn-print" type="button">
+            <i class="bi bi-printer"></i> Print
+          </button></li>
+        </ul>
+      </div>
+    </header>
+
+    <main class="page">
+      <div class="site-hero">
+        <div class="site-meta-list">
+          <span id="site-address-row"><i class="bi bi-geo-alt"></i> <span id="site-address-label"></span></span>
+          <span id="site-contact-row" class="d-none"><i class="bi bi-telephone"></i> <span id="site-contact-label"></span></span>
+          <span id="site-notes-row" class="d-none"><i class="bi bi-sticky"></i> <span id="site-notes-label"></span></span>
+        </div>
+      </div>
+
+      <!-- Desktop / also used as sticky dock on mobile via CSS -->
+      <div class="site-dock no-print">
+        <div class="site-dock-inner">
+          <button class="dock-btn" id="btn-add-device" type="button">
+            <i class="bi bi-plus-lg"></i>
+            <span>Add</span>
+          </button>
+          <button class="dock-btn scan" id="btn-scan" type="button">
+            <i class="bi bi-upc-scan"></i>
+            <span>Scan</span>
+          </button>
+          <div class="dropdown">
+            <button class="dock-btn w-100" type="button" data-bs-toggle="dropdown">
+              <i class="bi bi-share"></i>
+              <span>Export</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><button class="dropdown-item py-2 btn-export-excel-alt" type="button">Excel</button></li>
+              <li><button class="dropdown-item py-2 btn-export-pdf-alt" type="button">PDF</button></li>
+              <li><button class="dropdown-item py-2 btn-print-alt" type="button">Print</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-bar">
+        <h2>Devices</h2>
+        <span class="chip" id="device-count">0</span>
+      </div>
+
+      <div class="filter-row no-print">
+        <input type="search" class="form-control" id="device-search" placeholder="Filter…" enterkeyhint="search">
+        <select class="form-select" id="device-sort" style="width: auto; min-width: 7.5rem;">
+          <option value="deviceType" selected>Type</option>
+          <option value="installationDate">Date</option>
+          <option value="model">Model</option>
+          <option value="serialNumber">Serial</option>
+        </select>
+      </div>
+
+      <div id="devices-empty" class="empty-state d-none">
+        <i class="bi bi-upc-scan"></i>
+        <h2 class="h5">Ready to scan</h2>
+        <p>Tap the big Scan button below and point at the barcode.</p>
+      </div>
+
+      <div class="device-stack" id="devices-list"></div>
+    </main>
+  </div>
+
+  <!-- ============ SETTINGS ============ -->
+  <div id="view-settings" class="app-view d-none">
+    <header class="app-topbar">
+      <a class="icon-btn d-md-none" href="#/" aria-label="Back"><i class="bi bi-chevron-left"></i></a>
+      <div class="title">Settings</div>
+      <button class="icon-btn btn-theme" type="button" title="Theme" aria-label="Toggle theme">
+        <i class="bi bi-moon"></i>
+      </button>
+    </header>
+
+    <main class="page settings-stack" style="max-width: 560px;">
+      <div class="card">
+        <div class="card-body">
+          <h2>Account</h2>
+          <p class="mb-0 fs-5 fw-semibold" id="user-email">—</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h2>Appearance</h2>
+          <div class="form-check form-switch form-check-reverse d-flex justify-content-between align-items-center ps-0">
+            <label class="form-check-label" for="theme-switch">Dark mode</label>
+            <input class="form-check-input ms-0" type="checkbox" role="switch" id="theme-switch"
+                   style="width: 2.75em; height: 1.4em;">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h2>Change Password</h2>
+          <form id="password-form">
+            <div class="mb-3">
+              <label for="current-password" class="form-label">Current</label>
+              <input type="password" class="form-control" id="current-password" required
+                     autocomplete="current-password">
+            </div>
+            <div class="mb-3">
+              <label for="new-password" class="form-label">New</label>
+              <input type="password" class="form-control" id="new-password" required
+                     minlength="6" autocomplete="new-password">
+            </div>
+            <div class="mb-3">
+              <label for="confirm-password" class="form-label">Confirm</label>
+              <input type="password" class="form-control" id="confirm-password" required
+                     minlength="6" autocomplete="new-password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg-touch w-100">Update Password</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h2>Data</h2>
+          <p class="small text-secondary mb-3">Pull latest sites from Supabase.</p>
+          <button type="button" class="btn btn-outline-primary btn-lg-touch w-100 btn-refresh-sites">
+            <i class="bi bi-arrow-clockwise"></i> Refresh
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h2>Session</h2>
+          <button type="button" class="btn btn-outline-danger btn-lg-touch w-100 btn-logout">
+            <i class="bi bi-box-arrow-right"></i> Log out
+          </button>
+        </div>
+      </div>
+
+      <p class="text-center text-secondary small mt-2 mb-4">
+        CCTV Serial Manager · Supabase · Mobile field tool
+      </p>
+    </main>
+  </div>
+
+  <!-- Bottom navigation (mobile) -->
+  <nav class="bottom-nav no-print" id="bottom-nav" aria-label="Main">
+    <a href="#/" class="nav-sites active" data-nav="sites">
+      <i class="bi bi-building"></i>
+      Sites
+    </a>
+    <div class="nav-new-wrap">
+      <button type="button" class="nav-new" id="btn-new-site" aria-label="New site">
+        <i class="bi bi-plus-lg"></i>
+      </button>
+    </div>
+    <a href="#/settings" class="nav-settings" data-nav="settings">
+      <i class="bi bi-gear"></i>
+      Settings
+    </a>
+  </nav>
+
+  <!-- Site modal -->
+  <div class="modal fade" id="site-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+      <form class="modal-content" id="site-form">
+        <div class="modal-header">
+          <h5 class="modal-title" id="site-modal-title">New Site</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="site-id">
+          <div class="mb-3">
+            <label for="site-customer" class="form-label">Customer Name *</label>
+            <input type="text" class="form-control" id="site-customer" required>
+          </div>
+          <div class="mb-3">
+            <label for="site-name" class="form-label">Site Name *</label>
+            <input type="text" class="form-control" id="site-name" required
+                   placeholder="e.g. Main Office, Warehouse">
+          </div>
+          <div class="mb-3">
+            <label for="site-address" class="form-label">Address</label>
+            <textarea class="form-control" id="site-address" rows="2"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="site-contact" class="form-label">Contact Person</label>
+            <input type="text" class="form-control" id="site-contact">
+          </div>
+          <div class="mb-3">
+            <label for="site-phone" class="form-label">Phone</label>
+            <input type="tel" class="form-control" id="site-phone" inputmode="tel">
+          </div>
+          <div class="mb-0">
+            <label for="site-notes" class="form-label">Notes</label>
+            <textarea class="form-control" id="site-notes" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Site</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Device modal -->
+  <div class="modal fade" id="device-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+      <form class="modal-content" id="device-form">
+        <div class="modal-header">
+          <h5 class="modal-title" id="device-modal-title">Add Device</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="device-id">
+          <div class="mb-3">
+            <label class="form-label">Device Type *</label>
+            <input type="hidden" id="device-type" value="">
+            <div id="device-type-picker" class="type-picker" role="listbox" aria-label="Device type"></div>
+          </div>
+          <div class="mb-3">
+            <label for="device-model" class="form-label">Model</label>
+            <input type="text" class="form-control" id="device-model" placeholder="e.g. DS-2CD2143G0-I">
+          </div>
+          <div class="mb-3">
+            <label for="device-serial" class="form-label">Serial Number *</label>
+            <input type="text" class="form-control" id="device-serial" required
+                   autocomplete="off" autocapitalize="characters" inputmode="text">
+          </div>
+          <div class="mb-3">
+            <label for="device-date" class="form-label">Installation Date</label>
+            <input type="date" class="form-control" id="device-date">
+          </div>
+          <div class="mb-0">
+            <label for="device-remarks" class="form-label">Remarks</label>
+            <textarea class="form-control" id="device-remarks" rows="2" placeholder="Optional…"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Device</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scanner modal -->
+  <div class="modal fade" id="scanner-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="bi bi-upc-scan"></i> Scan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="scanner-preview">
+            <div class="scanner-video-wrap mb-3">
+              <video id="scanner-video" playsinline webkit-playsinline muted autoplay></video>
+              <div class="scanner-frame" aria-hidden="true"></div>
+              <div class="scanner-overlay-hint" id="scan-status">Point at barcode</div>
+            </div>
+          </div>
+
+          <div id="scan-done-panel" class="d-none text-center mb-3 p-3 rounded-3" style="background: var(--brand-soft);">
+            <i class="bi bi-check-circle-fill text-success" style="font-size: 2.25rem;"></i>
+            <p class="mb-1 mt-2 fw-semibold">Camera closed</p>
+            <p class="mb-0 serial" id="scan-done-serial" style="font-size: 1.1rem; word-break: break-all;"></p>
+          </div>
+
+          <label for="scanned-serial" class="form-label">Serial (verify)</label>
+          <input type="text" class="form-control form-control-lg" id="scanned-serial"
+                 placeholder="Waiting…" autocomplete="off">
+          <div class="form-text">
+            Best: scan the <strong>printed sticker</strong> on the device.<br>
+            After a successful scan the camera turns off automatically — tap <strong>Continue</strong> to save.
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="btn-use-scan">
+            Continue <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/sites.js"></script>
+  <script src="js/devices.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/vendor/zxing-browser.min.js"></script>
+  <script src="js/scanner.js"></script>
+  <script src="js/export.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
