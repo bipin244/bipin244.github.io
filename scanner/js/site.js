@@ -14,10 +14,6 @@ const SiteView = {
 
     fillDeviceTypeSelect();
 
-    $(document).on('click', '#device-type-picker .type-pick', function () {
-      setDeviceTypeValue($(this).data('type'));
-    });
-
     $('#btn-add-device').on('click', () => this.openDeviceModal());
     $('#btn-scan').on('click', () => this.openScanner());
 

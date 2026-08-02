@@ -12,6 +12,7 @@ Static, mobile-first web app for CCTV technicians to record device serial number
 - Email/password login (Supabase Auth)
 - Site CRUD
 - Device CRUD with barcode scanning
+- **Device categories** — add / edit / delete types in Settings (used when adding devices)
 - Search by serial number
 - Excel / PDF / Print export
 - Dark mode · mobile UI
@@ -26,6 +27,8 @@ Static, mobile-first web app for CCTV technicians to record device serial number
 2. Open **SQL Editor** → paste and run `supabase/schema.sql`  
 3. **Authentication → Users** → Add user (email + password)  
 4. **Project Settings → API** → copy **Project URL** and **anon public** key  
+
+If you already ran an older schema, run `supabase/migration_device_types.sql` in the SQL Editor instead of the full schema.
 
 ### 2. Configure the app
 
@@ -59,6 +62,7 @@ js/
   supabase.js   # client init
   auth.js       # login / logout / requireAuth
   sites.js      # site CRUD
+  categories.js # device type / category CRUD
   devices.js    # device CRUD + searchBySerial
   store.js      # session cache
   scanner.js
@@ -85,6 +89,12 @@ login.html
 
 `id`, `site_id`, `device_type`, `model`, `serial_number`, `installation_date`, `remarks`, `created_at`
 
+### device_types
+
+`id`, `name` (unique), `icon`, `sort_order`, `created_at`
+
+Managed in **Settings → Device Categories**. Categories come only from this table (no hardcoded list). Devices store `device_type` as text (the category name). Renaming a category updates matching devices; deleting is blocked while devices still use that name.
+
 ---
 
 ## API helpers
@@ -94,6 +104,7 @@ login.html
 | `getSites()` | List sites + device counts |
 | `getSite(id)` | One site |
 | `createSite(data)` / `updateSite` / `deleteSite` | Site writes |
+| `getCategories()` / `createCategory` / `updateCategory` / `deleteCategory` | Category writes |
 | `getDevices(siteId)` | Devices for a site |
 | `addDevice` / `updateDevice` / `deleteDevice` | Device writes |
 | `searchBySerial(serial)` | Partial serial search |

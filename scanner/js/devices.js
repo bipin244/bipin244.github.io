@@ -1,35 +1,23 @@
 /**
  * Devices CRUD — Supabase `devices` table
+ * Device types (categories) live in `device_types` — see categories.js
  */
 
-const DEVICE_TYPES = [
-  'Camera',
-  'NVR',
-  'DVR',
-  'Hard Disk',
-  'Switch',
-  'Router',
-  'PoE Switch',
-  'Power Supply',
-  'Cable',
-  'Other'
-];
+function getDeviceCategories() {
+  if (typeof AppStore !== 'undefined') {
+    return AppStore.getCategories();
+  }
+  return [];
+}
 
-const DEVICE_TYPE_ICONS = {
-  'Camera': 'bi-camera-video',
-  'NVR': 'bi-hdd-rack',
-  'DVR': 'bi-film',
-  'Hard Disk': 'bi-device-hdd',
-  'Switch': 'bi-ethernet',
-  'Router': 'bi-wifi',
-  'PoE Switch': 'bi-lightning-charge',
-  'Power Supply': 'bi-plug',
-  'Cable': 'bi-bezier2',
-  'Other': 'bi-box'
-};
+/** Ordered type names for pickers / selects */
+function getDeviceTypeNames() {
+  return getDeviceCategories().map(c => c.name);
+}
 
 function deviceTypeIcon(type) {
-  return DEVICE_TYPE_ICONS[type] || 'bi-cpu';
+  const match = getDeviceCategories().find(c => c.name === type);
+  return match?.icon || 'bi-cpu';
 }
 
 function deviceTypeBadgeHtml(type) {

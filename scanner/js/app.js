@@ -19,7 +19,11 @@ const App = {
 
     setLoading(true);
     try {
-      await AppStore.ensureSites();
+      await Promise.all([
+        AppStore.ensureSites(),
+        AppStore.ensureCategories()
+      ]);
+      fillDeviceTypeSelect();
     } catch (err) {
       console.error(err);
       showToast(err.message || 'Failed to load data. Check Supabase config & RLS.', 'error');
@@ -54,9 +58,13 @@ const App = {
       setLoading(true);
       try {
         await AppStore.refresh();
+        fillDeviceTypeSelect();
         showToast('Data refreshed');
-        if (location.hash.replace(/^#/, '').startsWith('/site/')) {
+        const hash = location.hash.replace(/^#/, '');
+        if (hash.startsWith('/site/')) {
           await SiteView.refresh();
+        } else if (hash === '/settings') {
+          SettingsView.renderCategories();
         } else {
           DashboardView.render();
         }

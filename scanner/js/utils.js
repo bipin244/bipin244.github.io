@@ -127,47 +127,165 @@ function setLoading(show) {
 }
 
 /**
- * Populate device-type icon picker (grid) + hidden value field
+ * Searchable device-type combo (icons + filter) from AppStore categories.
  */
-function fillDeviceTypeSelect(containerOrSelect, selected) {
-  const wrap = document.getElementById('device-type-picker');
-  const hidden = document.getElementById('device-type');
+const DeviceTypeCombo = (() => {
+  let bound = false;
+  let open = false;
 
-  if (wrap && hidden) {
-    wrap.innerHTML = DEVICE_TYPES.map(type => {
-      const active = selected === type ? ' active' : '';
-      return `
-        <button type="button" class="type-pick${active}" data-type="${escapeHtml(type)}"
-                aria-pressed="${selected === type ? 'true' : 'false'}">
-          <i class="bi ${deviceTypeIcon(type)}" aria-hidden="true"></i>
-          <span>${escapeHtml(type)}</span>
-        </button>
-      `;
-    }).join('');
-    hidden.value = selected || '';
-    return;
+  function categories() {
+    if (typeof getDeviceCategories === 'function') return getDeviceCategories();
+    if (typeof AppStore !== 'undefined') return AppStore.getCategories();
+    return [];
   }
 
-  // Fallback: plain <select>
-  const selectEl = containerOrSelect;
-  if (!selectEl) return;
-  selectEl.innerHTML = '<option value="">Select type...</option>';
-  DEVICE_TYPES.forEach(type => {
-    const opt = document.createElement('option');
-    opt.value = type;
-    opt.textContent = type;
-    if (selected === type) opt.selected = true;
-    selectEl.appendChild(opt);
-  });
+  function displayHtml(type) {
+    if (!type) return '<span class="text-secondary">Select type…</span>';
+    const icon = typeof deviceTypeIcon === 'function' ? deviceTypeIcon(type) : 'bi-cpu';
+    return `<i class="bi ${escapeHtml(icon)}" aria-hidden="true"></i><span>${escapeHtml(type)}</span>`;
+  }
+
+  function syncTrigger(type) {
+    const $display = $('#device-type-display');
+    if (!$display.length) return;
+    $display.html(displayHtml(type));
+    $('#device-type-trigger').toggleClass('has-value', !!type);
+  }
+
+  function renderOptions(filter = '') {
+    const q = (filter || '').trim().toLowerCase();
+    const cats = categories().slice();
+    const selected = $('#device-type').val() || '';
+    const $opts = $('#device-type-options');
+    const $empty = $('#device-type-empty');
+    if (!$opts.length) return;
+
+    // Keep a legacy type (not in DB) visible while editing an existing device
+    if (selected && !cats.some(c => c.name === selected)) {
+      cats.unshift({
+        name: selected,
+        icon: typeof deviceTypeIcon === 'function' ? deviceTypeIcon(selected) : 'bi-cpu'
+      });
+    }
+
+    if (!cats.length) {
+      $opts.empty();
+      $empty.removeClass('d-none').text('No categories — add in Settings');
+      return;
+    }
+
+    const filtered = q
+      ? cats.filter(c => (c.name || '').toLowerCase().includes(q))
+      : cats;
+
+    if (!filtered.length) {
+      $opts.empty();
+      $empty.removeClass('d-none').text('No matches');
+      return;
+    }
+
+    $empty.addClass('d-none');
+    $opts.html(filtered.map(c => {
+      const name = c.name || '';
+      const icon = c.icon || 'bi-cpu';
+      const active = name === selected ? ' active' : '';
+      return `
+        <button type="button" class="type-combo-option${active}" role="option"
+                data-type="${escapeHtml(name)}" aria-selected="${name === selected ? 'true' : 'false'}">
+          <i class="bi ${escapeHtml(icon)}" aria-hidden="true"></i>
+          <span>${escapeHtml(name)}</span>
+        </button>
+      `;
+    }).join(''));
+  }
+
+  function setOpen(next) {
+    open = !!next;
+    $('#device-type-menu').toggleClass('d-none', !open);
+    $('#device-type-trigger').attr('aria-expanded', open ? 'true' : 'false');
+    $('#device-type-combo').toggleClass('is-open', open);
+    if (open) {
+      renderOptions($('#device-type-search').val());
+      setTimeout(() => $('#device-type-search').trigger('focus').trigger('select'), 50);
+    } else {
+      $('#device-type-search').val('');
+    }
+  }
+
+  function bind() {
+    if (bound) return;
+    bound = true;
+
+    $(document).on('click', '#device-type-trigger', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      setOpen(!open);
+    });
+
+    $(document).on('input', '#device-type-search', function () {
+      renderOptions(this.value);
+    });
+
+    $(document).on('keydown', '#device-type-search', function (e) {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        setOpen(false);
+        $('#device-type-trigger').trigger('focus');
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        const $first = $('#device-type-options .type-combo-option').first();
+        if ($first.length) $first.trigger('click');
+      }
+    });
+
+    $(document).on('click', '#device-type-options .type-combo-option', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      setDeviceTypeValue($(this).data('type'));
+      setOpen(false);
+    });
+
+    $(document).on('click', function (e) {
+      if (!open) return;
+      if ($(e.target).closest('#device-type-combo').length) return;
+      setOpen(false);
+    });
+
+    $('#device-modal').on('hidden.bs.modal', () => setOpen(false));
+  }
+
+  return {
+    bind,
+    fill(selected) {
+      bind();
+      const value = selected || '';
+      $('#device-type').val(value);
+      syncTrigger(value);
+      renderOptions();
+      setOpen(false);
+    },
+    setValue(type) {
+      bind();
+      const value = type || '';
+      $('#device-type').val(value);
+      syncTrigger(value);
+      renderOptions($('#device-type-search').val());
+    },
+    close() {
+      setOpen(false);
+    }
+  };
+})();
+
+/**
+ * Populate device-type combo from AppStore categories (Settings).
+ */
+function fillDeviceTypeSelect(_containerOrSelect, selected) {
+  DeviceTypeCombo.fill(selected || '');
 }
 
 function setDeviceTypeValue(type) {
-  const hidden = document.getElementById('device-type');
-  if (hidden) hidden.value = type || '';
-  $('#device-type-picker .type-pick').each(function () {
-    const on = $(this).data('type') === type;
-    $(this).toggleClass('active', on).attr('aria-pressed', on ? 'true' : 'false');
-  });
+  DeviceTypeCombo.setValue(type || '');
 }
 
 /**
