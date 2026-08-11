@@ -16,6 +16,28 @@
     });
   }
 
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+  if (menuToggle && navLinks) {
+    const setNavOpen = (open) => {
+      document.body.classList.toggle('nav-open', open);
+      menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+      const icon = menuToggle.querySelector('i');
+      if (icon) icon.className = open ? 'bi bi-x-lg' : 'bi bi-list';
+    };
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setNavOpen(!document.body.classList.contains('nav-open'));
+    });
+    navLinks.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setNavOpen(false));
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 880) setNavOpen(false);
+    });
+  }
+
   function downloadPdf() {
     const source = document.getElementById('resume');
     if (!source) {

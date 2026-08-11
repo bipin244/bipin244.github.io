@@ -17,18 +17,19 @@
   <header class="nav">
     <div class="nav-inner">
       <a class="brand" href="#top">Bipin <span>Fultariya</span></a>
-      <nav class="nav-links" aria-label="Primary">
+      <nav class="nav-links" id="nav-links" aria-label="Primary">
         <a href="#about">Profile</a>
         <a href="#experience">Experience</a>
         <a href="#work">Project</a>
         <a href="#skills">Skills</a>
         <a href="#education">Education</a>
         <a href="#contact">Contact</a>
+        <a class="nav-hire" href="mailto:bpnptl24@gmail.com">Hire me</a>
       </nav>
       <div class="nav-actions">
         <div class="dropdown" id="download-menu">
           <button class="btn btn-gold" type="button" id="download-toggle" aria-expanded="false">
-            <i class="bi bi-download"></i> Download
+            <i class="bi bi-download"></i> <span class="btn-label">Download</span>
           </button>
           <div class="dropdown-menu" role="menu">
             <a href="resume.html" role="menuitem"><i class="bi bi-file-earmark-text"></i> View resume</a>
@@ -37,7 +38,10 @@
             <button type="button" id="btn-vcard" role="menuitem"><i class="bi bi-person-vcard"></i> Contact card (vCard)</button>
           </div>
         </div>
-        <a class="btn" href="mailto:bpnptl24@gmail.com"><i class="bi bi-envelope"></i> Hire me</a>
+        <a class="btn btn-hire" href="mailto:bpnptl24@gmail.com"><i class="bi bi-envelope"></i> <span class="btn-label">Hire me</span></a>
+        <button class="menu-toggle" type="button" id="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+          <i class="bi bi-list"></i>
+        </button>
       </div>
     </div>
   </header>
@@ -54,17 +58,13 @@
             <a class="btn" href="#experience">Experience</a>
           </div>
           <div class="meta-row">
-            <div><strong>+91 8511880657</strong></div>
-            <div><strong>bpnptl24@gmail.com</strong></div>
+            <a href="tel:+918511880657"><strong>+91 8511880657</strong></a>
+            <a href="mailto:bpnptl24@gmail.com"><strong>bpnptl24@gmail.com</strong></a>
           </div>
           <p class="meta-address">Rajkot, Gujarat 360004, India</p>
         </div>
         <div class="portrait-wrap">
-          <img class="portrait" src="assets/images/profile.jpeg" alt="Portrait of Bipin Fultariya">
-          <div class="portrait-cap">
-            <b>Bipin Fultariya</b>
-            Senior Web Developer
-          </div>
+          <img class="portrait" src="assets/images/profile.jpeg" alt="Bipin Fultariya">
         </div>
       </div>
     </section>
@@ -98,7 +98,7 @@
             <div class="exp-year">Oct 2021 – Present</div>
             <div>
               <h3>Senior Web Developer</h3>
-              <div class="place">Paperly, Perth, Australia</div>
+              <div class="place"><a href="https://paperly.education/" target="_blank" rel="noopener noreferrer">Paperly</a>, Perth, Australia</div>
               <p>Lead development of the Paperly school management platform using Laravel, contributing to architecture, workflow automation, API integrations, and application performance improvements.</p>
             </div>
           </article>
@@ -136,7 +136,7 @@
         </div>
         <article class="work-card">
           <div>
-            <h3>Paperly School Management Platform</h3>
+            <h3><a href="https://paperly.education/" target="_blank" rel="noopener noreferrer">Paperly School Management Platform</a></h3>
             <p>Contributed to a comprehensive platform that centralizes student support, compliance, trips, forms, and internal communication. Helped improve operational visibility, administrative workflows, and long-term institutional continuity.</p>
             <div class="tags">
               <span class="tag">Laravel</span>
@@ -148,8 +148,8 @@
           </div>
           <div class="work-meta">
             <div>
-              <strong style="color:var(--ink);">Oct 2021 – Present</strong><br>
-              Paperly, Perth, Australia
+              <strong>Oct 2021 – Present</strong>
+              <a href="https://paperly.education/" target="_blank" rel="noopener noreferrer">Paperly</a>, Perth, Australia
             </div>
             <div>Senior Web Developer</div>
           </div>
@@ -230,7 +230,7 @@
             <h2>Bipin Fultariya</h2>
             <p>Senior Web Developer · Laravel • React.js • Node.js • Full-Stack Development</p>
             <div class="hero-cta">
-              <a class="btn btn-gold" href="mailto:bpnptl24@gmail.com"><i class="bi bi-envelope"></i> bpnptl24@gmail.com</a>
+              <a class="btn btn-gold" href="mailto:bpnptl24@gmail.com"><i class="bi bi-envelope"></i> Email me</a>
               <a class="btn" href="resume.html"><i class="bi bi-download"></i> Resume</a>
             </div>
             <div class="socials">
