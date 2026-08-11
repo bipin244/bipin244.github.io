@@ -55,7 +55,7 @@
       'EMAIL;TYPE=INTERNET:bpnptl24@gmail.com',
       'URL:https://bipin244.github.io',
       'ADR;TYPE=HOME:;;Rajkot;Gujarat;360004;India;',
-      'NOTE:Laravel React.js Full-Stack Development',
+      'NOTE:Laravel React.js Node.js Full-Stack Development',
       'END:VCARD'
     ].join('\r\n');
     const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
