@@ -377,7 +377,7 @@ section { padding: 4.5rem 0; border-top: 1px solid var(--line); }
 /* Skills */
 .skill-cols {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.2rem;
 }
 
@@ -467,7 +467,7 @@ footer {
   .about-grid,
   .work-card,
   .contact-panel,
-  .skill-cols,
+  .skill-cols { grid-template-columns: 1fr 1fr; }
   .exp { grid-template-columns: 1fr; }
 
   .nav-links { display: none; }

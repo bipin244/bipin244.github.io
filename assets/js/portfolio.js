@@ -2,68 +2,6 @@
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
-  const THEMES = [
-    { id: 'classic', name: 'Classic Center', desc: 'Centered serif, simple rules', swatch: '#fff', pdfBg: '#ffffff' },
-    { id: 'left', name: 'Clean Left', desc: 'Sans, name left / contact right', swatch: '#fff', pdfBg: '#ffffff' },
-    { id: 'split', name: 'Two Column', desc: 'Light sidebar + content', swatch: 'linear-gradient(90deg,#f5f5f5 35%,#fff 35%)', pdfBg: '#ffffff' },
-    { id: 'compact', name: 'Compact', desc: 'Tighter type and spacing', swatch: '#fff', pdfBg: '#ffffff' },
-    { id: 'serif', name: 'Editorial Serif', desc: 'Large serif, italic role', swatch: '#fff', pdfBg: '#ffffff' },
-    { id: 'lined', name: 'Double Rule', desc: 'Section lines, double header', swatch: '#fff', pdfBg: '#ffffff' },
-    { id: 'mono', name: 'Mono', desc: 'Monospace, dashed rule', swatch: '#fff', pdfBg: '#ffffff' },
-    { id: 'banner', name: 'Name Banner', desc: 'Black header bar, white body', swatch: 'linear-gradient(#111 40%,#fff 40%)', pdfBg: '#ffffff' },
-    { id: 'airy', name: 'Airy', desc: 'Wide margins, light type', swatch: '#fff', pdfBg: '#ffffff' },
-    { id: 'grid', name: 'Boxed', desc: 'Boxed header, black labels', swatch: '#fff', pdfBg: '#ffffff' }
-  ];
-
-  const KEY = 'resume_theme';
-  const sheet = document.getElementById('resume');
-
-  function getThemeId() {
-    const fromUrl = new URLSearchParams(location.search).get('theme');
-    if (fromUrl && THEMES.some(t => t.id === fromUrl)) return fromUrl;
-    try {
-      const saved = localStorage.getItem(KEY);
-      if (saved && THEMES.some(t => t.id === saved)) return saved;
-    } catch (e) { /* ignore */ }
-    return 'classic';
-  }
-
-  function themeMeta(id) {
-    return THEMES.find(t => t.id === id) || THEMES[0];
-  }
-
-  function applyTheme(id) {
-    if (!sheet) return;
-    THEMES.forEach(t => sheet.classList.remove('theme-' + t.id));
-    sheet.classList.add('theme-' + id);
-    sheet.dataset.theme = id;
-    try { localStorage.setItem(KEY, id); } catch (e) { /* ignore */ }
-    document.querySelectorAll('.theme-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.theme === id);
-    });
-  }
-
-  function renderPicker() {
-    const list = document.getElementById('theme-list');
-    if (!list) return;
-    const selected = getThemeId();
-    list.innerHTML = THEMES.map(t => `
-      <button type="button" class="theme-btn${t.id === selected ? ' active' : ''}" data-theme="${t.id}">
-        <span class="swatch" style="background:${t.swatch}"></span>
-        <span>
-          <strong>${t.name}</strong>
-          <span>${t.desc}</span>
-        </span>
-      </button>
-    `).join('');
-    list.addEventListener('click', (e) => {
-      const btn = e.target.closest('.theme-btn');
-      if (!btn) return;
-      applyTheme(btn.dataset.theme);
-    });
-    applyTheme(selected);
-  }
-
   const menu = document.getElementById('download-menu');
   const toggle = document.getElementById('download-toggle');
   if (menu && toggle) {
@@ -88,13 +26,11 @@
       window.print();
       return;
     }
-    const id = source.dataset.theme || getThemeId();
-    const meta = themeMeta(id);
     const opt = {
       margin: [8, 8, 8, 8],
       filename: 'Bipin-Fultariya-Senior-Web-Developer.pdf',
       image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true, backgroundColor: meta.pdfBg },
+      html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
     html2pdf().set(opt).from(source).save();
@@ -132,8 +68,6 @@
     a.remove();
     URL.revokeObjectURL(url);
   }
-
-  renderPicker();
 
   document.getElementById('btn-download-pdf')?.addEventListener('click', downloadPdf);
   document.getElementById('btn-print')?.addEventListener('click', printResume);
