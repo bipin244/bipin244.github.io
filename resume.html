@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume designs — Bipin Fultariya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=IBM+Plex+Mono:wght@400;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/resume-themes.css">
+</head>
+<body class="studio">
+  <div class="studio-bar">
+    <a href="index.html"><i class="bi bi-arrow-left"></i> Back to site</a>
+    <div style="display:flex;gap:.45rem;flex-wrap:wrap;">
+      <button class="gold" type="button" id="btn-download-pdf"><i class="bi bi-download"></i> Download PDF</button>
+      <button type="button" id="btn-print"><i class="bi bi-printer"></i> Print</button>
+    </div>
+  </div>
+
+  <div class="studio-layout">
+    <aside class="picker">
+      <h2>10 designs</h2>
+      <p>Simple black &amp; white layouts. Pick one, then download or print.</p>
+      <div class="theme-list" id="theme-list"></div>
+    </aside>
+
+    <div class="preview-pane">
+      <article class="sheet theme-classic" id="resume" data-theme="classic">
+        <div class="accent-bar" aria-hidden="true"></div>
+        <div class="inner">
+          <header class="top">
+            <div>
+              <h1>Bipin Fultariya</h1>
+              <div class="role">Senior Web Developer</div>
+              <p class="stack">Laravel • React.js • Full-Stack Development</p>
+            </div>
+          </header>
+
+          <div class="resume-body">
+            <aside class="side">
+              <h2>Contact</h2>
+              <p>
+                Rajkot, Gujarat 360004<br>
+                India<br>
+                <a href="tel:+918511880657">+91 8511880657</a><br>
+                <a href="mailto:bpnptl24@gmail.com">bpnptl24@gmail.com</a>
+              </p>
+
+              <h2>Core Skills</h2>
+              <ul>
+                <li>Laravel &amp; PHP</li>
+                <li>React.js</li>
+                <li>Node.js</li>
+                <li>Svelte</li>
+                <li>REST API Integration</li>
+                <li>Responsive Design</li>
+                <li>Database Management</li>
+                <li>Version Control</li>
+                <li>Front-End Development</li>
+                <li>Back-End Development</li>
+                <li>Problem Solving</li>
+                <li>Client Communication</li>
+              </ul>
+
+              <h2>Education</h2>
+              <p class="edu-title">Bachelor of Engineering in Computer Engineering</p>
+              <p>Government Engineering College, Rajkot<br>2014</p>
+            </aside>
+
+            <div class="main">
+              <h2>Profile</h2>
+              <p>Senior Web Developer with 10+ years of experience building scalable web applications using Laravel, React.js, and modern JavaScript frameworks. Experienced in full-stack development, REST API integration, system architecture, and performance optimization across education, logistics, and ERP platforms.</p>
+
+              <h2>Professional Experience</h2>
+              <div class="job">
+                <h3>Senior Web Developer — Paperly, Perth, Australia</h3>
+                <div class="meta">Oct 2021 – Present</div>
+                <p>Lead development of the Paperly school management platform using Laravel, contributing to architecture, workflow automation, API integrations, and application performance improvements.</p>
+              </div>
+              <div class="job">
+                <h3>Web Developer — Logistics Infotech, Rajkot, India</h3>
+                <div class="meta">Mar 2016 – Oct 2021</div>
+                <ul>
+                  <li>Built warehouse management modules with React.js and reusable UI components.</li>
+                  <li>Developed applications using Laravel, Svelte, and Node.js.</li>
+                  <li>Collaborated with cross-functional teams to deliver client-focused software solutions.</li>
+                </ul>
+              </div>
+              <div class="job">
+                <h3>Junior Web Developer — Nkonext Infoway, Rajkot, India</h3>
+                <div class="meta">Jan 2015 – Feb 2016</div>
+                <ul>
+                  <li>Worked on core PHP and Laravel ERP modules.</li>
+                  <li>Assisted with debugging, optimization, and platform maintenance.</li>
+                </ul>
+              </div>
+
+              <h2>Featured Project</h2>
+              <div class="job">
+                <h3>Paperly School Management Platform</h3>
+                <p>Contributed to a comprehensive platform that centralizes student support, compliance, trips, forms, and internal communication. Helped improve operational visibility, administrative workflows, and long-term institutional continuity.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.2/dist/html2pdf.bundle.min.js"></script>
+  <script src="assets/js/portfolio.js"></script>
+</body>
+</html>

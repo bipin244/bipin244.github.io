@@ -1,0 +1,338 @@
+/* Simple black & white resume studio — 10 layout/type styles */
+
+* { box-sizing: border-box; }
+
+body.studio {
+  margin: 0;
+  min-height: 100vh;
+  background: #f3f3f3;
+  color: #111;
+  font-family: "Outfit", system-ui, sans-serif;
+}
+
+.studio-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.studio-bar a,
+.studio-bar button {
+  color: #111;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.45rem 0.85rem;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.studio-bar .gold {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+  font-weight: 600;
+}
+
+.studio-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: calc(100vh - 58px);
+}
+
+.picker {
+  padding: 1.2rem 1rem 2rem;
+  border-right: 1px solid #e5e5e5;
+  background: #fafafa;
+  overflow: auto;
+}
+
+.picker h2 {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.picker p {
+  margin: 0 0 1rem;
+  color: #666;
+  font-size: 0.82rem;
+}
+
+.theme-list { display: grid; gap: 0.4rem; }
+
+.theme-btn {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 0.65rem;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #111;
+  border-radius: 8px;
+  padding: 0.5rem 0.6rem;
+  cursor: pointer;
+  font: inherit;
+}
+
+.theme-btn:hover { border-color: #111; }
+.theme-btn.active { border-color: #111; outline: 1px solid #111; }
+
+.swatch {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.theme-btn strong { display: block; font-size: 0.85rem; }
+.theme-btn span { display: block; font-size: 0.72rem; color: #666; }
+
+.preview-pane {
+  padding: 1.5rem;
+  overflow: auto;
+  background: #ececec;
+}
+
+.sheet {
+  width: min(800px, 100%);
+  margin: 0 auto 2rem;
+  background: #fff;
+  color: #111;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+}
+
+.sheet a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.sheet header.top {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.sheet h1 { margin: 0; }
+.sheet .role { margin: 0.3rem 0 0.5rem; }
+.sheet .lede { margin: 0; max-width: 28rem; color: #444; }
+.sheet .contact { text-align: right; font-size: 0.86rem; color: #444; }
+.sheet h2 { margin: 1.35rem 0 0.55rem; }
+.sheet p { margin: 0 0 0.65rem; color: #444; }
+.sheet .job { margin-bottom: 0.9rem; }
+.sheet .job h3 { margin: 0; font-size: 1rem; }
+.sheet .meta { color: #555; font-size: 0.86rem; }
+.sheet ul { margin: 0.3rem 0 0; padding-left: 1.1rem; color: #444; }
+.sheet .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+.sheet .chips { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.sheet .chip {
+  border: 1px solid #ccc;
+  padding: 0.12rem 0.45rem;
+  font-size: 0.75rem;
+  color: #333;
+}
+.sheet > .accent-bar { display: none; }
+.sheet .inner { display: contents; }
+.sheet .resume-body {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 1.75rem;
+  margin-top: 1.15rem;
+  align-items: start;
+}
+.sheet .side ul {
+  margin: 0;
+  padding-left: 1.05rem;
+  color: #444;
+  font-size: 0.86rem;
+}
+.sheet .side li { margin: 0.18rem 0; }
+.sheet .edu-title { font-weight: 600; margin: 0 0 0.2rem; font-size: 0.92rem; }
+.sheet .stack { margin: 0; color: #444; font-size: 0.9rem; }
+
+/* 1 Classic — centered, simple rules */
+.theme-classic {
+  font-family: Georgia, "Times New Roman", serif;
+  padding: 48px 52px;
+}
+.theme-classic header.top {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-bottom: 1px solid #111;
+  padding-bottom: 1rem;
+}
+.theme-classic .stack { max-width: 28rem; }
+.theme-classic h1 { font-size: 2.2rem; font-weight: 400; letter-spacing: 0.06em; }
+.theme-classic .role { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; }
+.theme-classic .lede { max-width: 36rem; }
+.theme-classic .contact { text-align: center; }
+.theme-classic h2 {
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.25rem;
+}
+.theme-classic .side h2 { text-align: left; }
+
+/* 2 Left stack — name left, contact right, sans */
+.theme-left {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 44px 48px;
+}
+.theme-left h1 { font-size: 1.85rem; font-weight: 700; }
+.theme-left .role { font-size: 0.8rem; color: #555; }
+.theme-left header.top { border-bottom: 1px solid #ddd; padding-bottom: 1rem; }
+.theme-left h2 { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: #111; }
+.theme-left .chip { border-radius: 0; }
+
+/* 3 Two-column — sidebar contact */
+.theme-split {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 0;
+}
+.theme-split > .accent-bar { display: none; }
+.theme-split .inner { display: block; padding: 0; }
+.theme-split header.top { display: block; padding: 36px 36px 0 28px; }
+.theme-split .resume-body { margin-top: 1.25rem; gap: 0; }
+.theme-split .side {
+  background: #f5f5f5;
+  padding: 28px 22px 40px;
+  min-height: 100%;
+}
+.theme-split .main { padding: 0 36px 40px 28px; }
+.theme-split h1 { font-size: 1.7rem; font-weight: 600; }
+.theme-split .role { font-size: 0.78rem; }
+.theme-split h2 { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; }
+
+/* 4 Tight compact */
+.theme-compact {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 32px 36px;
+  font-size: 13px;
+}
+.theme-compact h1 { font-size: 1.45rem; font-weight: 700; }
+.theme-compact .role { font-size: 0.72rem; margin: 0.15rem 0 0.3rem; }
+.theme-compact header.top { gap: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid #000; }
+.theme-compact h2 { margin: 0.85rem 0 0.35rem; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.theme-compact .job { margin-bottom: 0.55rem; }
+.theme-compact .job h3 { font-size: 0.9rem; }
+.theme-compact p, .theme-compact ul { margin-bottom: 0.35rem; }
+
+/* 5 Wide serif */
+.theme-serif {
+  font-family: Georgia, "Times New Roman", serif;
+  padding: 52px 56px;
+}
+.theme-serif h1 { font-size: 2.6rem; font-weight: 400; }
+.theme-serif .role { font-style: italic; font-size: 1rem; letter-spacing: 0; text-transform: none; color: #333; }
+.theme-serif header.top { border-bottom: 2px solid #111; padding-bottom: 1.1rem; }
+.theme-serif h2 { font-size: 1.05rem; font-weight: 400; font-style: italic; letter-spacing: 0; text-transform: none; }
+.theme-serif .chip { border: 0; border-bottom: 1px solid #999; border-radius: 0; padding: 0 0 0.05rem; }
+
+/* 6 Lined sections */
+.theme-lined {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 44px 48px;
+}
+.theme-lined h1 { font-size: 1.9rem; font-weight: 500; letter-spacing: -0.02em; }
+.theme-lined .role { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.theme-lined header.top { padding-bottom: 1rem; border-bottom: 3px double #111; }
+.theme-lined h2 {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-top: 1px solid #111;
+  padding-top: 0.55rem;
+}
+.theme-lined .chip { border-radius: 2px; }
+
+/* 7 Mono technical */
+.theme-mono {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  padding: 40px 44px;
+  font-size: 12.5px;
+}
+.theme-mono h1 { font-size: 1.35rem; font-weight: 600; text-transform: uppercase; }
+.theme-mono .role { font-size: 0.7rem; }
+.theme-mono header.top { border-bottom: 1px dashed #111; padding-bottom: 0.9rem; }
+.theme-mono h2 { font-size: 0.7rem; text-transform: uppercase; }
+.theme-mono .chip { border: 1px solid #111; font-size: 0.68rem; }
+
+/* 8 Name banner */
+.theme-banner {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 0;
+}
+.theme-banner .inner { display: block; padding: 0 44px 44px; }
+.theme-banner > .accent-bar { display: none; }
+.theme-banner header.top {
+  display: block;
+  background: #111;
+  color: #fff;
+  margin: 0 -44px 1.4rem;
+  padding: 28px 44px;
+}
+.theme-banner header.top .stack,
+.theme-banner header.top .role { color: #ddd; }
+.theme-banner h1 { font-size: 2rem; font-weight: 600; color: #fff; }
+.theme-banner h2 { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; }
+
+/* 9 Airy / spacious */
+.theme-airy {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 64px 72px;
+}
+.theme-airy h1 { font-size: 2rem; font-weight: 400; letter-spacing: 0.08em; }
+.theme-airy .role { font-weight: 400; color: #777; letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.68rem; }
+.theme-airy header.top { border: 0; padding-bottom: 0.4rem; }
+.theme-airy h2 { font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; color: #888; font-weight: 400; margin-top: 1.8rem; }
+.theme-airy .job { margin-bottom: 1.2rem; }
+.theme-airy .chip { border: 0; padding: 0; margin-right: 0.8rem; }
+
+/* 10 Dense grid */
+.theme-grid {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 40px 44px;
+}
+.theme-grid h1 { font-size: 1.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+.theme-grid .role { font-size: 0.75rem; }
+.theme-grid header.top { border: 1px solid #111; padding: 1rem; }
+.theme-grid h2 {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: #111;
+  color: #fff;
+  display: inline-block;
+  padding: 0.15rem 0.45rem;
+}
+.theme-grid .chip { border: 1px solid #111; }
+
+@media (max-width: 900px) {
+  .studio-layout { grid-template-columns: 1fr; }
+  .picker { border-right: 0; border-bottom: 1px solid #e5e5e5; }
+  .theme-split { grid-template-columns: 1fr; }
+  .theme-split > .accent-bar { display: none; }
+  .sheet .resume-body { grid-template-columns: 1fr; }
+}
+
+@media print {
+  .studio-bar, .picker { display: none !important; }
+  body.studio { background: #fff; }
+  .studio-layout, .preview-pane { display: block; background: #fff; padding: 0; }
+  .sheet { width: auto; margin: 0; box-shadow: none; }
+}

@@ -1,332 +1,247 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!-->
 <html lang="en">
-<!--<![endif]-->
-
 <head>
-    <title>Bipin Fultariya - Full Stack Engineer & Developer | Website | Resume</title>
-    <!-- Meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bipin Patel Personal Resume">
-    <meta name="author" content="Bipin Fultariya">
-    <link rel="shortcut icon" href="favicon.ico">
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet'
-        type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <!-- Global CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <!-- Plugins CSS -->
-    <link rel="stylesheet" href="assets/css/font-awesome.css">
-
-    <!-- github calendar css -->
-    <link rel="stylesheet" href="assets/css/github-calendar.css" />
-    <!-- github acitivity css -->
-    <link rel="stylesheet" href="assets/css/github-activity.css">
-    <link rel="stylesheet" href="assets/css/octicons.min.css">
-    <link rel="stylesheet" href="assets/css/aos.css" />
-    <!-- Theme CSS -->
-    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bipin Fultariya — Senior Web Developer</title>
+  <meta name="description" content="Senior Web Developer with 10+ years of experience building scalable web applications using Laravel, React.js, and modern JavaScript frameworks.">
+  <meta name="author" content="Bipin Fultariya">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/portfolio.css">
 </head>
-
 <body>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
-    <!-- ******HEADER****** -->
-
-    <header class="header">
-        <div data-aos="zoom-in-right" class="container">
-            <img class="profile-image img-responsive pull-left" src="assets/images/profile.jpg" alt="James Lee" />
-            <div class="profile-content pull-left">
-                <h1 class="name">Bipin Fultariya </h1>
-                <h2 class="desc">MEAN Stack Developer</h2>
-                <ul class="social list-inline">
-                    <li><a class="facebook_icon" target="_blank" href="https://www.facebook.com/bipin.patel.773981"><i
-                                class="fa fa-facebook"></i></a></li>
-                    <li><a class="twitter_icon" target="_blank" href="https://twitter.com/BPNPTL24"><i
-                                class="fa fa-twitter"></i></a></li>
-                    <li class="last-item"><a class="linkedin_icon" target="_blank"
-                            href="https://www.linkedin.com/in/bipin-patel-5989779a/"><i class="fa fa-linkedin"></i></a>
-                    </li>
-                    <!-- <li ><a href="#"><i class="fa fa-hacker-news"></i></a></li>  -->
-                </ul>
-            </div>
-            <!--//profile-->
-            <a class="btn btn-cta-primary pull-right"
-                href="mailto:bpnptl24@gmail.com?subject=Hey Bipin i found your resume and want to contact to you"><i
-                    class="fa fa-paper-plane"></i> Contact Me</a>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top">Bipin <span>Fultariya</span></a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">Profile</a>
+        <a href="#experience">Experience</a>
+        <a href="#work">Project</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <div class="dropdown" id="download-menu">
+          <button class="btn btn-gold" type="button" id="download-toggle" aria-expanded="false">
+            <i class="bi bi-download"></i> Download
+          </button>
+          <div class="dropdown-menu" role="menu">
+            <a href="resume.html" role="menuitem"><i class="bi bi-grid"></i> Choose resume design</a>
+            <button type="button" id="btn-download-pdf" role="menuitem"><i class="bi bi-file-earmark-pdf"></i> Resume PDF</button>
+            <button type="button" id="btn-print" role="menuitem"><i class="bi bi-printer"></i> Print resume</button>
+            <button type="button" id="btn-vcard" role="menuitem"><i class="bi bi-person-vcard"></i> Contact card (vCard)</button>
+          </div>
         </div>
-        <!--//container-->
-    </header>
-    <!--//header-->
-
-    <div data-aos="fade-up" class="container sections-wrapper">
-        <div class="row">
-            <div class="primary col-md-8 col-sm-12 col-xs-12">
-                <section class="about section">
-                    <div class="section-inner">
-                        <h2 class="heading">About Me</h2>
-                        <div class="content">
-                            <p>Hi, I’m Bipin Patel and I specialize in <a href="http://laravel.com"
-                                    target="_blank">Laravel</a>,
-                                <a href="https://reactjs.org/" target="_blank">React</a>, <a href="https://angular.io/"
-                                    target="_blank">Angular</a> and PHP Web
-                                Applications. I’m passionate about what I do, and I love to help people. I'm believe in
-                                client satisfaction. I'm responsible for work until complete. Just review my previous
-                                work and client comments.
-                            </p>
-                            <p>I am Passionate about App Development. I just enjoy the coding of PHP. Also work as
-                                smartly. I love to do creative websites. I am always ready to learn new things.</p>
-
-                        </div>
-                        <!--//content-->
-                    </div>
-                    <!--//section-inner-->
-                </section>
-                <!--//section-->
-
-                <section class="projects section">
-                    <div class="section-inner">
-                        <h2 class="heading">Projects</h2>
-                        <div class="content">
-                            <div class="item">
-                                <h3 class="title"><a href="https://www.paperly.io/">Paperly Streamlined Education
-                                        Management System</a></h3>
-                                <p class="summary">Paperly IO is an all-encompassing, cloud-based, education management
-                                    platform. Paperly develops functionality which significantly improves the schools'
-                                    operational.</p>
-                                <p><a class="more-link" href="https://www.paperly.io/" target="_blank"><i
-                                            class="fa fa-external-link"></i> Find out more</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="experience section">
-                    <div class="section-inner">
-                        <h2 class="heading">Work Experience</h2>
-                        <div class="content">
-                            <div class="item">
-                                <h3 class="title">Jr Web Developer <span class="place"><a href="#">Nkonnect
-                                            Infoway</a></span>
-                                    <span class="year">(2015 - 2016)</span>
-                                </h3>
-                            </div>
-                            <div class="item">
-                                <h3 class="title">MEAN Stack Developer - <span class="place"><a
-                                            href="https://www.logisticinfotech.com/">Logistics
-                                            infotech pvt. ltd.</a></span> <span class="year">(2016 - 2021)</span></h3>
-                            </div>
-                            <div class="item">
-                                <h3 class="title">Project Manager - <span class="place"><a
-                                            href="http://paperly.io/">Paperly</a></span> <span class="year">(2021 -
-                                        Present)</span></h3>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </section>
-
-            </div>
-            <!--//primary-->
-            <div data-aos="fade-up" class="secondary col-md-4 col-sm-12 col-xs-12">
-                <aside class="info aside section">
-                    <div data-aos="fade-up" class="section-inner">
-                        <h2 class="heading">Basic Information</h2>
-                        <div class="content">
-                            <ul class="list-unstyled">
-                                <li><i class="fa fa-map-marker"></i><span class="sr-only">Location:</span>INDIA</li>
-                                <li><i class="fa fa-envelope-o"></i><span class="sr-only">Email:</span><a
-                                        href="mailto:bpnptl24@gmail.com">bpnptl24@gmail.com</a></li>
-                                <li><i class="fa fa-link"></i><span class="sr-only">Website:</span><a
-                                        href="#">https://bipin244.github.io</a></li>
-                                <li><i class="fa fa-skype"></i><span class="sr-only">Skype:</span><a
-                                        href="skype:bipinpatel543?call">bipinpatel244</a></li>
-                                <li><img class="fa" src="assets/images/fiverr-512.png" width="17"><span
-                                        class="more-link"></span><a href="https://www.fiverr.com/users/bipinpatel">Fiver
-                                        Profile</a></li>
-                                <!-- <li><i class="fa fa-external-link"></i><span class="more-link"></span><a href="https://www.upwork.com/freelancers/~0127b35482def12655">Upwork Profile</a></li> -->
-                                <!-- <p><a class="more-link" href="https://www.fiverr.com/mitulpatel422"><i class="fa fa-external-link"></i> More on Fiverr</a></p>  -->
-
-                            </ul>
-                        </div>
-                        <!--//content-->
-                    </div>
-                    <!--//section-inner-->
-                </aside>
-                <!--//aside-->
-                <aside class="info aside section">
-                    <div data-aos="fade-up" class="section-inner">
-                        <div class="content">
-                            <ul class="list-unstyled">
-                                <li>
-
-                                    <a href="http://stackoverflow.com/users/4533073/mitul-marsonia">
-                                        <i class="fa fa-stack-overflow"></i>
-                                        <img src="http://stackoverflow.com/users/flair/4533073.png" width="208"
-                                            height="58"
-                                            alt="profile for mitul marsonia at Stack Overflow, Q&A for professional and enthusiast programmers"
-                                            title="profile for mitul marsonia at Stack Overflow, Q&A for professional and enthusiast programmers">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!--//content-->
-                    </div>
-                    <!--//section-inner-->
-                </aside>
-                <!--//aside-->
-
-                <aside class="skills aside section">
-                    <div data-aos="fade-up" class="section-inner">
-                        <h2 class="heading">Skills</h2>
-                        <div class="content">
-                            <div class="skillset">
-
-                                <div class="item">
-                                    <h3 class="level-title">React<span class="level-label" data-toggle="tooltip"
-                                            data-placement="left" data-animation="true" title=""
-                                            data-original-title="You can use the tooltip to add more info...">Expert</span>
-                                    </h3>
-                                    <div class="level-bar">
-                                        <div class="level-bar-inner" data-level="96%" style="width: 96%;">
-                                        </div>
-                                    </div>
-                                    <!--//level-bar-->
-                                </div>
-                                <!--//item-->
-
-
-                                <div class="item">
-                                    <h3 class="level-title">Laravel<span class="level-label" data-original-title=""
-                                            title="">Expert</span></h3>
-                                    <div class="level-bar">
-                                        <div class="level-bar-inner" data-level="95%" style="width: 85%;">
-                                        </div>
-                                    </div>
-                                    <!--//level-bar-->
-                                </div>
-                                <!--//item-->
-
-                                <div class="item">
-                                    <h3 class="level-title">Angular<span class="level-label" data-original-title=""
-                                            title="">Expert</span></h3>
-                                    <div class="level-bar">
-                                        <div class="level-bar-inner" data-level="95%" style="width: 85%;">
-                                        </div>
-                                    </div>
-                                    <!--//level-bar-->
-                                </div>
-                                <!--//item-->
-
-
-                                <div class="item">
-                                    <h3 class="level-title">GraphQL<span class="level-label" data-original-title=""
-                                            title="">Pro</span></h3>
-                                    <div class="level-bar">
-                                        <div class="level-bar-inner" data-level="60%" style="width: 60%;">
-                                        </div>
-                                    </div>
-                                    <!--//level-bar-->
-                                </div>
-                                <!--//item-->
-
-                                <div class="item">
-                                    <h3 class="level-title">Database (mysql,mongodb &amp; postgresql)<span
-                                            class="level-label" data-original-title="" title="">Expert</span></h3>
-                                    <div class="level-bar">
-                                        <div class="level-bar-inner" data-level="96%" style="width: 96%;">
-                                        </div>
-                                    </div>
-                                    <!--//level-bar-->
-                                </div>
-                                <!--//item-->
-
-                                <div class="item">
-                                    <h3 class="level-title">Payment Integrations (Paypal &amp; Stripe)<span
-                                            class="level-label" data-original-title="" title="">Pro</span></h3>
-                                    <div class="level-bar">
-                                        <div class="level-bar-inner" data-level="85%" style="width: 85%;">
-                                        </div>
-                                    </div>
-                                    <!--//level-bar-->
-                                </div>
-                                <!--//item-->
-
-
-                                <p><a class="more-link" target="_blank"
-                                        href="https://www.linkedin.com/in/bipin-patel-5989779a/"><i
-                                            class="fa fa-external-link"></i> More on Linkedin</a></p>
-                            </div>
-                        </div>
-                        <!--//content-->
-                    </div>
-                    <!--//section-inner-->
-                </aside>
-
-                <!-- <aside class="education aside section">
-                    <div class="section-inner">
-                        <h2 class="heading">Education</h2>
-                        <div class="content">
-                            <div class="item">                      
-                                <h3 class="title"><i class="fa fa-graduation-cap"></i> MSc Psychology and Computer Science</h3>
-                                <h4 class="university">University College London <span class="year">(2011-2012)</span></h4>
-                            </div>
-                            <div class="item">
-                                <h3 class="title"><i class="fa fa-graduation-cap"></i> BSc Computer Science</h3>
-                                <h4 class="university">University of Bristol <span class="year">(2008-2011)</span></h4>
-                            </div>
-                        </div>
-                    </div>
-                </aside> -->
-
-
-                <!--//section-->
-
-
-            </div>
-            <!--//secondary-->
-        </div>
-        <!--//row-->
+        <a class="btn" href="mailto:bpnptl24@gmail.com"><i class="bi bi-envelope"></i> Hire me</a>
+      </div>
     </div>
-    <!--//masonry-->
+  </header>
 
-    <!-- ******FOOTER****** -->
-    <!--/* <footer class="footer">
-        <div class="container text-center">
-                 This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com 
-                <small class="copyright">Designed with <i class="fa fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">Senior Web Developer</p>
+          <h1>Bipin Fultariya</h1>
+          <p class="lede">Laravel • React.js • Full-Stack Development</p>
+          <div class="hero-cta">
+            <a class="btn btn-gold" href="resume.html"><i class="bi bi-file-earmark-arrow-down"></i> Download resume</a>
+            <a class="btn" href="#experience">Experience</a>
+          </div>
+          <div class="meta-row">
+            <div><strong>Rajkot, Gujarat 360004</strong> India</div>
+            <div><strong>+91 8511880657</strong></div>
+            <div><strong>bpnptl24@gmail.com</strong></div>
+          </div>
         </div>
-    </footer>*/-->
+        <div class="portrait-wrap">
+          <img class="portrait" src="assets/images/profile.jpg" alt="Portrait of Bipin Fultariya">
+          <div class="portrait-cap">
+            <b>Bipin Fultariya</b>
+            Senior Web Developer
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <a href="https://smallseotools.com/visitor-hit-counter/" target="_blank" title="Web Counter">
-        <img src="https://smallseotools.com/counterDisplay?code=2cf6f5f9389860be9ed678ebad00d9fb&style=0015&pad=5&type=page&initCount="
-            title="Web Counter" Alt="Web Counter" border="0">
-    </a>
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Profile</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-copy">
+            <p>Senior Web Developer with 10+ years of experience building scalable web applications using Laravel, React.js, and modern JavaScript frameworks. Experienced in full-stack development, REST API integration, system architecture, and performance optimization across education, logistics, and ERP platforms.</p>
+          </div>
+          <div class="stat-grid">
+            <div class="stat"><b>10+</b><span>Years of experience</span></div>
+            <div class="stat"><b>Laravel</b><span>React.js · Full-stack</span></div>
+            <div class="stat"><b>Paperly</b><span>Perth, Australia</span></div>
+            <div class="stat"><b>2014</b><span>B.E. Computer Engineering</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <section id="experience">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Professional Experience</h2>
+        </div>
+        <div class="timeline">
+          <article class="exp">
+            <div class="exp-year">Oct 2021 – Present</div>
+            <div>
+              <h3>Senior Web Developer</h3>
+              <div class="place">Paperly, Perth, Australia</div>
+              <p>Lead development of the Paperly school management platform using Laravel, contributing to architecture, workflow automation, API integrations, and application performance improvements.</p>
+            </div>
+          </article>
+          <article class="exp">
+            <div class="exp-year">Mar 2016 – Oct 2021</div>
+            <div>
+              <h3>Web Developer</h3>
+              <div class="place">Logistics Infotech, Rajkot, India</div>
+              <ul>
+                <li>Built warehouse management modules with React.js and reusable UI components.</li>
+                <li>Developed applications using Laravel, Svelte, and Node.js.</li>
+                <li>Collaborated with cross-functional teams to deliver client-focused software solutions.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="exp">
+            <div class="exp-year">Jan 2015 – Feb 2016</div>
+            <div>
+              <h3>Junior Web Developer</h3>
+              <div class="place">Nkonext Infoway, Rajkot, India</div>
+              <ul>
+                <li>Worked on core PHP and Laravel ERP modules.</li>
+                <li>Assisted with debugging, optimization, and platform maintenance.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    <!-- Javascript -->
-    <script type="text/javascript" src="assets/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-    <!-- github calendar plugin -->
-    <script type="text/javascript" src="assets/js/es6-promise.min.js"></script>
-    <script type="text/javascript" src="assets/js/fetch.min.js"></script>
-    <!-- github activity plugin -->
-    <script type="text/javascript" src="assets/js/mustache.min.js"></script>
-    <!-- custom js -->
-    <script type="text/javascript" src="assets/js/main.js"></script>
+    <section id="work">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Featured Project</h2>
+        </div>
+        <article class="work-card">
+          <div>
+            <h3>Paperly School Management Platform</h3>
+            <p>Contributed to a comprehensive platform that centralizes student support, compliance, trips, forms, and internal communication. Helped improve operational visibility, administrative workflows, and long-term institutional continuity.</p>
+            <div class="tags">
+              <span class="tag">Laravel</span>
+              <span class="tag">React.js</span>
+              <span class="tag">REST API</span>
+              <span class="tag">Full-Stack</span>
+            </div>
+          </div>
+          <div class="work-meta">
+            <div>
+              <strong style="color:var(--ink);">Oct 2021 – Present</strong><br>
+              Paperly, Perth, Australia
+            </div>
+            <div>Senior Web Developer</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Core Skills</h2>
+        </div>
+        <div class="skill-cols">
+          <div class="skill-block">
+            <h3>Stack</h3>
+            <ul>
+              <li>Laravel &amp; PHP</li>
+              <li>React.js</li>
+              <li>Node.js</li>
+              <li>Svelte</li>
+            </ul>
+          </div>
+          <div class="skill-block">
+            <h3>Development</h3>
+            <ul>
+              <li>REST API Integration</li>
+              <li>Responsive Design</li>
+              <li>Database Management</li>
+              <li>Version Control</li>
+            </ul>
+          </div>
+          <div class="skill-block">
+            <h3>Practice</h3>
+            <ul>
+              <li>Front-End Development</li>
+              <li>Back-End Development</li>
+              <li>Problem Solving</li>
+              <li>Client Communication</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Education</h2>
+        </div>
+        <article class="exp">
+          <div class="exp-year">2014</div>
+          <div>
+            <h3>Bachelor of Engineering in Computer Engineering</h3>
+            <div class="place">Government Engineering College, Rajkot</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact-panel">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2>Bipin Fultariya</h2>
+            <p>Senior Web Developer · Laravel • React.js • Full-Stack Development</p>
+            <div class="hero-cta">
+              <a class="btn btn-gold" href="mailto:bpnptl24@gmail.com"><i class="bi bi-envelope"></i> bpnptl24@gmail.com</a>
+              <a class="btn" href="resume.html"><i class="bi bi-download"></i> Resume</a>
+            </div>
+            <div class="socials">
+              <a href="https://www.linkedin.com/in/bipin-patel-5989779a/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+              <a href="https://twitter.com/BPNPTL24" target="_blank" rel="noopener" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+              <a href="https://www.facebook.com/bipin.patel.773981" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+              <a href="https://www.fiverr.com/users/bipinpatel" target="_blank" rel="noopener" aria-label="Fiverr"><i class="bi bi-briefcase"></i></a>
+            </div>
+          </div>
+          <ul class="contact-list">
+            <li><span>Location</span> Rajkot, Gujarat 360004, India</li>
+            <li><span>Phone</span> <a href="tel:+918511880657">+91 8511880657</a></li>
+            <li><span>Email</span> <a href="mailto:bpnptl24@gmail.com">bpnptl24@gmail.com</a></li>
+            <li><span>Education</span> B.E. Computer Engineering, GEC Rajkot, 2014</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <span>© <span id="year"></span> Bipin Fultariya</span>
+    <span>Senior Web Developer</span>
+  </footer>
+
+  <script src="assets/js/portfolio.js"></script>
 </body>
-
 </html>
