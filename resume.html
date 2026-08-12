@@ -4,16 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resume — Bipin Fultariya</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="assets/css/resume-themes.css">
 </head>
 <body class="studio">
   <div class="studio-bar">
     <a href="index.html"><i class="bi bi-arrow-left"></i> Back to site</a>
-    <div style="display:flex;gap:.45rem;flex-wrap:wrap;">
+    <div class="studio-actions">
       <button class="gold" type="button" id="btn-download-pdf"><i class="bi bi-download"></i> Download PDF</button>
       <button type="button" id="btn-print"><i class="bi bi-printer"></i> Print</button>
     </div>
@@ -21,100 +18,166 @@
 
   <div class="preview-pane">
     <article class="sheet" id="resume">
-          <header class="top">
-            <div>
-              <h1>Bipin Fultariya</h1>
-              <div class="role">Senior Web Developer</div>
-              <p class="stack">Laravel • React.js • Node.js • Full-Stack Development</p>
-            </div>
-          </header>
+      <header class="resume-header">
+        <div class="header-main">
+          <h1>Bipin Fultariya</h1>
+          <p class="role">Senior Web Developer</p>
+          <p class="stack">Laravel &bull; React.js &bull; Node.js &bull; Full-Stack Development</p>
+        </div>
+        <ul class="contact-strip">
+          <li><span class="label">Phone</span> +91 8511880657</li>
+          <li><span class="label">Email</span> bpnptl24@gmail.com</li>
+          <li><span class="label">Location</span> Rajkot, Gujarat 360004, India</li>
+        </ul>
+      </header>
 
-          <div class="resume-body">
-            <aside class="side">
-              <h2>Contact</h2>
-              <p>
-                <a href="tel:+918511880657">+91 8511880657</a><br>
-                <a href="mailto:bpnptl24@gmail.com">bpnptl24@gmail.com</a><br>
-                Rajkot, Gujarat 360004<br>
-                India
-              </p>
+      <div class="resume-body">
+        <div class="resume-columns">
+          <aside class="sidebar">
+          <section class="section-block skill-group">
+            <h2>Front-end</h2>
+            <ul class="skill-list">
+              <li>JavaScript</li>
+              <li>TypeScript</li>
+              <li>React.js</li>
+              <li>Vue.js</li>
+              <li>AngularJS</li>
+              <li>Svelte</li>
+            </ul>
+          </section>
 
-              <h2>Core Skills</h2>
+          <section class="section-block skill-group">
+            <h2>Back-end</h2>
+            <ul class="skill-list">
+              <li>Laravel &amp; PHP</li>
+              <li>Node.js</li>
+              <li>Sails.js</li>
+              <li>GraphQL</li>
+            </ul>
+          </section>
+
+          <section class="section-block skill-group">
+            <h2>Development</h2>
+            <ul class="skill-list">
+              <li>REST API Integration</li>
+              <li>Responsive Design</li>
+              <li>Database Management</li>
+              <li>RDBMS systems</li>
+              <li>Version Control (Git)</li>
+              <li>CI/CD</li>
+            </ul>
+          </section>
+
+          <section class="section-block">
+            <h2>Education</h2>
+            <p class="edu-degree">Bachelor of Engineering in Computer Engineering</p>
+            <p class="edu-school">Government Engineering College, Rajkot</p>
+            <p class="edu-year">2014</p>
+          </section>
+        </aside>
+
+        <div class="content">
+          <section class="section-block">
+            <h2>Profile</h2>
+            <p class="profile-text">Senior Web Developer with 10+ years of experience building scalable web applications using Laravel, React.js, Node.js, and modern JavaScript frameworks. Experienced in full-stack development, REST API integration, system architecture, and performance optimization across education, logistics, and ERP platforms.</p>
+          </section>
+
+          <section class="section-block">
+            <h2>Professional Experience</h2>
+
+            <article class="job">
+              <div class="job-head">
+                <div class="job-title">
+                  <h3>Senior Web Developer</h3>
+                  <p class="job-company">Paperly &middot; Perth, Australia</p>
+                </div>
+                <time class="job-date">Oct 2021 &ndash; Present</time>
+              </div>
+              <p>Lead development of the Paperly school management platform using Laravel, contributing to architecture, workflow automation, API integrations, and application performance improvements.</p>
+            </article>
+
+            <article class="job">
+              <div class="job-head">
+                <div class="job-title">
+                  <h3>Web Developer</h3>
+                  <p class="job-company">Logistics Infotech &middot; Rajkot, India</p>
+                </div>
+                <time class="job-date">Mar 2016 &ndash; Oct 2021</time>
+              </div>
               <ul>
-                <li>Laravel &amp; PHP</li>
-                <li>JavaScript</li>
-                <li>TypeScript</li>
-                <li>React.js</li>
-                <li>Node.js</li>
-                <li>Vue.js</li>
-                <li>AngularJS</li>
-                <li>Sails.js</li>
-                <li>GraphQL</li>
-                <li>Svelte</li>
-                <li>REST API Integration</li>
-                <li>Responsive Design</li>
-                <li>Database Management</li>
-                <li>RDBMS systems</li>
-                <li>Version Control (Git)</li>
-                <li>CI/CD</li>
-                <li>Front-End Development</li>
-                <li>Back-End Development</li>
-                <li>Problem Solving</li>
-                <li>Client Communication</li>
+                <li>Built warehouse management modules with React.js and reusable UI components.</li>
+                <li>Developed applications using Laravel, Svelte, and Node.js.</li>
+                <li>Collaborated with cross-functional teams to deliver client-focused software solutions.</li>
               </ul>
+            </article>
 
-              <h2>Education</h2>
-              <p class="edu-title">Bachelor of Engineering in Computer Engineering</p>
-              <p>Government Engineering College, Rajkot<br>2014</p>
-            </aside>
+            <article class="job">
+              <div class="job-head">
+                <div class="job-title">
+                  <h3>Junior Web Developer</h3>
+                  <p class="job-company">Nkonext Infoway &middot; Rajkot, India</p>
+                </div>
+                <time class="job-date">Jan 2015 &ndash; Feb 2016</time>
+              </div>
+              <ul>
+                <li>Worked on core PHP and Laravel ERP modules.</li>
+                <li>Assisted with debugging, optimization, and platform maintenance.</li>
+              </ul>
+            </article>
+          </section>
+        </div>
+        </div>
 
-            <div class="main">
-              <h2>Profile</h2>
-              <p>Senior Web Developer with 10+ years of experience building scalable web applications using Laravel, React.js, Node.js, and modern JavaScript frameworks. Experienced in full-stack development, REST API integration, system architecture, and performance optimization across education, logistics, and ERP platforms.</p>
+        <section class="section-block section-full">
+          <h2>Featured Projects</h2>
 
-              <h2>Professional Experience</h2>
-              <div class="job">
-                <h3>Senior Web Developer — <a href="https://paperly.education/" target="_blank" rel="noopener noreferrer">Paperly</a>, Perth, Australia</h3>
-                <div class="meta">Oct 2021 – Present</div>
-                <p>Lead development of the Paperly school management platform using Laravel, contributing to architecture, workflow automation, API integrations, and application performance improvements.</p>
+          <div class="projects-grid">
+            <article class="project">
+              <div class="project-head">
+                <h3>Paperly School Management Platform</h3>
+                <span class="project-period">Oct 2021 &ndash; Present</span>
               </div>
-              <div class="job">
-                <h3>Web Developer — Logistics Infotech, Rajkot, India</h3>
-                <div class="meta">Mar 2016 – Oct 2021</div>
-                <ul>
-                  <li>Built warehouse management modules with React.js and reusable UI components.</li>
-                  <li>Developed applications using Laravel, Svelte, and Node.js.</li>
-                  <li>Collaborated with cross-functional teams to deliver client-focused software solutions.</li>
-                </ul>
+              <div class="tags">
+                <span>Laravel</span>
+                <span>Vue.js</span>
+                <span>REST API</span>
               </div>
-              <div class="job">
-                <h3>Junior Web Developer — Nkonext Infoway, Rajkot, India</h3>
-                <div class="meta">Jan 2015 – Feb 2016</div>
-                <ul>
-                  <li>Worked on core PHP and Laravel ERP modules.</li>
-                  <li>Assisted with debugging, optimization, and platform maintenance.</li>
-                </ul>
-              </div>
+              <p>Contributed to a comprehensive platform that centralizes student support, compliance, trips, forms, and internal communication. Improved operational visibility, administrative workflows, and long-term institutional continuity.</p>
+            </article>
 
-              <h2>Featured Projects</h2>
-              <div class="job">
-                <h3><a href="https://paperly.education/" target="_blank" rel="noopener noreferrer">Paperly School Management Platform</a></h3>
-                <p>Contributed to a comprehensive platform that centralizes student support, compliance, trips, forms, and internal communication. Helped improve operational visibility, administrative workflows, and long-term institutional continuity.</p>
-              </div>
-              <div class="job">
+            <article class="project">
+              <div class="project-head">
                 <h3>Warehouse Management System</h3>
-                <p>Built warehouse management modules with React.js and reusable UI components for inventory tracking and logistics operations. Developed applications using Laravel, Svelte, and Node.js.</p>
+                <span class="project-period">Mar 2016 &ndash; Oct 2021</span>
               </div>
-              <div class="job">
+              <div class="tags">
+                <span>React.js</span>
+                <span>Svelte</span>
+                <span>Node.js</span>
+                <span>REST API</span>
+              </div>
+              <p>Built warehouse management modules with React.js and reusable UI components for inventory tracking and logistics operations. Developed supporting services using Laravel, Svelte, and Node.js.</p>
+            </article>
+
+            <article class="project">
+              <div class="project-head">
                 <h3>Enterprise ERP Platform</h3>
-                <p>Worked on core PHP and Laravel ERP modules. Assisted with debugging, optimization, and platform maintenance for client business workflows.</p>
+                <span class="project-period">Jan 2015 &ndash; Feb 2016</span>
               </div>
-            </div>
+              <div class="tags">
+                <span>PHP</span>
+                <span>Laravel</span>
+                <span>MySQL</span>
+              </div>
+              <p>Worked on core PHP and Laravel ERP modules. Assisted with debugging, optimization, and platform maintenance for client business workflows.</p>
+            </article>
           </div>
+        </section>
+      </div>
     </article>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.2/dist/html2pdf.bundle.min.js"></script>
+  <script src="assets/js/resume-pdf.js"></script>
   <script src="assets/js/portfolio.js"></script>
 </body>
 </html>

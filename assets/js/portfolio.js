@@ -5,14 +5,28 @@
   const menu = document.getElementById('download-menu');
   const toggle = document.getElementById('download-toggle');
   if (menu && toggle) {
-    toggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const open = menu.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    document.addEventListener('click', () => {
+    const closeMenu = () => {
       menu.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
+    };
+
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const open = !menu.classList.contains('open');
+      menu.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    menu.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const item = e.target.closest('a, button');
+      if (item && item !== toggle) closeMenu();
+    });
+
+    document.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
     });
   }
 
@@ -38,24 +52,35 @@
     });
   }
 
-  function downloadPdf() {
+  async function downloadPdf() {
     const source = document.getElementById('resume');
     if (!source) {
       window.location.href = 'resume.html?download=pdf';
       return;
     }
-    if (typeof html2pdf === 'undefined') {
-      window.print();
-      return;
+
+    const btn = document.getElementById('btn-download-pdf');
+    const prevLabel = btn?.innerHTML;
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Generating…';
     }
-    const opt = {
-      margin: [8, 8, 8, 8],
-      filename: 'Bipin-Fultariya-Senior-Web-Developer.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
-    html2pdf().set(opt).from(source).save();
+
+    try {
+      if (typeof downloadResumePdf === 'function') {
+        await downloadResumePdf(source);
+      } else {
+        window.print();
+      }
+    } catch (err) {
+      console.error('PDF export failed:', err);
+      window.print();
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = prevLabel;
+      }
+    }
   }
 
   function printResume() {
@@ -96,7 +121,7 @@
   document.getElementById('btn-vcard')?.addEventListener('click', downloadVcard);
 
   if (document.getElementById('resume') && /download=pdf/.test(location.search)) {
-    setTimeout(downloadPdf, 500);
+    setTimeout(() => { downloadPdf(); }, 1200);
   }
 
   function initReveal() {
