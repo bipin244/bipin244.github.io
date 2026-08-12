@@ -98,4 +98,30 @@
   if (document.getElementById('resume') && /download=pdf/.test(location.search)) {
     setTimeout(downloadPdf, 500);
   }
+
+  function initReveal() {
+    const items = document.querySelectorAll('.reveal');
+    if (!items.length) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) {
+      items.forEach(el => el.classList.add('is-visible'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.92) el.classList.add('is-visible');
+      io.observe(el);
+    });
+  }
+
+  initReveal();
+  requestAnimationFrame(() => document.body.classList.add('is-ready'));
 })();
