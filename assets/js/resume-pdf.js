@@ -1,10 +1,18 @@
 /**
- * Build a text-based ATS-friendly PDF from #resume using pdfMake.
+ * Build a text-based PDF that matches the on-screen resume design.
  */
 (function (global) {
   const PDFMAKE = 'https://cdn.jsdelivr.net/npm/pdfmake@0.2.12/build/pdfmake.min.js';
   const PDFMAKE_FONTS = 'https://cdn.jsdelivr.net/npm/pdfmake@0.2.12/build/vfs_fonts.min.js';
-  const FILENAME = 'Bipin-Fultariya-Senior-Web-Developer.pdf';
+  const FILENAME = 'Bipin-Fultariya-Senior-Full-Stack-Developer.pdf';
+
+  const BLACK = '#111111';
+  const CONTACT_BG = '#1c1c1c';
+  const WASH = '#f4f4f4';
+  const MUTED = '#3a3a3a';
+  const FAINT = '#5a5a5a';
+  const LINE = '#cccccc';
+  const WHITE = '#ffffff';
 
   function loadScript(src) {
     return new Promise((resolve, reject) => {
@@ -40,23 +48,111 @@
     return (el?.textContent || fallback || '').replace(/\s+/g, ' ').trim();
   }
 
-  function sectionTitle(text) {
+  function filledBar(text, fill, color, margin) {
     return {
-      text: text.toUpperCase(),
-      style: 'sectionTitle',
-      margin: [0, 10, 0, 4]
+      table: {
+        widths: ['auto'],
+        body: [[{
+          text: (text || '').toUpperCase(),
+          bold: true,
+          fontSize: 8.25,
+          color,
+          fillColor: fill,
+          characterSpacing: 1.4,
+          margin: [8, 5, 8, 5]
+        }]]
+      },
+      layout: 'noBorders',
+      margin: margin || [0, 10, 0, 8]
     };
   }
 
-  function skillSection(block) {
-    const title = block.querySelector('h2');
-    const items = [...block.querySelectorAll('.skill-list li')].map((li) => txt(li));
-    if (!items.length) return null;
+  function badge(text, dark) {
+    if (!text) return { text: '' };
     return {
-      stack: [
-        sectionTitle(txt(title)),
-        { ul: items, style: 'list', margin: [0, 0, 0, 2] }
-      ]
+      table: {
+        widths: ['auto'],
+        body: [[{
+          text,
+          bold: true,
+          fontSize: 8,
+          color: dark ? WHITE : BLACK,
+          fillColor: dark ? BLACK : WASH,
+          margin: [6, 4, 6, 4]
+        }]]
+      },
+      layout: {
+        hLineWidth: () => dark ? 0 : 0.6,
+        vLineWidth: () => dark ? 0 : 0.6,
+        hLineColor: () => LINE,
+        vLineColor: () => LINE
+      }
+    };
+  }
+
+  function chip(text, onDark) {
+    return {
+      table: {
+        widths: ['auto'],
+        body: [[{
+          text,
+          bold: true,
+          fontSize: 7.5,
+          color: onDark ? WHITE : BLACK,
+          fillColor: onDark ? BLACK : WASH,
+          margin: [5, 3, 5, 3]
+        }]]
+      },
+      layout: {
+        hLineWidth: () => 0.6,
+        vLineWidth: () => 0.6,
+        hLineColor: () => onDark ? WHITE : LINE,
+        vLineColor: () => onDark ? WHITE : LINE
+      }
+    };
+  }
+
+  function chipRow(items, onDark) {
+    if (!items.length) return { text: '' };
+    return {
+      columns: items.map((item) => ({
+        width: 'auto',
+        ...chip(item, onDark),
+        margin: [0, 0, 4, 0]
+      }))
+    };
+  }
+
+  function sectionTitle(text) {
+    return filledBar(text, BLACK, WHITE, [0, 12, 0, 8]);
+  }
+
+  function skillRows(block) {
+    return [...block.querySelectorAll('.skill-line')].map((line) => {
+      const label = txt(line.querySelector('.skill-label'));
+      const items = [...line.querySelectorAll('.skill-list li')].map((li) => txt(li));
+      return {
+        columns: [
+          { width: 118, text: label.toUpperCase(), bold: true, fontSize: 8, color: BLACK, margin: [0, 4, 0, 0] },
+          { width: '*', ...chipRow(items, false) }
+        ],
+        columnGap: 8,
+        margin: [0, 0, 0, 6]
+      };
+    });
+  }
+
+  function accentBlock(inner) {
+    return {
+      table: {
+        widths: [3, '*'],
+        body: [[
+          { text: '', fillColor: BLACK },
+          { stack: inner, margin: [10, 2, 0, 6] }
+        ]]
+      },
+      layout: 'noBorders',
+      margin: [0, 0, 0, 8]
     };
   }
 
@@ -67,148 +163,187 @@
     const paragraph = article.querySelector(':scope > p');
     const listItems = [...article.querySelectorAll(':scope > ul li')].map((li) => txt(li));
 
-    const stack = [
+    const inner = [
       {
         columns: [
           {
             width: '*',
             stack: [
-              { text: title, style: 'jobTitle' },
-              company ? { text: company, style: 'subtle' } : {}
+              { text: title, bold: true, fontSize: 11.5, color: BLACK },
+              company ? { text: company, fontSize: 9.25, color: FAINT, margin: [0, 2, 0, 0] } : {}
             ]
           },
-          { width: 'auto', text: date, style: 'date', alignment: 'right' }
+          { width: 'auto', ...badge(date) }
         ],
-        columnGap: 8,
-        margin: [0, 0, 0, 3]
+        columnGap: 10,
+        margin: [0, 0, 0, 6]
       }
     ];
 
-    if (paragraph) stack.push({ text: txt(paragraph), style: 'body', margin: [0, 0, 0, 4] });
-    if (listItems.length) stack.push({ ul: listItems, style: 'list' });
+    if (paragraph) inner.push({ text: txt(paragraph), fontSize: 9.75, color: MUTED, margin: [0, 0, 0, 4] });
+    if (listItems.length) {
+      inner.push({
+        ul: listItems.map((item) => ({ text: item, fontSize: 9.75, color: MUTED })),
+        markerColor: BLACK,
+        margin: [0, 0, 0, 0]
+      });
+    }
 
-    return { stack, margin: [0, 0, 0, 8], unbreakable: false };
+    return accentBlock(inner);
   }
 
   function projectBlock(article) {
     const title = txt(article.querySelector('h3'));
     const date = txt(article.querySelector('.project-period'));
-    const tags = [...article.querySelectorAll('.tags span')].map((s) => txt(s)).join('  ·  ');
+    const tags = [...article.querySelectorAll('.tags span')].map((s) => txt(s));
     const paragraph = txt(article.querySelector('p'));
 
-    return {
-      stack: [
-        {
-          columns: [
-            { width: '*', text: title, style: 'jobTitle' },
-            { width: 'auto', text: date, style: 'date', alignment: 'right' }
-          ],
-          columnGap: 8,
-          margin: [0, 0, 0, 2]
-        },
-        tags ? { text: tags, style: 'tags', margin: [0, 0, 0, 3] } : {},
-        { text: paragraph, style: 'body' }
-      ],
-      margin: [0, 0, 0, 8]
-    };
+    return accentBlock([
+      {
+        columns: [
+          { width: '*', text: title, bold: true, fontSize: 11.5, color: BLACK },
+          { width: 'auto', ...badge(date) }
+        ],
+        columnGap: 10,
+        margin: [0, 0, 0, 4]
+      },
+      tags.length ? { ...chipRow(tags, false), margin: [0, 0, 0, 4] } : {},
+      { text: paragraph, fontSize: 9.75, color: MUTED }
+    ]);
   }
 
   function buildDoc(resumeEl) {
     const header = resumeEl.querySelector('.resume-header');
-    const sidebar = resumeEl.querySelector('.sidebar');
-    const content = resumeEl.querySelector('.content');
-    const projectsSection = resumeEl.querySelector('.section-full');
+    const body = resumeEl.querySelector('.resume-body');
 
     const contact = [...header.querySelectorAll('.contact-strip li')].map((li) => {
       const label = txt(li.querySelector('.label'));
       const value = txt(li).replace(label, '').replace(/^:\s*/, '').trim();
-      return label + ': ' + value;
+      return { text: [{ text: label + ': ', bold: true, color: WHITE }, { text: value, color: '#e8e8e8' }] };
     });
 
-    const sidebarStack = [];
-    sidebar.querySelectorAll('.skill-group').forEach((block) => {
-      const part = skillSection(block);
-      if (part) sidebarStack.push(part);
-    });
+    const stackItems = [...header.querySelectorAll('.stack-chips li')].map((li) => txt(li));
+    const signalEls = [...header.querySelectorAll('.signal-row li')];
 
-    const eduBlock = sidebar.querySelector('.section-block:not(.skill-group)');
-    if (eduBlock) {
-      sidebarStack.push({
-        stack: [
-          sectionTitle(txt(eduBlock.querySelector('h2'))),
-          { text: txt(eduBlock.querySelector('.edu-degree')), style: 'boldLine', margin: [0, 0, 0, 2] },
-          { text: txt(eduBlock.querySelector('.edu-school')), style: 'subtle' },
-          { text: txt(eduBlock.querySelector('.edu-year')), style: 'subtle' }
-        ]
-      });
-    }
-
-    const mainStack = [];
-    content.querySelectorAll('.section-block').forEach((block) => {
+    const bodyContent = [];
+    body.querySelectorAll(':scope > .section-block').forEach((block) => {
       const heading = txt(block.querySelector(':scope > h2'));
-      if (heading === 'Profile') {
-        mainStack.push(sectionTitle(heading));
-        mainStack.push({ text: txt(block.querySelector('.profile-text')), style: 'body', margin: [0, 0, 0, 4] });
+      bodyContent.push(sectionTitle(heading));
+
+      if (heading === 'Summary' || heading === 'Profile') {
+        bodyContent.push({ text: txt(block.querySelector('.profile-text')), fontSize: 10, color: MUTED, lineHeight: 1.45 });
         return;
       }
+
+      if (heading === 'Core Skills') {
+        bodyContent.push(...skillRows(block));
+        return;
+      }
+
       if (heading === 'Professional Experience') {
-        mainStack.push(sectionTitle(heading));
-        block.querySelectorAll('.job').forEach((job) => mainStack.push(jobBlock(job)));
+        block.querySelectorAll('.job').forEach((job) => bodyContent.push(jobBlock(job)));
+        return;
+      }
+
+      if (heading === 'Featured Projects') {
+        block.querySelectorAll('.project').forEach((project) => bodyContent.push(projectBlock(project)));
+        return;
+      }
+
+      if (heading === 'Education') {
+        block.querySelectorAll('.edu-row').forEach((row) => {
+          const year = txt(row.querySelector('.edu-year'));
+          const meta = txt(row.querySelector('.edu-meta'));
+          bodyContent.push({
+            columns: [
+              {
+                width: '*',
+                stack: [
+                  { text: txt(row.querySelector('.edu-degree')), bold: true, fontSize: 10.5, color: BLACK },
+                  { text: txt(row.querySelector('.edu-school')), fontSize: 9.5, color: FAINT, margin: [0, 2, 0, 0] },
+                  meta ? { text: meta, bold: true, fontSize: 9.25, color: BLACK, margin: [0, 3, 0, 0] } : {}
+                ]
+              },
+              year ? { width: 'auto', ...badge(year) } : { width: 'auto', text: '' }
+            ],
+            columnGap: 10,
+            margin: [0, 0, 0, 8]
+          });
+        });
       }
     });
-
-    const projectsStack = [];
-    if (projectsSection) {
-      projectsStack.push(sectionTitle(txt(projectsSection.querySelector('h2'))));
-      projectsSection.querySelectorAll('.project').forEach((project) => {
-        projectsStack.push(projectBlock(project));
-      });
-    }
-
-    const bodyContent = [
-      {
-        columns: [
-          { width: 165, stack: sidebarStack },
-          { width: '*', stack: mainStack, margin: [14, 0, 0, 0] }
-        ],
-        columnGap: 12
-      }
-    ];
-
-    if (projectsStack.length) {
-      bodyContent.push({
-        stack: projectsStack,
-        margin: [0, 12, 0, 0]
-      });
-    }
 
     return {
       pageSize: 'A4',
-      pageMargins: [42, 42, 42, 42],
-      defaultStyle: { font: 'Roboto', fontSize: 9.5, color: '#222222', lineHeight: 1.35 },
+      pageMargins: [0, 0, 0, 28],
+      defaultStyle: { font: 'Roboto', fontSize: 9.5, color: BLACK, lineHeight: 1.35 },
       content: [
-        { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 511, y2: 0, lineWidth: 2, lineColor: '#000000' }], margin: [0, 0, 0, 10] },
-        { text: txt(header.querySelector('h1')), style: 'name', alignment: 'center' },
-        { text: txt(header.querySelector('.role')).toUpperCase(), style: 'role', alignment: 'center', margin: [0, 2, 0, 0] },
-        { text: txt(header.querySelector('.stack')), style: 'stack', alignment: 'center', margin: [0, 4, 0, 8] },
-        { text: contact.join('    |    '), style: 'contact', alignment: 'center', margin: [0, 0, 0, 10] },
-        { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 511, y2: 0, lineWidth: 0.5, lineColor: '#cccccc' }], margin: [0, 0, 0, 8] },
-        ...bodyContent
-      ],
-      styles: {
-        name: { fontSize: 22, bold: true, color: '#000000' },
-        role: { fontSize: 10, bold: true, color: '#000000', characterSpacing: 0.8 },
-        stack: { fontSize: 9.5, color: '#444444' },
-        contact: { fontSize: 9, color: '#444444' },
-        sectionTitle: { fontSize: 8.5, bold: true, color: '#000000', characterSpacing: 0.6 },
-        jobTitle: { fontSize: 10.5, bold: true, color: '#000000' },
-        date: { fontSize: 9, color: '#000000' },
-        body: { fontSize: 9.5, color: '#333333' },
-        subtle: { fontSize: 9, color: '#555555' },
-        boldLine: { fontSize: 9.5, bold: true, color: '#000000' },
-        list: { fontSize: 9, color: '#333333', margin: [0, 2, 0, 4] },
-        tags: { fontSize: 8, color: '#000000', characterSpacing: 0.3 }
-      }
+        {
+          table: {
+            widths: ['*'],
+            body: [[{
+              columns: [
+                {
+                  width: '*',
+                  stack: [
+                    { text: txt(header.querySelector('h1')), fontSize: 24, bold: true, color: WHITE },
+                    { text: txt(header.querySelector('.role')), fontSize: 9, bold: true, color: WHITE, characterSpacing: 0.6, margin: [0, 6, 0, 0] }
+                  ]
+                },
+                { width: 'auto', ...chipRow(stackItems, true), margin: [0, 8, 0, 0] }
+              ],
+              fillColor: BLACK,
+              margin: [28, 20, 28, 16]
+            }]]
+          },
+          layout: 'noBorders'
+        },
+        {
+          table: {
+            widths: contact.map(() => '*'),
+            body: [contact.map((item) => ({
+              ...item,
+              fontSize: 8.75,
+              fillColor: CONTACT_BG,
+              margin: [8, 8, 8, 8]
+            }))]
+          },
+          layout: 'noBorders'
+        },
+        {
+          table: {
+            widths: Array(signalEls.length).fill('*'),
+            body: [signalEls.map((li) => {
+              const strong = txt(li.querySelector('b'));
+              const rest = txt(li).replace(strong, '').trim();
+              return {
+                stack: [
+                  { text: strong, bold: true, fontSize: 10.5, color: BLACK },
+                  { text: rest, fontSize: 8, color: FAINT, margin: [0, 2, 0, 0] }
+                ],
+                fillColor: WASH,
+                margin: [12, 10, 8, 10],
+                border: [true, false, false, false],
+                borderColor: [BLACK, BLACK, BLACK, BLACK]
+              };
+            })]
+          },
+          layout: {
+            hLineWidth: () => 0,
+            vLineWidth: (i) => (i === 0 ? 0 : 2),
+            vLineColor: () => BLACK,
+            paddingLeft: () => 0,
+            paddingRight: () => 0,
+            paddingTop: () => 0,
+            paddingBottom: () => 0
+          },
+          margin: [0, 0, 0, 6]
+        },
+        {
+          stack: bodyContent,
+          margin: [28, 14, 28, 0]
+        }
+      ]
     };
   }
 

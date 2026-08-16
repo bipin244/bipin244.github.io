@@ -97,7 +97,7 @@
       'VERSION:3.0',
       'N:Fultariya;Bipin;;;',
       'FN:Bipin Fultariya',
-      'TITLE:Senior Web Developer',
+      'TITLE:Senior Full Stack Developer',
       'TEL;TYPE=CELL:+918511880657',
       'EMAIL;TYPE=INTERNET:bpnptl24@gmail.com',
       'URL:https://bipin244.github.io',
