@@ -1,74 +1,190 @@
+/* Bipin Fultariya — portfolio interactions.
+   Shared by index.html and resume.html; resume.html only uses the
+   PDF/print handlers, so every lookup below is null-safe. */
+
 (function () {
-  const year = document.getElementById('year');
+  'use strict';
+
+  const $ = (sel, root) => (root || document).querySelector(sel);
+  const $$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* ---------------------------------------------------------------- Footer */
+
+  const year = $('#year');
   if (year) year.textContent = new Date().getFullYear();
 
-  const menu = document.getElementById('download-menu');
-  const toggle = document.getElementById('download-toggle');
-  if (menu && toggle) {
-    const closeMenu = () => {
-      menu.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
+  /* ------------------------------------------------------- Resume dropdown */
+
+  const dropdown = $('#download-menu');
+  const dropdownToggle = $('#download-toggle');
+
+  if (dropdown && dropdownToggle) {
+    const setOpen = (open) => {
+      dropdown.classList.toggle('open', open);
+      dropdownToggle.setAttribute('aria-expanded', String(open));
     };
 
-    toggle.addEventListener('click', (e) => {
+    dropdownToggle.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      const open = !menu.classList.contains('open');
-      menu.classList.toggle('open', open);
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      setOpen(!dropdown.classList.contains('open'));
     });
 
-    menu.addEventListener('click', (e) => {
+    dropdown.addEventListener('click', (e) => {
       e.stopPropagation();
-      const item = e.target.closest('a, button');
-      if (item && item !== toggle) closeMenu();
+      if (e.target.closest('a, [role="menuitem"]')) setOpen(false);
     });
 
-    document.addEventListener('click', closeMenu);
+    document.addEventListener('click', () => setOpen(false));
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMenu();
+      if (e.key !== 'Escape' || !dropdown.classList.contains('open')) return;
+      setOpen(false);
+      dropdownToggle.focus();
     });
   }
 
-  const menuToggle = document.getElementById('menu-toggle');
-  const navLinks = document.getElementById('nav-links');
+  /* ------------------------------------------------------------ Mobile nav */
+
+  const menuToggle = $('#menu-toggle');
+  const navLinks = $('#nav-links');
+
   if (menuToggle && navLinks) {
-    const setNavOpen = (open) => {
+    const icon = $('use', menuToggle);
+
+    const setNav = (open) => {
       document.body.classList.toggle('nav-open', open);
-      menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
-      const icon = menuToggle.querySelector('i');
-      if (icon) icon.className = open ? 'bi bi-x-lg' : 'bi bi-list';
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      if (icon) icon.setAttribute('href', open ? '#i-close' : '#i-menu');
     };
+
     menuToggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      setNavOpen(!document.body.classList.contains('nav-open'));
+      setNav(!document.body.classList.contains('nav-open'));
     });
-    navLinks.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => setNavOpen(false));
+
+    $$('a', navLinks).forEach((link) => link.addEventListener('click', () => setNav(false)));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setNav(false);
     });
+
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 880) setNavOpen(false);
+      if (window.innerWidth > 900) setNav(false);
     });
   }
+
+  /* ------------------------------------------ Sticky nav state + progress */
+
+  const nav = $('#nav');
+  const progress = $('#nav-progress');
+
+  if (nav) {
+    let ticking = false;
+
+    const onScroll = () => {
+      nav.classList.toggle('is-stuck', window.scrollY > 8);
+
+      if (progress) {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = scrollable > 0 ? Math.min(window.scrollY / scrollable, 1) : 0;
+        progress.style.transform = 'scaleX(' + ratio.toFixed(4) + ')';
+      }
+
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(onScroll);
+    }, { passive: true });
+
+    onScroll();
+  }
+
+  /* -------------------------------------------------------------- Scrollspy */
+
+  const spyLinks = $$('#nav-links a[href^="#"]');
+
+  if (spyLinks.length && 'IntersectionObserver' in window) {
+    const targets = spyLinks
+      .map((link) => ({ link, section: document.getElementById(link.hash.slice(1)) }))
+      .filter((entry) => entry.section);
+
+    const setCurrent = (link) => {
+      targets.forEach((entry) => {
+        const active = entry.link === link;
+        if (active) entry.link.setAttribute('aria-current', 'true');
+        else entry.link.removeAttribute('aria-current');
+      });
+    };
+
+    const visible = new Set();
+
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) visible.add(entry.target);
+        else visible.delete(entry.target);
+      });
+
+      const first = targets.find((entry) => visible.has(entry.section));
+      if (first) setCurrent(first.link);
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+
+    targets.forEach((entry) => spy.observe(entry.section));
+  }
+
+  /* ----------------------------------------------------------- Scroll reveal */
+
+  const revealables = $$('.reveal, [data-stagger]');
+
+  if (revealables.length) {
+    if (reducedMotion.matches || !('IntersectionObserver' in window)) {
+      revealables.forEach((el) => el.classList.add('is-visible'));
+    } else {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+
+      revealables.forEach((el) => {
+        // Anything already on screen at load should not wait for a scroll.
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.95) {
+          el.classList.add('is-visible');
+        }
+        io.observe(el);
+      });
+    }
+  }
+
+  document.body.classList.add('is-ready');
+
+  /* ----------------------------------------------------------- Resume export */
 
   async function downloadPdf() {
     const source = document.getElementById('resume');
+
     if (!source) {
       window.location.href = 'resume.html?download=pdf';
       return;
     }
 
     const btn = document.getElementById('btn-download-pdf');
-    const prevLabel = btn?.innerHTML;
+    const previous = btn ? btn.innerHTML : null;
+
     if (btn) {
       btn.disabled = true;
-      btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Generating…';
+      btn.textContent = 'Generating…';
     }
 
     try {
-      if (typeof downloadResumePdf === 'function') {
-        await downloadResumePdf(source);
+      if (typeof window.downloadResumePdf === 'function') {
+        await window.downloadResumePdf(source);
       } else {
         window.print();
       }
@@ -78,7 +194,7 @@
     } finally {
       if (btn) {
         btn.disabled = false;
-        btn.innerHTML = prevLabel;
+        btn.innerHTML = previous;
       }
     }
   }
@@ -88,7 +204,7 @@
       window.print();
       return;
     }
-    window.open('resume.html', '_blank');
+    window.open('resume.html', '_blank', 'noopener');
   }
 
   function downloadVcard() {
@@ -97,7 +213,7 @@
       'VERSION:3.0',
       'N:Fultariya;Bipin;;;',
       'FN:Bipin Fultariya',
-      'TITLE:Senior Full Stack Developer',
+      'TITLE:Senior Full-Stack Developer',
       'TEL;TYPE=CELL:+918511880657',
       'EMAIL;TYPE=INTERNET:bpnptl24@gmail.com',
       'URL:https://bipin244.github.io',
@@ -105,6 +221,7 @@
       'NOTE:Laravel React.js Node.js Full-Stack Development',
       'END:VCARD'
     ].join('\r\n');
+
     const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -116,37 +233,15 @@
     URL.revokeObjectURL(url);
   }
 
-  document.getElementById('btn-download-pdf')?.addEventListener('click', downloadPdf);
-  document.getElementById('btn-print')?.addEventListener('click', printResume);
-  document.getElementById('btn-vcard')?.addEventListener('click', downloadVcard);
+  const pdfBtn = $('#btn-download-pdf');
+  const printBtn = $('#btn-print');
+  const vcardBtn = $('#btn-vcard');
+
+  if (pdfBtn) pdfBtn.addEventListener('click', downloadPdf);
+  if (printBtn) printBtn.addEventListener('click', printResume);
+  if (vcardBtn) vcardBtn.addEventListener('click', downloadVcard);
 
   if (document.getElementById('resume') && /download=pdf/.test(location.search)) {
-    setTimeout(() => { downloadPdf(); }, 1200);
+    setTimeout(downloadPdf, 1200);
   }
-
-  function initReveal() {
-    const items = document.querySelectorAll('.reveal');
-    if (!items.length) return;
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) {
-      items.forEach(el => el.classList.add('is-visible'));
-      return;
-    }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    items.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.92) el.classList.add('is-visible');
-      io.observe(el);
-    });
-  }
-
-  initReveal();
-  requestAnimationFrame(() => document.body.classList.add('is-ready'));
 })();

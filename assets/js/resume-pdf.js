@@ -354,4 +354,4 @@
   }
 
   global.downloadResumePdf = downloadResumePdf;
-})();
+})(typeof globalThis !== 'undefined' ? globalThis : window);
