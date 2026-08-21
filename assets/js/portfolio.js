@@ -166,15 +166,23 @@
 
   /* ----------------------------------------------------------- Resume export */
 
-  async function downloadPdf() {
+  // The resume markup only exists on resume.html, so from index.html we hand
+  // off with a query flag and let that page run the export on load.
+  const EXPORTS = {
+    pdf: { buttonId: 'btn-download-pdf', fn: 'downloadResumePdf', label: 'PDF' },
+    docx: { buttonId: 'btn-download-docx', fn: 'downloadResumeDocx', label: 'Word' }
+  };
+
+  async function downloadResume(format) {
+    const spec = EXPORTS[format];
     const source = document.getElementById('resume');
 
     if (!source) {
-      window.location.href = 'resume.html?download=pdf';
+      window.location.href = `resume.html?download=${format}`;
       return;
     }
 
-    const btn = document.getElementById('btn-download-pdf');
+    const btn = document.getElementById(spec.buttonId);
     const previous = btn ? btn.innerHTML : null;
 
     if (btn) {
@@ -183,14 +191,22 @@
     }
 
     try {
-      if (typeof window.downloadResumePdf === 'function') {
-        await window.downloadResumePdf(source);
-      } else {
+      if (typeof window[spec.fn] === 'function') {
+        await window[spec.fn](source);
+      } else if (format === 'pdf') {
         window.print();
+      } else {
+        throw new Error(spec.fn + ' is not available');
       }
     } catch (err) {
-      console.error('PDF export failed:', err);
-      window.print();
+      console.error(spec.label + ' export failed:', err);
+      // Printing is a sensible fallback for PDF but produces nothing useful
+      // for Word, so say so rather than silently opening a print dialog.
+      if (format === 'pdf') {
+        window.print();
+      } else {
+        window.alert('Sorry — the Word download could not be generated. Please try the PDF instead.');
+      }
     } finally {
       if (btn) {
         btn.disabled = false;
@@ -198,6 +214,9 @@
       }
     }
   }
+
+  const downloadPdf = () => downloadResume('pdf');
+  const downloadDocx = () => downloadResume('docx');
 
   function printResume() {
     if (document.getElementById('resume')) {
@@ -234,14 +253,17 @@
   }
 
   const pdfBtn = $('#btn-download-pdf');
+  const docxBtn = $('#btn-download-docx');
   const printBtn = $('#btn-print');
   const vcardBtn = $('#btn-vcard');
 
   if (pdfBtn) pdfBtn.addEventListener('click', downloadPdf);
+  if (docxBtn) docxBtn.addEventListener('click', downloadDocx);
   if (printBtn) printBtn.addEventListener('click', printResume);
   if (vcardBtn) vcardBtn.addEventListener('click', downloadVcard);
 
-  if (document.getElementById('resume') && /download=pdf/.test(location.search)) {
-    setTimeout(downloadPdf, 1200);
+  if (document.getElementById('resume')) {
+    const requested = (location.search.match(/[?&]download=(pdf|docx)\b/) || [])[1];
+    if (requested) setTimeout(() => downloadResume(requested), 1200);
   }
 })();
